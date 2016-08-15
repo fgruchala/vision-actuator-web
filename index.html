@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html data-ng-app="app">
+    <head>
+        <title>Vision</title>
+        
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+        
+        <!-- FAVICON -->
+        
+        <!-- EXTERNAL CSS -->
+        <link rel="stylesheet" href="/node_modules/angular-material/angular-material.min.css"></link>
+        
+        <!-- INTERNAL CSS -->
+        
+        <!-- EXTERNAL JS -->
+        <script src="/node_modules/angular/angular.min.js"></script>
+        <script src="/node_modules/angular-resource/angular-resource.min.js"></script>
+        <script src="/node_modules/angular-route/angular-route.min.js"></script>
+        <script src="/node_modules/angular-material/angular-material.min.js"></script>
+        <script src="/node_modules/angular-animate/angular-animate.min.js"></script>
+        <script src="/node_modules/angular-aria/angular-aria.min.js"></script>
+        
+        <!-- INTERNAL JS -->
+        <!-- MODULE APP -->
+        <script src="/app/app.module.js"></script>
+        <script src="/app/app.route.js"></script>
+        <script src="/app/app.config.js"></script>
+        
+        <!-- MODULE CORE -->
+        <script src="/app/core/core.module.js"></script>
+        
+        <!-- MODULE COMPONENTS -->
+        <script src="/app/components/components.module.js"></script>
+        
+        <!-- INTERNAL DIRECTIVES -->
+    </head>
+    <body>
+        
+        <!-- HEADER -->
+        <md-toolbar class="md-tall">
+            <div class="md-toolbar-tools">
+                <md-button class="md-icon-button" aria-label="Menu">
+                    <md-icon data-md-svg-icon="md:menu-white"></md-icon>
+                </md-button>
+                <h2>
+                    <span>Vision</span>
+                </h2>
+                <span data-flex></span>
+            </div>
+        </md-toolbar>
+        
+        <!-- CONTENT -->
+        <div data-ng-view>
+            <md-progress-circular data-md-mode="indeterminate"></md-progress-circular>
+        </div>
+        
+        <!-- FOOTER -->
+        <footer data-layout="row">
+            <p>TODO</p>
+            <p data-flex></p>
+            <p>TODO</p>
+        </footer>
+        
+    </body>
+</html>
+        
