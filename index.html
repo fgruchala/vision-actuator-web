@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html data-ng-app="app">
     <head>
-        <title data-translate="APP_NAME"></title>
+        <title data-v-navigation-title></title>
         
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
@@ -40,8 +40,13 @@
         <!-- MODULE COMPONENTS -->
         <script src="/app/components/components.module.js"></script>
         
+        <!-- MODULE HOME -->
+        <script src="/app/home/home.module.js"></script>
+        <script src="/app/home/home.route.js"></script>
+        
         <!-- INTERNAL DIRECTIVES -->
         <script src="/app/components/translate-choice/translate-choice.directive.js"></script>
+        <script src="/app/components/navigation-title/navigation-title.directive.js"></script>
         
     </head>
     <body>

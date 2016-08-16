@@ -16,7 +16,7 @@
         <md-divider></md-divider>
         
         <md-menu-item data-ng-repeat="language in vm.availableLanguages | filter:'!' + vm.actualLanguage">
-            <md-button data-ng-click="vm.choice(language)" aria-label="{{ 'LANG.' + language }}">
+            <md-button data-ng-click="vm.choice(language)" data-md-prevent-menu-close aria-label="{{ 'LANG.' + language }}">
                 <md-icon data-md-svg-icon="md:radio-black" data-md-menu-align-target></md-icon>
                 <span data-translate="{{ 'LANG.' + language }}"></span>
             </md-button>

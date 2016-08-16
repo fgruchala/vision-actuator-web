@@ -9,7 +9,8 @@
     angular
     .module('app', [
         'app.core',
-        'app.components'
+        'app.components',
+        'app.home'
     ]);
     
 })();

@@ -1,6 +1,7 @@
 {
     "APP_NAME": "Vision",
     "LANG": {
+        "CHANGE_START_MESSAGE": "Translations in progress ...",
         "CHOOSE_MESSAGE": "{VAL, plural, one{Available language} other{Available languages}}",
         "en": "English",
         "fr": "French"
