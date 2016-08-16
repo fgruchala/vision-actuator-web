@@ -26,7 +26,10 @@
         .accentPalette('orange');
         
         $mdIconProvider
-        .icon('md:menu-white', 'content/img/icons/md/menu-white.svg');
+        .icon('md:menu-white', 'content/img/icons/md/menu-white.svg')
+        .icon('md:translate-white', 'content/img/icons/md/translate-white.svg')
+        .icon('md:radio-black', 'content/img/icons/md/radio-black.svg')
+        .icon('md:radio-checked-black', 'content/img/icons/md/radio-checked-black.svg');
         
         $translateProvider
         .useStaticFilesLoader({
@@ -36,6 +39,8 @@
 
         $translateProvider.useSanitizeValueStrategy('sanitize');
         $translateProvider.useCookieStorage();
+        $translateProvider.registerAvailableLanguageKeys(['fr', 'en']);
+        $translateProvider.useMessageFormatInterpolation();
         $translateProvider.preferredLanguage('fr');
     }
     

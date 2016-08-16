@@ -1,3 +1,8 @@
 {
-    "APP_NAME": "Vision"
+    "APP_NAME": "Vision",
+    "LANG": {
+        "CHOOSE_MESSAGE": "{VAL, plural, one{Langue disponible} other{Langues disponibles}}",
+        "en": "Anglais",
+        "fr": "Français"
+    }
 }

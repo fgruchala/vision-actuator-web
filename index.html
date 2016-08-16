@@ -25,6 +25,8 @@
         <script src="/node_modules/angular-translate/dist/angular-translate.min.js"></script>
         <script src="/node_modules/angular-translate/dist/angular-translate-loader-static-files/angular-translate-loader-static-files.min.js"></script>
         <script src="/node_modules/angular-translate/dist/angular-translate-storage-cookie/angular-translate-storage-cookie.min.js"></script>
+        <script src="/content/lib/messageformat.js"></script>
+        <script src="/node_modules/angular-translate/dist/angular-translate-interpolation-messageformat/angular-translate-interpolation-messageformat.min.js"></script>
         
         <!-- INTERNAL JS -->
         <!-- MODULE APP -->
@@ -39,6 +41,8 @@
         <script src="/app/components/components.module.js"></script>
         
         <!-- INTERNAL DIRECTIVES -->
+        <script src="/app/components/translate-choice/translate-choice.directive.js"></script>
+        
     </head>
     <body>
         
@@ -52,6 +56,7 @@
                     <span data-translate="APP_NAME"></span>
                 </h2>
                 <span data-flex></span>
+                <v-translate-choice></v-translate-choice>
             </div>
         </md-toolbar>
         
