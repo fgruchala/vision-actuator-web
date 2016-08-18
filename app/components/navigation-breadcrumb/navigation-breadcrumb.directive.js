@@ -47,7 +47,6 @@
         
         
         function init (event, current, previous) {
-            console.log('test');
             var breadcrumbs = [current.title];
             
             if(angular.isDefined(previous)) {

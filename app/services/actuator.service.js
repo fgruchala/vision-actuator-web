@@ -91,7 +91,7 @@
         function get(url) {
             return $http({
                method: 'GET',
-               url: url 
+               url: 'http://localhost:9090' + url 
             });
         }
         
