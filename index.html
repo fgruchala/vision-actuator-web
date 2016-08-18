@@ -29,25 +29,27 @@
         <script src="/node_modules/angular-translate/dist/angular-translate-interpolation-messageformat/angular-translate-interpolation-messageformat.min.js"></script>
         
         <!-- INTERNAL JS -->
-        <!-- MODULE APP -->
+        <!-- APP -->
         <script src="/app/app.module.js"></script>
         <script src="/app/app.route.js"></script>
         <script src="/app/app.config.js"></script>
         
-        <!-- MODULE CORE -->
+        <!-- CORE -->
         <script src="/app/core/core.module.js"></script>
         
-        <!-- MODULE COMPONENTS -->
+        <!-- COMPONENTS -->
         <script src="/app/components/components.module.js"></script>
+        <script src="/app/components/translate-choice/translate-choice.directive.js"></script>
+        <script src="/app/components/navigation-title/navigation-title.directive.js"></script>
+        <script src="/app/components/navigation-breadcrumb/navigation-breadcrumb.directive.js"></script>
+        
+        <!-- SERVICES -->
+        <script src="/app/services/services.module.js"></script>
+        <script src="/app/services/actuator.service.js"></script>
         
         <!-- MODULE HOME -->
         <script src="/app/home/home.module.js"></script>
         <script src="/app/home/home.route.js"></script>
-        
-        <!-- INTERNAL DIRECTIVES -->
-        <script src="/app/components/translate-choice/translate-choice.directive.js"></script>
-        <script src="/app/components/navigation-title/navigation-title.directive.js"></script>
-        
     </head>
     <body>
         
@@ -57,9 +59,7 @@
                 <md-button class="md-icon-button" aria-label="Menu">
                     <md-icon data-md-svg-icon="md:menu-white"></md-icon>
                 </md-button>
-                <h2>
-                    <span data-translate="APP_NAME"></span>
-                </h2>
+                <v-navigation-breadcrumb></v-navigation-breadcrumb>
                 <span data-flex></span>
                 <v-translate-choice></v-translate-choice>
             </div>

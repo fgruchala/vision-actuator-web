@@ -15,6 +15,7 @@
     /**
      * @name translateChoiceDirectiveDefinition
      * @desc Definition of the web component vTranslateChoice
+     * @memberOf Components
      */
     function translateChoiceDirectiveDefinition () {
         var definition = {
@@ -32,9 +33,10 @@
     /**
      * @name translateChoiceDirectiveController
      * @desc Controller of the web component vTranslateChoice
-     * @see {@link https://angular-translate.github.io/docs/#/api/pascalprecht.translate.$translate | $translate}
-     * @see {@link https://material.angularjs.org/latest/api/directive/mdMenu | $mdMenu}
-     * @see {@link https://material.angularjs.org/latest/api/service/$mdToast | $mdToast}
+     * @param {@link https://angular-translate.github.io/docs/#/api/pascalprecht.translate.$translate | TranslateService} $transalte
+     * @param {@link https://material.angularjs.org/latest/api/directive/mdMenu | MaterialService} $mdMenu
+     * @param {@link https://material.angularjs.org/latest/api/service/$mdToast | MaterialService} $mdToast
+     * @memberOf translateChoiceDirectiveDefinition
      */
     function translateChoiceDirectiveController ($translate, $mdMenu, $mdToast) {
         var vm = this;

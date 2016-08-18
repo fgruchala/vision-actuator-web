@@ -29,7 +29,8 @@
         .icon('md:menu-white', 'content/img/icons/md/menu-white.svg')
         .icon('md:translate-white', 'content/img/icons/md/translate-white.svg')
         .icon('md:radio-black', 'content/img/icons/md/radio-black.svg')
-        .icon('md:radio-checked-black', 'content/img/icons/md/radio-checked-black.svg');
+        .icon('md:radio-checked-black', 'content/img/icons/md/radio-checked-black.svg')
+        .icon('md:chevron-right-white', 'content/img/icons/md/chevron-right-white.svg');
         
         $translateProvider
         .useStaticFilesLoader({

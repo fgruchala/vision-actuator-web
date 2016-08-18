@@ -15,11 +15,13 @@
     /**
      * @name navigationTitleDirectiveDefinition
      * @desc Definition of the web component vNavigationTitle
+     * @memberOf Components
      */
     function navigationTitleDirectiveDefinition () {
         var definition = {
             restrict: 'A',
             template: '{{ vm.title }}',
+            scope: {},
             controller: navigationTitleDirectiveController,
             controllerAs: 'vm'
         };
@@ -27,21 +29,21 @@
         return definition;
     }
     
-    navigationTitleDirectiveController.$inject = ['$translate', '$route', '$rootScope'];
+    navigationTitleDirectiveController.$inject = ['$translate', '$scope'];
     
     /**
      * @name navigationTitleDirectiveController
      * @desc Controller of the web component vNavigationTitle
-     * @see {@link https://angular-translate.github.io/docs/#/api/pascalprecht.translate.$translate | $translate}
-     * @see {@link https://docs.angularjs.org/api/ngRoute/service/$route | $route}
-     * @see {@link https://docs.angularjs.org/api/ng/service/$rootScope | $rootScope}
+     * @param {@link https://angular-translate.github.io/docs/#/api/pascalprecht.translate.$translate | TranslateService} $translate
+     * @param {@link https://docs.angularjs.org/guide/scope | AngularService} $scope
+     * @memberOf navigationTitleDirectiveDefinition
      */
-    function navigationTitleDirectiveController ($translate, $route, $rootScope) {
+    function navigationTitleDirectiveController ($translate, $scope) {
         var vm = this;
         
         vm.title;
         
-        $rootScope.$on('$routeChangeSuccess', init);
+        $scope.$on('$routeChangeSuccess', init);
         
         
         
