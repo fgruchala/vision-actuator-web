@@ -6,7 +6,27 @@
         "en": "Anglais",
         "fr": "Français"
     },
+    "COMMON": {
+        "OK": "OK",
+        "MORE": "Plus d'infos",
+        "TITLE-ERROR": "Erreur"
+    },
+    "VOLUME-DATA": "{UNIT, select, 1{Ko} 2{Mo} 3{Go} other{octet} }",
     "HOME": {
         "MODULE_NAME": "Accueil"
+    },
+    "HEALTH": {
+        "MODULE_NAME": "Santé",
+        "UP": "Tout fonctionne bien",
+        "SECTION": {
+            "GENERAL": "Général",
+            "DISKSPACE": "Espace disque",
+            "DB": "Base de données"
+        },
+        "DISKSPACE": {
+            "FREE": "restant",
+            "TOTAL": "au total",
+            "THRESHOLD": "Seuil fixé à"
+        }
     }
 }

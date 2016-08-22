@@ -1,0 +1,21 @@
+md-card.UP, md-card.DOWN {
+    color: #ffffff;
+}
+
+md-card.UP md-card-content, md-card.DOWN md-card-content {
+    text-align: center;
+    font-size: 50px;
+    font-weight: bold;
+}
+
+md-card.UP {
+    background-color: #4caf50;
+}
+
+md-card.DOWN {
+    background-color: #f44336;
+}
+
+md-card[data-ng-click].DOWN {
+    cursor: pointer;
+}

@@ -50,10 +50,6 @@
         function init (event, current, previous) {
             var titles = [current.title];
             
-            if(angular.isDefined(previous)) {
-                titles.push(previous.title);
-            }
-            
             titles.push('APP_NAME');
             
             $translate(titles)

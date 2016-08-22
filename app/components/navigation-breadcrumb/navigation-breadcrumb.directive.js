@@ -49,10 +49,6 @@
         function init (event, current, previous) {
             var breadcrumbs = [current.title];
             
-            if(angular.isDefined(previous)) {
-                breadcrumbs.push(previous.title);
-            }
-            
             breadcrumbs.push('APP_NAME');
             vm.breadcrumbs = breadcrumbs.reverse();
         } 

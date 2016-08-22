@@ -1,6 +1,6 @@
 /**
- * Routing of the home module
- * @namespace Home
+ * Routing of the health module
+ * @namespace Health
  * @memberOf App
  */
 (function () {
@@ -8,22 +8,22 @@
     'use strict';
     
     angular
-    .module('app.home')
-    .config(homeRouting);
+    .module('app.health')
+    .config(healthRouting);
     
-    homeRouting.$inject = ['$routeProvider'];
+    healthRouting.$inject = ['$routeProvider'];
     
     /**
-     * @name homeRouting
+     * @name healthRouting
      * @param {@link https://docs.angularjs.org/api/ngRoute/provider/$routeProvider | AngularService} $routeProvider
-     * @memberOf Home
+     * @memberOf Health
      */
-    function homeRouting ($routeProvider) {
-        $routeProvider.when('/', {
-            templateUrl: 'app/home/home.html',
-            controller: 'HomeController',
+    function healthRouting ($routeProvider) {
+        $routeProvider.when('/health', {
+            templateUrl: 'app/health/health.html',
+            controller: 'HealthController',
             controllerAs: 'vm',
-            title: 'HOME.MODULE_NAME',
+            title: 'HEALTH.MODULE_NAME',
             resolve: {
                 healthPrepData: healthPrepData
             }
@@ -38,17 +38,17 @@
      * @desc Retrieve health status via the Actuator WebService 
      * @param Service actuatorService
      * @return Object
-     * @memberOf homeRouting
+     * @memberOf healthRouting
      */
     function healthPrepData (actuatorService) {
         return actuatorService
         .health()
         .then(
             function(response) {
-                return response.data.status;
+                return response.data;
             }, 
-            function(err) {
-                return undefined;
+            function(responseInError) {
+                return responseInError.data;
             });
     }
     

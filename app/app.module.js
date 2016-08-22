@@ -10,8 +10,10 @@
     .module('app', [
         'app.core',
         'app.services',
+        'app.filters',
         'app.components',
-        'app.home'
+        'app.home',
+        'app.health'
     ]);
     
 })();

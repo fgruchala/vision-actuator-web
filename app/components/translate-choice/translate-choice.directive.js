@@ -33,7 +33,7 @@
     /**
      * @name translateChoiceDirectiveController
      * @desc Controller of the web component vTranslateChoice
-     * @param {@link https://angular-translate.github.io/docs/#/api/pascalprecht.translate.$translate | TranslateService} $transalte
+     * @param {@link https://angular-translate.github.io/docs/#/api/pascalprecht.translate.$translate | TranslateService} $translate
      * @param {@link https://material.angularjs.org/latest/api/directive/mdMenu | MaterialService} $mdMenu
      * @param {@link https://material.angularjs.org/latest/api/service/$mdToast | MaterialService} $mdToast
      * @memberOf translateChoiceDirectiveDefinition

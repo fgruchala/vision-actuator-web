@@ -3,7 +3,19 @@
     <div data-ng-hide="vm.healthPrepData"></div>
     
     <!-- IN CASE OF SUCCESS -->
-    <div data-ng-show="vm.healthPrepData">
-        {{ vm.healthPrepData }}
+    <div data-ng-show="vm.healthPrepData" data-layout="row">
+        <div data-layout="column" data-flex-offset="20">
+            <md-card>
+                <md-card-title>
+                    <md-card-title-text>
+                        <span class="md-headline" data-translate="HEALTH.MODULE_NAME"></span>
+                        <span class="md-subhead" data-translate="HEALTH.{{ vm.healthPrepData }}"></span>
+                    </md-card-title-text>
+                </md-card-title>
+                <md-card-actions layout="row" layout-align="end center">
+                    <md-button data-ng-href="#/health" aria-label="More" data-translate="COMMON.MORE"></md-button>
+                </md-card-actions>
+            </md-card>
+        </div>
     </div>
 </md-content>
