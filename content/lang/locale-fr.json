@@ -11,6 +11,11 @@
         "MORE": "Plus d'infos",
         "TITLE-ERROR": "Erreur"
     },
+    "FOOTER": {
+        "MADE": {
+            "WITH": "Développé avec"
+        }
+    },
     "VOLUME-DATA": "{UNIT, select, 1{Ko} 2{Mo} 3{Go} other{octet} }",
     "HOME": {
         "MODULE_NAME": "Accueil"
