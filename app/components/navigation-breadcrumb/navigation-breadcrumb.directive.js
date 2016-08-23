@@ -40,17 +40,14 @@
     function navigationBreadcrumbDirectiveController ($scope) {
         var vm = this;
         
-        vm.breadcrumbs;
+        vm.current;
         
         $scope.$on('$routeChangeSuccess', init);
         
         
         
         function init (event, current, previous) {
-            var breadcrumbs = [current.title];
-            
-            breadcrumbs.push('APP_NAME');
-            vm.breadcrumbs = breadcrumbs.reverse();
+            vm.current = current.title;
         } 
     }
     

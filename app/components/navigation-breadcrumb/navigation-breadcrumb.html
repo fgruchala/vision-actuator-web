@@ -1,6 +1,5 @@
 <h2>
-    <span data-ng-repeat="breadcrumb in vm.breadcrumbs">
-        <span data-translate="{{ breadcrumb }}"></span>
-        <md-icon data-ng-hide="$last" data-md-svg-icon="md:chevron-right-white"></md-icon>
-    </span>
+    <a href="#/">Vision</a>
+    <md-icon data-md-svg-icon="md:chevron-right-white"></md-icon>
+    <span data-translate="{{ vm.current }}"></span>
 </h2>

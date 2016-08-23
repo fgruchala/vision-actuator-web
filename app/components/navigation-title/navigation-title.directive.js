@@ -20,7 +20,7 @@
     function navigationTitleDirectiveDefinition () {
         var definition = {
             restrict: 'A',
-            template: '{{ vm.title }}',
+            template: '{{ vm.current | translate }} - {{ \'APP_NAME\' | translate }}',
             scope: {},
             controller: navigationTitleDirectiveController,
             controllerAs: 'vm'
@@ -41,28 +41,14 @@
     function navigationTitleDirectiveController ($translate, $scope) {
         var vm = this;
         
-        vm.title;
+        vm.current;
         
         $scope.$on('$routeChangeSuccess', init);
         
         
         
         function init (event, current, previous) {
-            var titles = [current.title];
-            
-            titles.push('APP_NAME');
-            
-            $translate(titles)
-            .then(function(translations) {
-                angular.forEach(translations, function(translation, key) {
-                    if(angular.isUndefined(vm.title)) {
-                        vm.title = translation;
-                    }
-                    else {
-                        vm.title = vm.title + " - " + translation;
-                    }
-                });
-            });
+            vm.current = $translate.instant(current.title);
         } 
     }
     
