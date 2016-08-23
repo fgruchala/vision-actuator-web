@@ -4,8 +4,53 @@
     
     <!-- IN CASE OF SUCCESS -->
     <div data-ng-show="vm.healthPrepData" data-layout="row">
-        <div data-layout="column" data-flex-offset="20">
-            <md-card>
+        <div data-layout="column" data-flex-offset="20" data-flex="20">
+            <!-- HEALTH -->
+            <md-card data-flex>
+                <md-card-title>
+                    <md-card-title-text>
+                        <span class="md-headline" data-translate="HEALTH.MODULE_NAME"></span>
+                        <span class="md-subhead" data-translate="HEALTH.{{ vm.healthPrepData }}"></span>
+                    </md-card-title-text>
+                </md-card-title>
+                <md-card-actions data-layout="row" data-layout-align="end center">
+                    <md-button data-ng-href="#/health" aria-label="More" data-translate="COMMON.MORE"></md-button>
+                </md-card-actions>
+            </md-card>
+            
+            <!-- BEANS -->
+            <md-card data-flex class="single-data">
+                <md-card-title>
+                    <md-card-title-text>
+                        <span class="md-headline" data-translate="BEANS.MODULE_NAME"></span>
+                    </md-card-title-text>
+                </md-card-title>
+                <md-card-content data-layout data-layout-align="center center">
+                    <md-progress-circular data-ng-hide="vm.beans.promise.$$state.status" data-md-mode="indeterminate"></md-progress-circular>
+                    <span data-ng-show="vm.beans.promise.$$state.status">{{ vm.beans.data.length }}</span>
+                </md-card-content>
+                <md-card-actions data-ng-show="vm.beans.promise.$$state.status" data-layout="row" data-layout-align="end center">
+                    <md-button data-ng-href="#/beans" aria-label="More" data-translate="COMMON.MORE"></md-button>
+                </md-card-actions>
+            </md-card>
+        </div>
+        
+        <div data-layout="column" data-flex="20">
+            <md-card data-flex>
+                <md-card-title>
+                    <md-card-title-text>
+                        <span class="md-headline" data-translate="HEALTH.MODULE_NAME"></span>
+                        <span class="md-subhead" data-translate="HEALTH.{{ vm.healthPrepData }}"></span>
+                    </md-card-title-text>
+                </md-card-title>
+                <md-card-actions layout="row" layout-align="end center">
+                    <md-button data-ng-href="#/health" aria-label="More" data-translate="COMMON.MORE"></md-button>
+                </md-card-actions>
+            </md-card>
+        </div>
+        
+        <div data-layout="column" data-flex="20">
+            <md-card data-flex>
                 <md-card-title>
                     <md-card-title-text>
                         <span class="md-headline" data-translate="HEALTH.MODULE_NAME"></span>

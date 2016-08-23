@@ -6,26 +6,26 @@
     <div data-ng-show="vm.healthPrepData" data-flex-offset="20" data-flex="60" data-layout="column">
         <md-content data-layout="row" data-layout-margin>
             <!-- GENERAL -->
-            <md-card data-flex data-ng-class="vm.healthPrepData.status">
+            <md-card data-flex data-ng-class="vm.healthPrepData.status" class="single-data">
                 <md-card-title>
                     <md-card-title-text>
                         <span class="md-headline" data-translate="HEALTH.SECTION.GENERAL"></span>
                     </md-card-title-text>
                 </md-card-title>
-                <md-card-content>
+                <md-card-content data-layout data-layout-align="center center">
                     {{ vm.healthPrepData.status }}
                 </md-card-content>
             </md-card>
             
             <!-- DATABASE -->
-            <md-card data-ng-show="vm.healthPrepData.db" data-ng-click="vm.showError(vm.healthPrepData.db.error)" data-ng-disabled="vm.healthPrepData.db.status=='UP'" data-flex data-ng-class="vm.healthPrepData.db.status">
+            <md-card data-ng-show="vm.healthPrepData.db" data-ng-click="vm.showError(vm.healthPrepData.db.error)" data-ng-disabled="vm.healthPrepData.db.status=='UP'" data-flex data-ng-class="vm.healthPrepData.db.status" class="single-data">
                 <md-card-title>
                     <md-card-title-text>
                         <span class="md-headline" data-translate="HEALTH.SECTION.DB"></span>
                         <span class="md-subhead">{{ vm.healthPrepData.db.database }}</span>
                     </md-card-title-text>
                 </md-card-title>
-                <md-card-content>
+                <md-card-content data-layout data-layout-align="center center">
                     {{ vm.healthPrepData.db.status }}
                 </md-card-content>
             </md-card>

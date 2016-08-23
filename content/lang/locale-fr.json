@@ -33,5 +33,11 @@
             "TOTAL": "au total",
             "THRESHOLD": "Seuil fixé à"
         }
+    },
+    "BEANS": {
+        "MODULE_NAME": "Beans",
+        "SECTION": {
+            "LIST" : "{VAL, plural, one{1 bean déclaré} other{# beans déclarés} }"
+        }
     }
 }

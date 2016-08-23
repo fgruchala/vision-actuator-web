@@ -23,6 +23,24 @@
         var vm = this;
         
         vm.healthPrepData = healthPrepData;
+        vm.beans = {};
+        
+        init();
+        
+        
+        
+        function init () {
+            vm.beans.promise = actuatorService.beans();
+            
+            vm.beans.promise
+            .then(function(response) {
+                vm.beans.data = response.data[0].beans;
+            },
+            function(responseInError) {
+                vm.beans.data = undefined;
+            });
+        }
+        
     }
     
 })();

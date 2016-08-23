@@ -1,0 +1,23 @@
+<md-content>
+    <!-- IN CASE OF ERROR -->
+    <div data-ng-hide="vm.beansPrepData"></div>
+    
+    <!-- IN CASE OF SUCCESS -->
+    <div data-ng-show="vm.beansPrepData" data-flex-offset="20" data-flex="60" data-layout="column">
+        <md-content data-layout="column" data-layout-margin>
+            <!-- TITLE -->
+            <md-subheader data-translate="BEANS.SECTION.LIST" data-translate-values="{VAL:vm.beansPrepData.length}"></md-subheader>
+            
+            <!-- LIST -->
+            <md-list data-flex class="md-whiteframe-z1">
+                <md-list-item class="md-3-line" data-ng-repeat="beanDefinition in vm.beansPrepData">
+                    <div class="md-list-item-text" layout="column">
+                        <h3>{{ beanDefinition.bean }}</h3>
+                        <h4>{{ beanDefinition.scope }}</h4>
+                        <p>{{ beanDefinition.type }}</p>
+                    </div>
+                </md-list-item>  
+            </md-list>
+        </md-content>
+    </div>
+</md-content>

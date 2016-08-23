@@ -13,7 +13,8 @@
         'app.filters',
         'app.components',
         'app.home',
-        'app.health'
+        'app.health',
+        'app.beans'
     ]);
     
 })();

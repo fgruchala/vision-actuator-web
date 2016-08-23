@@ -2,12 +2,6 @@ md-card.UP, md-card.DOWN {
     color: #ffffff;
 }
 
-md-card.UP md-card-content, md-card.DOWN md-card-content {
-    text-align: center;
-    font-size: 50px;
-    font-weight: bold;
-}
-
 md-card.UP {
     background-color: #4caf50;
 }
@@ -18,6 +12,15 @@ md-card.DOWN {
 
 md-card[data-ng-click].DOWN {
     cursor: pointer;
+}
+
+md-card.single-data md-card-content {
+    font-size: 50px;
+    font-weight: bold;
+}
+
+md-list.md-whiteframe-z1 {
+    background-color: #ffffff;
 }
 
 a {
