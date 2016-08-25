@@ -6,12 +6,14 @@
     <div data-ng-show="vm.beansPrepData" data-flex-offset="20" data-flex="60" data-layout="column">
         <md-content data-layout="column" data-layout-margin>
             <!-- TITLE -->
-            <md-subheader data-translate="BEANS.SECTION.LIST" data-translate-values="{VAL:vm.beansPrepData.length}"></md-subheader>
+            <md-subheader>
+                <span data-translate="BEANS.SECTION.LIST" data-translate-values="{VAL:vm.beansPrepData.length}"></span>
+            </md-subheader>
             
             <!-- LIST -->
             <md-list data-flex class="md-whiteframe-z1">
-                <md-list-item class="md-3-line" data-ng-repeat="beanDefinition in vm.beansPrepData">
-                    <div class="md-list-item-text" layout="column">
+                <md-list-item class="md-3-line" data-ng-repeat="beanDefinition in vm.beansPrepData" data-ng-click="vm.showFullInformations(beanDefinition)">
+                    <div class="md-list-item-text" data-layout="column">
                         <h3>{{ beanDefinition.bean }}</h3>
                         <h4>{{ beanDefinition.scope }}</h4>
                         <p>{{ beanDefinition.type }}</p>

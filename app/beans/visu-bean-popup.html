@@ -1,0 +1,45 @@
+<md-dialog aria-label="Full informations of bean">
+    <md-toolbar>
+        <div class="md-toolbar-tools">
+            <h2>{{ vm.beanPrepData.bean }}</h2>
+            <span data-flex></span>
+            <md-button class="md-icon-button" data-ng-click="vm.close()">
+                <md-icon data-md-svg-icon="md:close-white" aria-label="Close"></md-icon>
+            </md-button>
+        </div>
+    </md-toolbar>
+    <md-dialog-content>
+        <!-- SCOPE -->
+        <div data-layout="row" data-layout-align="start center" data-layout-padding>
+            <span data-flex data-translate="BEANS.SCOPE"></span>
+            <strong>{{ vm.beanPrepData.scope }}</strong>
+        </div>
+        
+        <!-- TYPE -->
+        <div data-layout="row" data-layout-align="start center" data-layout-padding>
+            <span data-flex data-translate="BEANS.TYPE"></span>
+            <strong>{{ vm.beanPrepData.type }}</strong>
+        </div>
+        
+        <!-- RESOURCE -->
+        <div data-layout="row" data-layout-align="start center" data-layout-padding>
+            <span data-flex data-translate="BEANS.RESOURCE"></span>
+            <strong>{{ vm.beanPrepData.resource }}</strong>
+        </div>
+        
+        <!-- DEPENDANCIES -->
+        <md-divider data-ng-show="vm.beanPrepData.dependencies.length"></md-divider>
+        <md-list data-ng-show="vm.beanPrepData.dependencies.length">
+            <md-subheader style="background-color:#ffffff">
+                <span data-translate="BEANS.DEPENDENCIES" data-translate-values="{VAL:vm.beanPrepData.dependencies.length}"></span>    
+            </md-subheader>
+            <md-list-item data-ng-repeat="dependency in vm.beanPrepData.dependencies">
+                <p>{{ dependency }}</p>
+            </md-list-item> 
+        </md-list>
+    </md-dialog-content>
+    <md-dialog-actions layout="row">
+        <span data-flex></span>
+        <md-button class="md-link" data-ng-click="vm.close()" arial-label="Close" data-translate="COMMON.CLOSE"></md-button>
+    </md-dialog-actions>
+</md-dialog>

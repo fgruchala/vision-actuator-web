@@ -8,6 +8,7 @@
     },
     "COMMON": {
         "OK": "OK",
+        "CLOSE": "Fermer",
         "MORE": "Plus d'infos",
         "TITLE-ERROR": "Erreur"
     },
@@ -38,6 +39,10 @@
         "MODULE_NAME": "Beans",
         "SECTION": {
             "LIST" : "{VAL, plural, one{1 bean déclaré} other{# beans déclarés} }"
-        }
+        },
+        "SCOPE": "Scope",
+        "TYPE": "Type",
+        "RESOURCE": "Ressource",
+        "DEPENDENCIES": "{VAL, plural, one{1 dépendance associée} other{# dépendances associées} }"
     }
 }
