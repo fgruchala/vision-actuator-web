@@ -13,7 +13,8 @@
         "TITLE-ERROR": "Erreur",
         "LOADING": "Chargement en cours ...",
         "SEARCH": "Rechercher",
-        "NOTHING_TO_SEE": "Pas de résultat :/"
+        "NOTHING_TO_SEE": "Pas de résultat :/",
+        "NC": "NC"
     },
     "VOLUME-DATA": "{UNIT, select, 1{Ko} 2{Mo} 3{Go} other{octet} }",
     "HOME": {

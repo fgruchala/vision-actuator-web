@@ -1,4 +1,13 @@
-md-card.UP, md-card.DOWN {
+a {
+    text-decoration: none;
+    color: #9e9e9e;
+}
+
+a:hover {
+    color: #616161;
+}
+
+md-card.UP, md-card.DOWN, md-card.UP a:hover, md-card.DOWN a:hover {
     color: #ffffff;
 }
 
@@ -21,13 +30,4 @@ md-card.single-data md-card-content {
 
 md-list.md-whiteframe-z1 {
     background-color: #ffffff;
-}
-
-a {
-    text-decoration: none;
-    color: #9e9e9e;
-}
-
-a:hover {
-    color: #616161;
 }

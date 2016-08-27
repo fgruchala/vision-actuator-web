@@ -37,7 +37,12 @@
                 vm.health.data = response.data;
             },
             function(responseInError) {
-                vm.health.data = undefined;
+                if(responseInError.status === -1 || responseInError.status === 404) {
+                    vm.health.data = undefined;
+                }
+                else{
+                    vm.health.data = responseInError.data;
+                }
             });
             
             vm.beans.promise
@@ -45,7 +50,12 @@
                 vm.beans.data = response.data[0].beans;
             },
             function(responseInError) {
-                vm.beans.data = undefined;
+                if(responseInError.status === -1 || responseInError.status === 404) {
+                    vm.beans.data = undefined;
+                }
+                else{
+                    vm.beans.data = responseInError.data;
+                }
             });
         }
         
