@@ -48,7 +48,10 @@
         
         
         function init (event, current, previous) {
-            vm.current = $translate.instant(current.title);
+            $translate(current.title)
+            .then(function (translation) {
+               vm.current = translation; 
+            });
         } 
     }
     
