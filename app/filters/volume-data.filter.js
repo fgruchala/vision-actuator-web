@@ -34,7 +34,7 @@
                 volumeData = volumeData.toFixed(2);     
             }
             else {
-                console.error('Filter volumeData : input has to be a number');
+                throw new Error('Filter volumeData : input has to be a number');
             }
             
             return volumeData + " " + $translate.instant('VOLUME-DATA', {'UNIT':unit});
