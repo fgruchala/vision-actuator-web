@@ -11,18 +11,17 @@
     .module('app.home')
     .controller('HomeController', homeController);
     
-    homeController.$inject = ['actuatorService', 'healthPrepData'];
+    homeController.$inject = ['actuatorService'];
     
     /**
      * @name homeController
      * @param Service actuatorService
-     * @param Object healthPrepData
      * @memberOf Home
      */
-    function homeController (actuatorService, healthPrepData) {
+    function homeController (actuatorService) {
         var vm = this;
         
-        vm.healthPrepData = healthPrepData;
+        vm.health = {};
         vm.beans = {};
         
         init();
@@ -30,7 +29,16 @@
         
         
         function init () {
+            vm.health.promise = actuatorService.health(); 
             vm.beans.promise = actuatorService.beans();
+            
+            vm.health.promise
+            .then(function(response) {
+                vm.health.data = response.data;
+            },
+            function(responseInError) {
+                vm.health.data = undefined;
+            });
             
             vm.beans.promise
             .then(function(response) {

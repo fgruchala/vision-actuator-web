@@ -23,33 +23,8 @@
             templateUrl: 'app/home/home.html',
             controller: 'HomeController',
             controllerAs: 'vm',
-            title: 'HOME.MODULE_NAME',
-            resolve: {
-                healthPrepData: healthPrepData
-            }
+            title: 'HOME.MODULE_NAME'
         });
-    }
-    
-    healthPrepData.$inject = ['actuatorService'];
-    
-    
-    /**
-     * @name healthPrepData
-     * @desc Retrieve health status via the Actuator WebService 
-     * @param Service actuatorService
-     * @return Object
-     * @memberOf homeRouting
-     */
-    function healthPrepData (actuatorService) {
-        return actuatorService
-        .health()
-        .then(
-            function(response) {
-                return response.data.status;
-            }, 
-            function(err) {
-                return undefined;
-            });
     }
     
 })();
