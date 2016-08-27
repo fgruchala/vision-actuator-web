@@ -5,20 +5,31 @@
     <!-- IN CASE OF SUCCESS -->
     <div data-ng-show="vm.beansPrepData" data-flex-offset="20" data-flex="60" data-layout="column">
         <md-content data-layout="column" data-layout-margin>
-            <!-- TITLE -->
-            <md-subheader>
-                <span data-translate="BEANS.SECTION.LIST" data-translate-values="{VAL:vm.beansPrepData.length}"></span>
-            </md-subheader>
+            <div data-layout="row" data-layout-align="start center">
+                <!-- TITLE -->
+                <md-subheader data-flex>
+                    <span data-translate="BEANS.SECTION.LIST" data-translate-values="{VAL:vm.beansPrepData.length}"></span>
+                </md-subheader>
+                
+                <!-- SEARCH BAR -->
+                <md-input-container class="md-block" style="margin-bottom:0">
+                    <label data-translate="COMMON.SEARCH"></label>
+                    <input data-ng-model="vm.filter" type="text" autofocus>
+                </md-input-container>             
+            </div>
             
             <!-- LIST -->
             <md-list data-flex class="md-whiteframe-z1">
-                <md-list-item class="md-3-line" data-ng-repeat="beanDefinition in vm.beansPrepData" data-ng-click="vm.showFullInformations(beanDefinition)">
+                <md-list-item class="md-3-line" data-ng-repeat="beanDefinition in filteredBeans = (vm.beansPrepData | filter:{bean:vm.filter})" data-ng-click="vm.showFullInformations(beanDefinition)">
                     <div class="md-list-item-text" data-layout="column">
                         <h3>{{ beanDefinition.bean }}</h3>
                         <h4>{{ beanDefinition.scope }}</h4>
                         <p>{{ beanDefinition.type }}</p>
                     </div>
-                </md-list-item>  
+                </md-list-item>
+                <md-list-item data-ng-hide="filteredBeans.length">
+                    <p data-translate="COMMON.NOTHING_TO_SEE"></p>
+                </md-list-item>
             </md-list>
         </md-content>
     </div>

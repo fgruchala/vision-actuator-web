@@ -23,6 +23,7 @@
         var vm = this;
         
         vm.beansPrepData = beansPrepData;
+        vm.filter = "";
         vm.showFullInformations = showFullInformations;
         
         

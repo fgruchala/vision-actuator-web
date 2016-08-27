@@ -10,7 +10,10 @@
         "OK": "OK",
         "CLOSE": "Fermer",
         "MORE": "Plus d'infos",
-        "TITLE-ERROR": "Erreur"
+        "TITLE-ERROR": "Erreur",
+        "LOADING": "Chargement en cours ...",
+        "SEARCH": "Rechercher",
+        "NOTHING_TO_SEE": "Pas de résultat :/"
     },
     "FOOTER": {
         "MADE": {
