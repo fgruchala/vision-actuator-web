@@ -9,18 +9,20 @@
                 <!-- TITLE -->
                 <md-subheader data-flex>
                     <span data-translate="BEANS.SECTION.LIST" data-translate-values="{VAL:vm.beansPrepData.length}"></span>
+                    /
+                    <span data-translate="BEANS.SECTION.LIST_FILTERED" data-translate-values="{VAL:vm.filter.datas.length}"></span>
                 </md-subheader>
                 
                 <!-- SEARCH BAR -->
                 <md-input-container class="md-block" style="margin-bottom:0">
                     <label data-translate="COMMON.SEARCH"></label>
-                    <input data-ng-model="vm.filter" type="text" autofocus>
+                    <input data-ng-model="vm.filter.value" type="text" autofocus>
                 </md-input-container>             
             </div>
             
             <!-- LIST -->
             <md-list data-flex class="md-whiteframe-z1">
-                <md-list-item class="md-3-line" data-ng-repeat="beanDefinition in filteredBeans = (vm.beansPrepData | filter:{bean:vm.filter})" data-ng-click="vm.showFullInformations(beanDefinition)">
+                <md-list-item class="md-3-line" data-ng-repeat="beanDefinition in vm.filter.datas = (vm.beansPrepData | filter:{bean:vm.filter.value})" data-ng-click="vm.showFullInformations(beanDefinition)">
                     <div class="md-list-item-text" data-layout="column">
                         <h3>{{ beanDefinition.bean }}</h3>
                         <h4>{{ beanDefinition.scope }}</h4>
@@ -32,5 +34,6 @@
                 </md-list-item>
             </md-list>
         </md-content>
+       
     </div>
 </md-content>

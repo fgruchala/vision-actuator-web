@@ -41,7 +41,8 @@
     "BEANS": {
         "MODULE_NAME": "Beans",
         "SECTION": {
-            "LIST" : "{VAL, plural, one{1 bean déclaré} other{# beans déclarés} }"
+            "LIST": "{VAL, plural, =0{Aucun bean déclaré} one{1 bean déclaré} other{# beans déclarés} }",
+            "LIST_FILTERED": "{VAL, plural, =0{0 affiché} one{1 affiché} other{# affichés} }"
         },
         "SCOPE": "Scope",
         "TYPE": "Type",
