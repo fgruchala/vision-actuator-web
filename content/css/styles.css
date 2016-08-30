@@ -28,6 +28,10 @@ md-card.single-data md-card-content {
     font-weight: bold;
 }
 
+md-card.multi-data md-card-content {
+    padding : 0;
+}
+
 md-list.md-whiteframe-z1 {
     background-color: #ffffff;
 }

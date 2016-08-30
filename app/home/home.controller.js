@@ -23,6 +23,7 @@
         
         vm.health = {};
         vm.beans = {};
+        vm.env = {};
         
         init();
         
@@ -31,6 +32,7 @@
         function init () {
             vm.health.promise = actuatorService.health(); 
             vm.beans.promise = actuatorService.beans();
+            vm.env.promise = actuatorService.env();
             
             vm.health.promise
             .then(function(response) {
@@ -53,8 +55,18 @@
                 if(responseInError.status === -1 || responseInError.status === 404) {
                     vm.beans.data = undefined;
                 }
+            });
+            
+            vm.env.promise
+            .then(function(response) {
+                vm.env.data = response.data;
+            },
+            function(responseInError) {
+                if(responseInError.status === -1 || responseInError.status === 404) {
+                    vm.env.data = undefined;
+                }
                 else{
-                    vm.beans.data = responseInError.data;
+                    vm.env.data = responseInError.data;
                 }
             });
         }
