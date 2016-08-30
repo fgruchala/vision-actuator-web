@@ -26,6 +26,7 @@ md-card[data-ng-click].DOWN {
 md-card.single-data md-card-content {
     font-size: 50px;
     font-weight: bold;
+    text-align: center;
 }
 
 md-card.multi-data md-card-content {
