@@ -36,3 +36,16 @@ md-card.multi-data md-card-content {
 md-list.md-whiteframe-z1 {
     background-color: #ffffff;
 }
+
+/* trace */
+.status2xx {
+    background-color: #4caf50;
+}
+
+.status4xx {
+    background-color: #ffeb3b;
+}
+
+.status5xx {
+    background-color: #f44336;
+}

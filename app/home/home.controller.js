@@ -11,20 +11,23 @@
     .module('app.home')
     .controller('HomeController', homeController);
     
-    homeController.$inject = ['actuatorService'];
+    homeController.$inject = ['actuatorService', 'tracesData'];
     
     /**
      * @name homeController
      * @param Service actuatorService
      * @memberOf Home
      */
-    function homeController (actuatorService) {
+    function homeController (actuatorService, tracesData) {
         var vm = this;
         
         vm.health = {};
         vm.beans = {};
         vm.env = {};
+        vm.traces = tracesData.data;
         
+        vm.colorFromStatus = colorFromStatus;
+
         init();
         
         
@@ -33,7 +36,7 @@
             vm.health.promise = actuatorService.health(); 
             vm.beans.promise = actuatorService.beans();
             vm.env.promise = actuatorService.env();
-            
+
             vm.health.promise
             .then(function(response) {
                 vm.health.data = response.data;
@@ -70,7 +73,15 @@
                 }
             });
         }
-        
+
+        function colorFromStatus(status) {
+            if (status >= 500) {
+                return 'status5xx';
+            } else if (status >= 400) {
+                return 'status4xx';
+            } else {
+                return 'status2xx';
+            }
+        }   
     }
-    
 })();

@@ -64,7 +64,7 @@
                 return get('/shutdown');
             },
             'trace': function() {
-                return get('/flyway');
+                return get('/trace');
             },
             'docs': function() {
                 return get('/docs');
