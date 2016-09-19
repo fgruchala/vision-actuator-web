@@ -24,7 +24,7 @@
         vm.health = {};
         vm.beans = {};
         vm.env = {};
-        vm.traces = tracesData.data;
+        vm.latestTrace = tracesData.data[0];
         
         vm.colorFromStatus = colorFromStatus;
 

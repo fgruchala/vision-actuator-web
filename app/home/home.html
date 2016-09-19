@@ -115,17 +115,13 @@
                     <span class="md-headline" data-translate="TRACE.MODULE_NAME"></span>
                 </md-card-header-text>
             </md-card-header>
-            <md-card-content>
-                <md-list>
-                    <md-list-item data-ng-repeat="trace in vm.traces">
-                        <p>
-                            <strong>{{trace.info.method}}</strong>
-                            <span class="{{vm.colorFromStatus(trace.info.headers.response.status)}}">{{trace.info.headers.response.status}}</span>
-                            <span>{{trace.info.path}}</span>
-                        </p>
-                        <p class="md-secondary">{{trace.timestamp}}</p>
-                    </md-list-item>
-                </md-list>
+            <md-card-content layout="row" layout-wrap>
+                <span flex="20">{{vm.latestTrace.timestamp | date}}</span>
+                <span flex="10">
+                    <strong  id="httpMethodChip">{{vm.latestTrace.info.method}}</strong>
+                </span>
+                <span flex="55">{{vm.latestTrace.info.path}}</span>
+                <strong flex class="{{vm.colorFromStatus(trace.info.headers.response.status)}}">{{vm.latestTrace.info.headers.response.status}}</strong>
             </md-card-content>
             <md-card-actions data-ng-show="vm.traces.promise.$$state.status>0 && vm.traces.data" data-layout="row" data-layout-align="end center">
                 <md-button data-ng-href="#" aria-label="More" data-translate="COMMON.MORE"></md-button>

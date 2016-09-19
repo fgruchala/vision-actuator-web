@@ -39,13 +39,20 @@ md-list.md-whiteframe-z1 {
 
 /* trace */
 .status2xx {
-    background-color: #4caf50;
+    color: #4caf50;
 }
 
 .status4xx {
-    background-color: #ffeb3b;
+    color: #ffeb3b;
 }
 
 .status5xx {
-    background-color: #f44336;
+    color: #f44336;
+}
+
+#httpMethodChip {
+    background-color: #4caf50;
+    color: white;
+    border-radius: 5px;
+    padding: 5px;
 }
