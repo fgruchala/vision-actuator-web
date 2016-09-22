@@ -1,30 +1,30 @@
+'use strict';
+
 /**
  * Controller of the home page
  * @namespace Home
  * @memberOf App
  */
 (function () {
-    
-    'use strict';
-    
+
     angular
     .module('app.home')
     .controller('HomeController', homeController);
     
-    homeController.$inject = ['actuatorService', 'tracesData'];
+    homeController.$inject = ['actuatorService'];
     
     /**
      * @name homeController
      * @param Service actuatorService
      * @memberOf Home
      */
-    function homeController (actuatorService, tracesData) {
+    function homeController (actuatorService) {
         var vm = this;
-        
+
         vm.health = {};
         vm.beans = {};
         vm.env = {};
-        vm.latestTrace = tracesData.data[0];
+        vm.traces = {};
         
         vm.colorFromStatus = colorFromStatus;
 
@@ -36,6 +36,9 @@
             vm.health.promise = actuatorService.health(); 
             vm.beans.promise = actuatorService.beans();
             vm.env.promise = actuatorService.env();
+
+            vm.traces.promise = actuatorService.trace();
+            vm.traces.promise.then(traceSuccess, traceFailure);
 
             vm.health.promise
             .then(function(response) {
@@ -82,6 +85,15 @@
             } else {
                 return 'status2xx';
             }
-        }   
+        }  
+
+        function traceSuccess(response) {
+            vm.traces.data = response.data;
+            vm.latestTrace = response.data[0];
+        }
+
+        function traceFailure(error) {
+            // TODO
+        }
     }
 })();

@@ -60,6 +60,6 @@
         "REFRESH": "{VAL, plural, =0{Aucune configuration de cache} one{1 configuration de cache} other{# configurations de cache} }"
     },
     "TRACE" : {
-        "MODULE_NAME": "Dernier accès"
+        "MODULE_NAME": "Derniers accès"
     }
 }

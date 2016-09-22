@@ -23,15 +23,7 @@
             templateUrl: 'app/home/home.html',
             controller: 'HomeController',
             controllerAs: 'vm',
-            title: 'HOME.MODULE_NAME',
-            resolve : {
-                tracesData : tracesData
-            }
+            title: 'HOME.MODULE_NAME'
         });
-    }
-
-    tracesData.$inject = ['actuatorService'];
-    function tracesData(actuatorService) {
-        return actuatorService.trace();
     }
 })();
