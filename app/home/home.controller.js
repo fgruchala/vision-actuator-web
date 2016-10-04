@@ -25,7 +25,8 @@
         vm.beans = {};
         vm.env = {};
         vm.traces = {};
-        
+        vm.today = new Date();
+
         vm.colorFromStatus = colorFromStatus;
 
         init();
