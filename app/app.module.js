@@ -14,7 +14,8 @@
         'app.components',
         'app.home',
         'app.health',
-        'app.beans'
+        'app.beans',
+        'app.env'
     ]);
     
 })();
