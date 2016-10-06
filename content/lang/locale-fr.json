@@ -48,10 +48,11 @@
     },
     "ENV": {
         "MODULE_NAME": "Environnement",
-        "PROFILES": "{VAL, plural, =0{Aucun profil actif} one{1 profil actif} other{# profils actifs} }",
+        "PROFILES": "{VAL, plural, =0{Profil chargé} one{Profil chargé} other{Profils chargés} }",
         "SERVER": {
             "PORTS": "{VAL, plural, =0{Aucun port occupé} one{1 port occupé} other{# ports occupés} }"
         },
+        "COMMAND_LINE_ARGS": "{VAL, plural, =0{Aucune option à l'exécution} one{1 option à l'exécution} other{# options à l'exécution} }",
         "SERVLETCONTEXTINITPARAMS": "{VAL, plural, =0{Aucun paramètre de contexte} one{1 paramètre de contexte} other{# paramètres de contexte} }",
         "SYSTEM": {
             "PROPERTIES": "{VAL, plural, =0{Aucune variable système} one{1 variable système} other{# variables systèmes} }",

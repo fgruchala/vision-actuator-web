@@ -15,7 +15,7 @@
     
     /**
      * @name envRouting
-     * @param {@link https://docs.angularjs.org/api/ngRoute/provider/$routeProvider | AngularService} $routeProvider
+     * @param {@link https://docs.angularjs.org/api/ngRoute/provider/$routeProvider | AngularService} [$routeProvider]
      * @memberOf Env
      */
     function envRouting ($routeProvider) {
@@ -36,11 +36,11 @@
     /**
      * @name envPrepData
      * @desc Retrieve env via the Actuator WebService 
-     * @param Service actuatorService
-     * @param {@link https://docs.angularjs.org/api/ng/service/$location | AngularService} $location
-     * @param {@link https://material.angularjs.org/latest/api/service/$mdToast | MaterialService} $mdToast
-     * @param {@link https://angular-translate.github.io/docs/#/api/pascalprecht.translate.$translate | TranslateService} $translate
-     * @return Object
+     * @param {Service} [actuatorService] - Rest client for Actuator
+     * @param {@link https://docs.angularjs.org/api/ng/service/$location | AngularService} [$location]
+     * @param {@link https://material.angularjs.org/latest/api/service/$mdToast | MaterialService} [$mdToast]
+     * @param {@link https://angular-translate.github.io/docs/#/api/pascalprecht.translate.$translate | TranslateService} [$translate]
+     * @returns {Object}
      * @memberOf envRouting
      */
     function envPrepData (actuatorService, $location, $mdToast, $translate) {
