@@ -18,7 +18,7 @@
             templateUrl: 'app/trace/trace.html',
             controller: 'TraceController',
             controllerAs: 'vm',
-            title: 'HEALTH.MODULE_NAME',
+            title: 'TRACE.MODULE_NAME',
             resolve : {
                 tracePrepData : tracePrepData
             }

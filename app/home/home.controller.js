@@ -24,10 +24,6 @@
         vm.health = {};
         vm.beans = {};
         vm.env = {};
-        vm.traces = {};
-        vm.today = new Date();
-
-        vm.colorFromStatus = colorFromStatus;
 
         init();
         
@@ -37,9 +33,6 @@
             vm.health.promise = actuatorService.health(); 
             vm.beans.promise = actuatorService.beans();
             vm.env.promise = actuatorService.env();
-
-            vm.traces.promise = actuatorService.trace();
-            vm.traces.promise.then(traceSuccess, traceFailure);
 
             vm.health.promise
             .then(function(response) {
@@ -76,25 +69,6 @@
                     vm.env.data = responseInError.data;
                 }
             });
-        }
-
-        function colorFromStatus(status) {
-            if (status >= 500) {
-                return 'status5xx';
-            } else if (status >= 400) {
-                return 'status4xx';
-            } else {
-                return 'status2xx';
-            }
-        }  
-
-        function traceSuccess(response) {
-            vm.traces.data = response.data;
-            vm.latestTrace = response.data[0];
-        }
-
-        function traceFailure(error) {
-            // TODO
         }
     }
 })();

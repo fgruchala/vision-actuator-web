@@ -1,10 +1,15 @@
-<md-card data-flex>
-	<md-card-title>
-		<md-card-title-text>
-			<span class="md-headline" data-translate="TRACE.MODULE_NAME"></span>
-		</md-card-title-text>
-	</md-card-title>
-	<md-card-content data-layout data-layout-align="center center">
-		{{ vm.tracePrepData }}
-	</md-card-content>
-</md-card>
+<md-content data-ng-show="vm.tracePrepData" data-flex-offset="20" data-flex="60" data-layout="column">
+	<md-list data-flex class="md-whiteframe-10dp">
+		<md-list-item class="md-3-line" data-ng-repeat="trace in vm.tracePrepData">
+			<div class="md-list-item-text" data-layout="column">
+				<p flex="10">
+                    <strong class="httpMethodChip">{{vm.trace.info.method}}</strong>
+                </p>
+                <p flex="55">{{trace.info.path}}</p>
+                <p flex>
+                    <strong data-ng-class="vm.colorFromStatus(trace.info.headers.response.status)">{{trace.info.headers.response.status}}</strong>
+                </p>
+			</div>
+		</md-list-item>
+	</md-list>
+</md-content>

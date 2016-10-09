@@ -50,7 +50,7 @@ md-list.md-whiteframe-z1 {
     color: #f44336;
 }
 
-#httpMethodChip {
+.httpMethodChip {
     background-color: darkgoldenrod;
     color: white;
     border-radius: 5px;

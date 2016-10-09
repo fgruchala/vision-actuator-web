@@ -12,6 +12,21 @@
 		var vm = this;
 
 		vm.tracePrepData = tracePrepData;
+
+		vm.colorFromStatus = colorFromStatus;
+
+
+
+
+		function colorFromStatus(status) {
+            if (status >= 500) {
+                return 'status5xx';
+            } else if (status >= 400) {
+                return 'status4xx';
+            } else {
+                return 'status2xx';
+            }
+        }  
 	}
 
 })();

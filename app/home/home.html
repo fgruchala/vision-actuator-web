@@ -1,4 +1,7 @@
 <md-content data-layout="column" data-flex-offset="20" data-flex="60">
+    <span>
+        <md-button data-ng-href="#/trace" aria-label="Traces" class="md-raised md-primary" data-translate="TRACE.MODULE_NAME"></md-button>
+    </span>
     <md-content data-layout="row">
         <div data-layout="column" data-flex>
             <!-- HEALTH -->
@@ -106,37 +109,4 @@
             </md-card>
         </div>
     </md-content>
-
-    <div data-layout="row">
-        <!-- TRACE -->
-        <md-card data-flex>
-            <md-card-header data-layout="row" data-layout-align="start center">
-                <md-card-header-text>
-                    <span class="md-headline" data-translate="TRACE.MODULE_NAME_HOME"></span>
-                </md-card-header-text>
-                <span data-flex></span>
-                <div data-ng-show="vm.traces.promise.$$state.status>0 && !vm.traces.data">
-                    <md-icon data-md-svg-icon="md:warning-black"></md-icon>
-                    <md-tooltip>
-                        <span data-translate="COMMON.UNAVAILABLE"></span>
-                    </md-tooltip>
-                </div>
-                <md-progress-circular data-ng-hide="vm.traces.promise.$$state.status>0" data-md-mode="indeterminate" data-md-diameter="20"></md-progress-circular>
-            </md-card-header>
-            <md-card-content layout="column" layout-wrap>
-                <div layout="row">
-                    <p flex="10">
-                        <strong id="httpMethodChip">{{vm.traces.data[0].info.method}}</strong>
-                    </p>
-                    <p flex="55">{{vm.traces.data[0].info.path}}</p>
-                    <p flex>
-                        <strong data-ng-class="vm.colorFromStatus(vm.traces.data[0].info.headers.response.status)">{{vm.traces.data[0].info.headers.response.status}}</strong>
-                    </p>
-                </div>
-            </md-card-content>
-            <md-card-actions data-ng-show="vm.traces.promise.$$state.status>0 && vm.traces.data" data-layout="row" data-layout-align="end center">
-                <md-button data-ng-href="#/trace" aria-label="More" data-translate="COMMON.MORE"></md-button>
-            </md-card-actions>
-        </md-card>
-    </div>
 </md-content>
