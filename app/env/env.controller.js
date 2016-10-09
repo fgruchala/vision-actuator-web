@@ -27,7 +27,6 @@
         vm.getApplicationPropertiesForProfile = getApplicationPropertiesForProfile;
         
         
-        
         /**
          * @name getApplicationPropertiesForProfile
          * @param {String} [profile] - Profile's name. If undefined, the function will return the default profile

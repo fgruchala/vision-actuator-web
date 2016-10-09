@@ -15,7 +15,8 @@
         "SEARCH": "Rechercher",
         "NOTHING_TO_SEE": "Pas de résultat :/",
         "NC": "NC",
-        "UNAVAILABLE": "Indisponible"
+        "UNAVAILABLE": "Indisponible",
+        "TOTAL": "{VAL, plural, =0{Aucun} other{# au total}}"
     },
     "VOLUME-DATA": "{UNIT, select, 1{Ko} 2{Mo} 3{Go} other{octet} }",
     "HOME": {
@@ -51,14 +52,20 @@
         "PROFILES": "{VAL, plural, =0{Profil chargé} one{Profil chargé} other{Profils chargés} }",
         "PROFILE_DEFAULT": "Defaut",
         "SERVER": {
-            "PORTS": "{VAL, plural, =0{Aucun port occupé} one{1 port occupé} other{# ports occupés} }"
+            "PORTS": "{VAL, plural, =0{Port occupé} one{Port occupé} other{Ports occupés} }"
         },
-        "COMMAND_LINE_ARGS": "{VAL, plural, =0{Aucune option à l'exécution} one{1 option à l'exécution} other{# options à l'exécution} }",
-        "SERVLETCONTEXTINITPARAMS": "{VAL, plural, =0{Aucun paramètre de contexte} one{1 paramètre de contexte} other{# paramètres de contexte} }",
+        "COMMAND_LINE_ARGS": "{VAL, plural, =0{Argument à l'exécution} one{Argument à l'exécution} other{Arguments à l'exécution} }",
+        "SERVLET_CONTEXT_INIT_PARAMS": "{VAL, plural, =0{Paramètre de contexte} one{Paramètre de contexte} other{Paramètres de contexte} }",
         "SYSTEM": {
-            "PROPERTIES": "{VAL, plural, =0{Aucune variable système} one{1 variable système} other{# variables systèmes} }",
-            "ENVIRONMENT": "{VAL, plural, =0{Aucune variable d'environnement} one{1 variable d'environnement} other{# variables d'environnement} }"
+            "PROPERTIES": {
+                "GLOBAL": "{VAL, plural, =0{Variable système} one{Variable système} other{Variables systèmes} }",
+                "RESUME": "{VAL, plural, =0{Aucune variable système} one{1 variable système} other{# variables systèmes} }"
+            },
+            "ENVIRONMENT": {
+                "GLOBAL": "{VAL, plural, =0{Variable d'environnement} one{Variable d'environnement} other{Variables d'environnement} }",
+                "RESUME": "{VAL, plural, =0{Aucune variable d'environnement} one{1 variable d'environnement} other{# variables d'environnement} }"   
+            }
         },
-        "REFRESH": "{VAL, plural, =0{Aucune configuration de cache} one{1 configuration de cache} other{# configurations de cache} }"
+        "REFRESH": "{VAL, plural, =0{Cache} one{Cache} other{Cache} }"
     }
 }
