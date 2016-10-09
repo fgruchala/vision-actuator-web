@@ -2,8 +2,8 @@
  * Card to show one or more data in a single line
  * @namespace Components
  * @memberOf App
- * @example <v-single-line data-title="'LANG.KEY'" data-content="vm.items"></v-single-line>
- * @example <v-single-line data-title="'LANG.KEY'" data-content="vm.item"></v-single-line>
+ * @example <v-single-line data-title="LANG.KEY" data-content="vm.items"></v-single-line>
+ * @example <v-single-line data-title="LANG.KEY" data-content="vm.item"></v-single-line>
  */
 (function () {
     'use strict';

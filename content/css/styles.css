@@ -39,7 +39,7 @@ md-card.single-line md-card-content {
     text-align: center;
 }
 
-md-card.multi-line md-card-content {
+md-card.multi-lines md-card-content {
     padding : 0;
 }
 
