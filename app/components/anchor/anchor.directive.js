@@ -58,7 +58,7 @@
             function modifyDOM() {
                 $element
                 .empty()
-                .removeClass('_md-no-proxy')
+                .removeClass('md-no-proxy')
                 .addClass('md-clickable')
                 .addClass('_md-button-wrap')
                 .append(
@@ -71,7 +71,7 @@
                 var container = angular
                     .element('<div></div>')
                     .addClass('md-button')
-                    .addClass('_md-no-style');
+                    .addClass('md-no-style');
                     
                 return container;
             }
@@ -82,7 +82,7 @@
                     .attr('type', 'button')
                     .attr('aria-label', 'Go to anchor ' + id)
                     .attr('data-ng-transclude', '')
-                    .addClass('_md-no-style')
+                    .addClass('md-no-style')
                     .addClass('md-button')
                     .on('click', scrollToAnchor);
                     
@@ -92,7 +92,7 @@
             function createText() {
                 var text = angular
                     .element('<div></div>')
-                    .addClass('_md-list-item-inner')
+                    .addClass('md-list-item-inner')
                     .append(content);
                     
                 return text;
