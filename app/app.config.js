@@ -34,7 +34,8 @@
         .icon('md:chevron-right-white', 'content/img/icons/md/chevron-right-white.svg')
         .icon('md:ok-white', 'content/img/icons/md/ok-white.svg')
         .icon('md:close-white', 'content/img/icons/md/close-white.svg')
-        .icon('md:warning-black', 'content/img/icons/md/warning-black.svg');
+        .icon('md:warning-black', 'content/img/icons/md/warning-black.svg')
+        .icon('md:info-black', 'content/img/icons/md/info-black.svg');
         
         $translateProvider
         .useStaticFilesLoader({

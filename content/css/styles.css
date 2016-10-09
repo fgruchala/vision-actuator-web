@@ -33,6 +33,16 @@ md-card.multi-data md-card-content {
     padding : 0;
 }
 
+md-card.single-line md-card-content {
+    font-size: 50px;
+    font-weight: bold;
+    text-align: center;
+}
+
+md-card.multi-line md-card-content {
+    padding : 0;
+}
+
 md-list.md-whiteframe-z1 {
     background-color: #ffffff;
 }
