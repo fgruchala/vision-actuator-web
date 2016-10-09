@@ -1,0 +1,22 @@
+<md-card class="single-line">
+    <md-card-title data-layout="row" data-layout-align="start center">
+        <md-card-title-text data-flex>
+            <span class="md-headline" data-ng-if="!vm.isString()" data-translate="{{ vm.title }}" data-translate-values="{VAL:vm.size}"></span>
+            <span class="md-headline" data-ng-if="vm.isString()" data-translate="{{ vm.title }}"></span>
+        </md-card-title-text>
+        <div data-ng-show="vm.size==0">
+            <md-icon data-md-svg-icon="md:info-black"></md-icon>
+            <md-tooltip>
+                <span data-translate="COMMON.NO_RESULT"></span>
+            </md-tooltip>
+        </div>
+    </md-card-title>
+    <md-card-content data-ng-show="vm.size>0">
+        <span data-ng-if="!vm.isString()">
+            <span data-ng-repeat="value in vm.content">
+                {{ value }}<span data-ng-hide="$last">, </span>
+            </span>
+        </span>
+        <span data-ng-if="vm.isString()">{{ vm.content }}</span>
+    </md-card-content>
+</md-card>
