@@ -11,10 +11,9 @@
 	function TraceController(tracePrepData) {
 		var vm = this;
 
-		vm.tracePrepData = tracePrepData;
+		vm.traces = tracePrepData.data;
 
 		vm.colorFromStatus = colorFromStatus;
-
 
 
 

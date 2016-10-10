@@ -33,7 +33,8 @@
     "angular-resource": "^1.5.8",
     "angular-route": "^1.5.8",
     "angular-sanitize": "^1.5.8",
-    "angular-translate": "^2.11.1"
+    "angular-translate": "^2.11.1",
+    "material-design-lite": "^1.2.1"
   },
   "devDependencies": {
     "lite-server": "^2.2.2"

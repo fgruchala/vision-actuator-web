@@ -56,3 +56,7 @@ md-list.md-whiteframe-z1 {
     border-radius: 5px;
     padding: 5px;
 }
+
+.full-width {
+    width: 100%;
+}
