@@ -31,7 +31,12 @@
 				if (!vm.filterValue) {
 					return true;
 				}
-				return trace.info.method.indexOf(vm.filterValue) !== -1 || trace.info.path.indexOf(vm.filterValue) !== 1;
+
+				var methodMatch = trace.info.method.indexOf(vm.filterValue) !== -1;
+				var pathMatch = trace.info.path.indexOf(vm.filterValue) !== -1;
+				var statusMatch = trace.info.headers.response.status.indexOf(vm.filterValue) !== -1;
+
+				return pathMatch || methodMatch || statusMatch;
 			}
 		}
 	}

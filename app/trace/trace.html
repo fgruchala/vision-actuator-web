@@ -18,11 +18,11 @@
 			</tr>
 		</thead>
 		<tbody>
-			<tr data-ng-repeat="trace in vm.traces | filter:vm.filtrer()">
+			<tr data-ng-repeat="trace in vm.traces | filter:vm.filtrer() | limitTo: 100">
 				<td class="mdl-data-table__cell--non-numeric"><strong class="httpMethodChip">{{trace.info.method}}</strong></td>
 				<td class="mdl-data-table__cell--non-numeric">{{trace.info.path}}</td>
 				<td><strong data-ng-class="vm.colorFromStatus(trace.info.headers.response.status)">{{trace.info.headers.response.status}}</strong></td>
 			</tr>
 		</tbody>
 	</table>
-</md-content>a
+</md-content>
