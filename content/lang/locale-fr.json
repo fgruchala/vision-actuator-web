@@ -68,5 +68,9 @@
             }
         },
         "REFRESH": "{VAL, plural, =0{Cache} one{Cache} other{Cache} }"
+    },
+    "TRACE" : {
+        "MODULE_NAME": "Traces d'accès",
+        "CHECKBOX_LIBELLE": "Cacher les traces actuator"
     }
 }

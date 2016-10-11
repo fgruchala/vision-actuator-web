@@ -15,6 +15,7 @@
         'app.home',
         'app.health',
         'app.beans',
+        'app.trace',
         'app.env'
     ]);
     

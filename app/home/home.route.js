@@ -26,5 +26,4 @@
             title: 'HOME.MODULE_NAME'
         });
     }
-    
 })();

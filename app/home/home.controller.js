@@ -1,12 +1,12 @@
+'use strict';
+
 /**
  * Controller of the home page
  * @namespace Home
  * @memberOf App
  */
 (function () {
-    
-    'use strict';
-    
+
     angular
     .module('app.home')
     .controller('HomeController', homeController);
@@ -20,11 +20,11 @@
      */
     function homeController (actuatorService) {
         var vm = this;
-        
+
         vm.health = {};
         vm.beans = {};
         vm.env = {};
-        
+
         init();
         
         
@@ -33,7 +33,7 @@
             vm.health.promise = actuatorService.health(); 
             vm.beans.promise = actuatorService.beans();
             vm.env.promise = actuatorService.env();
-            
+
             vm.health.promise
             .then(function(response) {
                 vm.health.data = response.data;
@@ -70,7 +70,5 @@
                 }
             });
         }
-        
     }
-    
 })();

@@ -46,3 +46,27 @@ md-card.multi-lines md-card-content {
 md-list.md-whiteframe-z1 {
     background-color: #ffffff;
 }
+
+/* trace */
+.status2xx {
+    color: #4caf50;
+}
+
+.status4xx {
+    color: #ffeb3b;
+}
+
+.status5xx {
+    color: #f44336;
+}
+
+.httpMethodChip {
+    background-color: darkgoldenrod;
+    color: white;
+    border-radius: 5px;
+    padding: 5px;
+}
+
+.full-width {
+    width: 100%;
+}
