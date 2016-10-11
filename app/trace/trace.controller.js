@@ -6,9 +6,9 @@
 	.module('app.trace')
 	.controller('TraceController', TraceController);
 
-	TraceController.$inject = ['tracePrepData'];
+	TraceController.$inject = ['tracePrepData', 'actuatorService'];
 
-	function TraceController(tracePrepData) {
+	function TraceController(tracePrepData, actuatorService) {
 		var vm = this;
 
 		vm.traces = tracePrepData.data;
@@ -28,10 +28,17 @@
 
 		function filtrer() {
 			return function(trace) {
+				// on cache les traces concernant actuator
+				var endpoint = trace.info.path.substring(1, trace.info.path.length);
+				if (vm.filterCheckbox && actuatorService.endpoints.indexOf(endpoint) !== -1) {
+					return false;
+				}
+
 				if (!vm.filterValue) {
 					return true;
 				}
 
+				// on filtre sur le champ de recherche
 				var methodMatch = trace.info.method.indexOf(vm.filterValue) !== -1;
 				var pathMatch = trace.info.path.indexOf(vm.filterValue) !== -1;
 				var statusMatch = trace.info.headers.response.status.indexOf(vm.filterValue) !== -1;

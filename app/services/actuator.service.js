@@ -21,66 +21,25 @@
      * @memberOf Services
      */
     function actuatorService ($http) {
-        var items = [];
+   
+        var service = {}
+        var endpoints = ['health', 'beans', 'env', 'actuator', 'autoconfig', 'configprops', 'dump',
+                        'flyway', 'info', 'liquibase', 'metrics', 'mappings', 'shutdown', 'trace',
+                        'docs', 'heapdump', 'jolokia', 'logfile'];
         
-        var services = {
-            'actuator': function() {
-                return get('/actuator');
-            },
-            'autoconfig': function() {
-                return get('/autoconfig');
-            },
-            'beans': function() {
-                return get('/beans');
-            },
-            'configprops': function() {
-                return get('/configprops');
-            },
-            'dump': function() {
-                return get('/dump');
-            },
-            'env': function() {
-                return get('/env');
-            },
-            'flyway': function() {
-                return get('/flyway');
-            },
-            'health': function() {
-                return get('/health');
-            },
-            'info': function() {
-                return get('/info');
-            },
-            'liquibase': function() {
-                return get('/liquibase');
-            },
-            'metrics': function() {
-                return get('/metrics');
-            },
-            'mappings': function() {
-                return get('/mappings');
-            },
-            'shutdown': function() {
-                return get('/shutdown');
-            },
-            'trace': function() {
-                return get('/trace');
-            },
-            'docs': function() {
-                return get('/docs');
-            },
-            'heapdump': function() {
-                return get('/heapdump');
-            },
-            'jolokia': function() {
-                return get('/jolokia');
-            },
-            'logfile': function() {
-                return get('/logfile');
-            }
-        };
-        
-        
+        activate();
+
+        function activate() {
+            // Initialisation des endpoints
+            endpoints.forEach(function(endpoint) {
+                service[endpoint] = function() {
+                    return get('/' + endpoint);
+                }
+            });
+
+            service.endpoints = endpoints;
+        }
+
         /**
          * @name get
          * @desc Create a HTTP GET request
@@ -95,7 +54,6 @@
             });
         }
         
-        return services;
+        return service;
     }
-    
 })();
