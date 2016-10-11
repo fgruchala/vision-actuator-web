@@ -1,4 +1,14 @@
-<md-content data-flex-offset="20" data-flex="60">
+<md-content data-flex-offset="20" data-flex="60" style="padding-top: 1em;">
+
+	<!-- SEARCH BAR -->
+	<div layout="row" layout-align="end" >
+		<md-input-container data-flex="20" data-layout-align="end">
+			<label data-translate="COMMON.SEARCH"></label>
+			<input data-ng-model="vm.filterValue" type="text" autofocus>
+		</md-input-container>
+	</div>
+
+	<!-- TABLE CONTENT -->
 	<table class="mdl-data-table mdl-data-table--selectable mdl-shadow--2dp full-width">
 		<thead>
 			<tr>
@@ -8,11 +18,11 @@
 			</tr>
 		</thead>
 		<tbody>
-			<tr data-ng-repeat="trace in vm.traces">
+			<tr data-ng-repeat="trace in vm.traces | filter:vm.filtrer()">
 				<td class="mdl-data-table__cell--non-numeric"><strong class="httpMethodChip">{{trace.info.method}}</strong></td>
 				<td class="mdl-data-table__cell--non-numeric">{{trace.info.path}}</td>
 				<td><strong data-ng-class="vm.colorFromStatus(trace.info.headers.response.status)">{{trace.info.headers.response.status}}</strong></td>
 			</tr>
 		</tbody>
 	</table>
-</md-content>
+</md-content>a

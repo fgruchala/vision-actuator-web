@@ -14,8 +14,7 @@
 		vm.traces = tracePrepData.data;
 
 		vm.colorFromStatus = colorFromStatus;
-
-
+		vm.filtrer = filtrer;
 
 		function colorFromStatus(status) {
             if (status >= 500) {
@@ -25,7 +24,15 @@
             } else {
                 return 'status2xx';
             }
-        }  
-	}
+        }
 
+		function filtrer() {
+			return function(trace) {
+				if (!vm.filterValue) {
+					return true;
+				}
+				return trace.info.method.indexOf(vm.filterValue) !== -1 || trace.info.path.indexOf(vm.filterValue) !== 1;
+			}
+		}
+	}
 })();
