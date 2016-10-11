@@ -29,7 +29,7 @@
                     });
                 }
                 else {
-                    throw new Error('Filter objectSize : input has to be an array or an object');
+                    throw new Error('Filter size : input has to be an array or an object');
                 }
             }
             

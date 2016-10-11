@@ -10,16 +10,17 @@
     .module('app')
     .config(globalConfiguration);
     
-    globalConfiguration.$inject = ['$mdThemingProvider', '$mdIconProvider', '$translateProvider'];
+    globalConfiguration.$inject = ['$mdThemingProvider', '$mdIconProvider', '$translateProvider', '$anchorScrollProvider'];
     
     /**
      * @name globalConfiguration
-     * @param {@link https://material.angularjs.org/latest/api/service/$mdThemingProvider | MaterialService} $mdThemingProvider
-     * @param {@link https://material.angularjs.org/latest/api/service/$mdIconProvider | MaterialService} $mdIconProvider
-     * @param {@link https://angular-translate.github.io/docs/#/api/pascalprecht.translate.$translateProvider | TranslateService} $translateProvider
+     * @param {@link https://material.angularjs.org/latest/api/service/$mdThemingProvider | MaterialService} [$mdThemingProvider]
+     * @param {@link https://material.angularjs.org/latest/api/service/$mdIconProvider | MaterialService} [$mdIconProvider]
+     * @param {@link https://angular-translate.github.io/docs/#/api/pascalprecht.translate.$translateProvider | TranslateService} [$translateProvider]
+     * @param {@link https://docs.angularjs.org/api/ng/provider/$anchorScrollProvider | AngularService} [$anchorScrollProvider]
      * @memberOf App
      */
-    function globalConfiguration ($mdThemingProvider, $mdIconProvider, $translateProvider) {
+    function globalConfiguration ($mdThemingProvider, $mdIconProvider, $translateProvider, $anchorScrollProvider) {
         $mdThemingProvider
         .theme('default')
         .primaryPalette('teal')
@@ -33,7 +34,8 @@
         .icon('md:chevron-right-white', 'content/img/icons/md/chevron-right-white.svg')
         .icon('md:ok-white', 'content/img/icons/md/ok-white.svg')
         .icon('md:close-white', 'content/img/icons/md/close-white.svg')
-        .icon('md:warning-black', 'content/img/icons/md/warning-black.svg');
+        .icon('md:warning-black', 'content/img/icons/md/warning-black.svg')
+        .icon('md:info-black', 'content/img/icons/md/info-black.svg');
         
         $translateProvider
         .useStaticFilesLoader({
@@ -46,6 +48,8 @@
         $translateProvider.registerAvailableLanguageKeys(['fr', 'en']);
         $translateProvider.useMessageFormatInterpolation();
         $translateProvider.preferredLanguage('fr');
+        
+        $anchorScrollProvider.disableAutoScrolling();
     }
     
 })();
