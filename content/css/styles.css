@@ -43,6 +43,6 @@ md-card.multi-lines md-card-content {
     padding : 0;
 }
 
-md-list.md-whiteframe-z1 {
+md-list.md-whiteframe-z1, .bg {
     background-color: #ffffff;
 }

@@ -3,8 +3,7 @@
  * @namespace Beans
  * @memberOf App
  */
-(function () {
-    
+(function () {  
     'use strict';
     
     angular
@@ -15,23 +14,31 @@
     
     /**
      * @name beansController
-     * @param Object beansPrepData
-     * @param {@link https://material.angularjs.org/latest/api/service/$mdDialog | MaterialService} $mdDialog
+     * @param {Object} [beansPrepData] - Beans data 
+     * @param {@link https://material.angularjs.org/latest/api/service/$mdDialog | MaterialService} [$mdDialog]
      * @memberOf Beans
      */
     function beansController (beansPrepData, $mdDialog) {
         var vm = this;
+        var INC_ITEMS = 25;
         
         vm.beansPrepData = beansPrepData;
-        vm.filter = {
-            datas : [],
-            value : ""
-        };
+        vm.searchValue = "";
+        vm.limitValue = INC_ITEMS;
         
         vm.showFullInformations = showFullInformations;
+        vm.more = more;
+        vm.search = search;        
+        vm.isSearch = isSearch;
+        vm.resetSearch = resetSearch;
+
         
         
-        
+        /**
+         * @name showFullInformations
+         * @param {Object} [bean] - Bean data to show
+         * @memberOf beansController
+         */
         function showFullInformations (bean) {
             $mdDialog.show({
                 controller: 'VisuBeanPopupController',
@@ -42,6 +49,50 @@
                     beanPrepData: bean
                 }
             });
+        }
+
+        /**
+         * @name search
+         * @returns {boolean}
+         * @memberOf beansController
+         */
+        function search () {
+            return function (beanDefinition) {
+                if(vm.searchValue === "") {
+                    return true;
+                }
+
+                var searchValue = vm.searchValue.toLowerCase();
+                var bean = beanDefinition.bean.toLowerCase();
+                var scope = beanDefinition.scope.toLowerCase();
+
+                return (bean.indexOf(searchValue) !== -1 || scope.indexOf(searchValue) !== -1);
+            }
+        }
+
+        /**
+         * @name isSearch
+         * @returns {boolean}
+         * @memberOf beansController
+         */
+        function isSearch () {
+            return vm.searchValue !== '';
+        }
+
+        /**
+         * @name resetSearch
+         * @memberOf beansController
+         */
+        function resetSearch () {
+            vm.searchValue = '';
+        }
+
+        /**
+         * @name more
+         * @memberOf beansController
+         */
+        function more () {
+            vm.limitValue += INC_ITEMS;
         }
         
     }

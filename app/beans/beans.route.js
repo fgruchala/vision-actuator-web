@@ -4,7 +4,6 @@
  * @memberOf App
  */
 (function () {
-    
     'use strict';
     
     angular
@@ -15,7 +14,7 @@
     
     /**
      * @name beansRouting
-     * @param {@link https://docs.angularjs.org/api/ngRoute/provider/$routeProvider | AngularService} $routeProvider
+     * @param {@link https://docs.angularjs.org/api/ngRoute/provider/$routeProvider | AngularService} [$routeProvider]
      * @memberOf Beans
      */
     function beansRouting ($routeProvider) {
@@ -25,7 +24,7 @@
             controllerAs: 'vm',
             title: 'BEANS.MODULE_NAME',
             resolve: {
-                beansPrepData: beansPrepData
+                beansPrepData: beansPrepData 
             }
         });
     }
@@ -36,11 +35,11 @@
     /**
      * @name beansPrepData
      * @desc Retrieve beans via the Actuator WebService 
-     * @param Service actuatorService
-     * @param {@link https://docs.angularjs.org/api/ng/service/$location | AngularService} $location
-     * @param {@link https://material.angularjs.org/latest/api/service/$mdToast | MaterialService} $mdToast
-     * @param {@link https://angular-translate.github.io/docs/#/api/pascalprecht.translate.$translate | TranslateService} $translate
-     * @return Object
+     * @param {Service} [actuatorService]
+     * @param {@link https://docs.angularjs.org/api/ng/service/$location | AngularService} [$location]
+     * @param {@link https://material.angularjs.org/latest/api/service/$mdToast | MaterialService} [$mdToast]
+     * @param {@link https://angular-translate.github.io/docs/#/api/pascalprecht.translate.$translate | TranslateService} [$translate]
+     * @return {Object}
      * @memberOf beansRouting
      */
     function beansPrepData (actuatorService, $location, $mdToast, $translate) {
@@ -50,17 +49,16 @@
         
             return actuatorService
             .beans()
-            .then(
-                function(response) {
-                    return response.data[0].beans;
-                }, 
-                function(responseInError) {
-                    if(responseInError.status === -1 || responseInError.status === 404) {
-                        $location.url('/');
-                    }
+            .then(function(response) {
+                return response.data[0].beans;
+            })
+            .catch(function(responseInError) {
+                if(responseInError.status === -1 || responseInError.status === 404) {
+                    $location.url('/');
+                }
                     
-                    return responseInError.data;
-                })
+                return responseInError.data;
+            })
             .finally(function() {
                 $mdToast.hide(loadingPromise);
             });

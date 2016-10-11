@@ -35,7 +35,8 @@
         .icon('md:ok-white', 'content/img/icons/md/ok-white.svg')
         .icon('md:close-white', 'content/img/icons/md/close-white.svg')
         .icon('md:warning-black', 'content/img/icons/md/warning-black.svg')
-        .icon('md:info-black', 'content/img/icons/md/info-black.svg');
+        .icon('md:info-black', 'content/img/icons/md/info-black.svg')
+        .icon('md:clear-black', 'content/img/icons/md/clear-black.svg');
         
         $translateProvider
         .useStaticFilesLoader({
