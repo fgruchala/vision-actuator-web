@@ -11,19 +11,22 @@
     .module('app.home')
     .config(homeRouting);
     
-    homeRouting.$inject = ['$routeProvider'];
+    homeRouting.$inject = ['$stateProvider'];
     
     /**
      * @name homeRouting
      * @param {@link https://docs.angularjs.org/api/ngRoute/provider/$routeProvider | AngularService} $routeProvider
      * @memberOf Home
      */
-    function homeRouting ($routeProvider) {
-        $routeProvider.when('/', {
-            templateUrl: 'app/home/home.html',
-            controller: 'HomeController',
-            controllerAs: 'vm',
-            title: 'HOME.MODULE_NAME'
-        });
+    function homeRouting ($stateProvider) {
+
+        $stateProvider
+            .state('home', {
+                url: '/',
+                templateUrl: 'app/home/home.html',
+                controller: 'HomeController',
+                controllerAs: 'vm',
+                title: 'HOME.MODULE_NAME'
+            });
     }
 })();

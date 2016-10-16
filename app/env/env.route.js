@@ -11,23 +11,26 @@
     .module('app.env')
     .config(envRouting);
     
-    envRouting.$inject = ['$routeProvider'];
+    envRouting.$inject = ['$stateProvider'];
     
     /**
      * @name envRouting
      * @param {@link https://docs.angularjs.org/api/ngRoute/provider/$routeProvider | AngularService} [$routeProvider]
      * @memberOf Env
      */
-    function envRouting ($routeProvider) {
-        $routeProvider.when('/env', {
-            templateUrl: 'app/env/env.html',
-            controller: 'EnvController',
-            controllerAs: 'vm',
-            title: 'ENV.MODULE_NAME',
-            resolve: {
-                envPrepData: envPrepData
-            }
-        });
+    function envRouting ($stateProvider) {
+
+        $stateProvider
+            .state('env', {
+                url: '/env',
+                templateUrl: 'app/env/env.html',
+                controller: 'EnvController',
+                controllerAs: 'vm',
+                title: 'ENV.MODULE_NAME',
+                resolve: {
+                    envPrepData: envPrepData
+                }
+            });
     }
     
     envPrepData.$inject = ['actuatorService', '$location', '$mdToast', '$translate'];

@@ -5,24 +5,27 @@
  * @namespace Trace
  * @memberOf App
  */
-(function() {
+(function () {
 
     angular
-    .module('app.trace')
-    .config(traceConfig);
+        .module('app.trace')
+        .config(traceConfig);
 
-    traceConfig.$inject = ['$routeProvider'];
+    traceConfig.$inject = ['$stateProvider'];
 
-    function traceConfig($routeProvider) {
-        $routeProvider.when('/trace', {
-            templateUrl: 'app/trace/trace.html',
-            controller: 'TraceController',
-            controllerAs: 'vm',
-            title: 'TRACE.MODULE_NAME',
-            resolve : {
-                tracePrepData : tracePrepData
-            }
-        });
+    function traceConfig($stateProvider) {
+
+        $stateProvider
+            .state('trace', {
+                url: '/trace',
+                templateUrl: 'app/trace/trace.html',
+                controller: 'TraceController',
+                controllerAs: 'vm',
+                title: 'TRACE.MODULE_NAME',
+                resolve: {
+                    tracePrepData: tracePrepData
+                }
+            });
     }
 
     tracePrepData.$inject = ['actuatorService'];

@@ -8,19 +8,17 @@
     
     angular
     .module('app')
-    .config(globalRouting);
+    .config(config);
     
-    globalRouting.$inject = ['$routeProvider'];
+    config.$inject = ['$urlRouterProvider'];
     
     /**
-     * @name globalRouting
+     * @name config
      * @param {@link https://docs.angularjs.org/api/ngRoute/provider/$routeProvider | AngularService} $routeProvider
      * @memberOf App
      */
-    function globalRouting ($routeProvider) {
-        $routeProvider.otherwise({
-            redirectTo: '/'
-        });
+    function config ($urlRouterProvider) {
+        $urlRouterProvider.otherwise('/');
     }
     
 })();

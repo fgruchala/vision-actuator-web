@@ -4,35 +4,38 @@
  * @memberOf App
  */
 (function () {
-    
+
     'use strict';
-    
+
     angular
-    .module('app.beans')
-    .config(beansRouting);
-    
-    beansRouting.$inject = ['$routeProvider'];
-    
+        .module('app.beans')
+        .config(beansRouting);
+
+    beansRouting.$inject = ['$stateProvider'];
+
     /**
      * @name beansRouting
      * @param {@link https://docs.angularjs.org/api/ngRoute/provider/$routeProvider | AngularService} $routeProvider
      * @memberOf Beans
      */
-    function beansRouting ($routeProvider) {
-        $routeProvider.when('/beans', {
-            templateUrl: 'app/beans/beans.html',
-            controller: 'BeansController',
-            controllerAs: 'vm',
-            title: 'BEANS.MODULE_NAME',
-            resolve: {
-                beansPrepData: beansPrepData
-            }
-        });
+    function beansRouting($stateProvider) {
+
+        $stateProvider
+            .state('beans', {
+                url: '/beans',
+                templateUrl: 'app/beans/beans.html',
+                controller: 'BeansController',
+                controllerAs: 'vm',
+                title: 'BEANS.MODULE_NAME',
+                resolve: {
+                    beansPrepData: beansPrepData
+                }
+            });
     }
-    
+
     beansPrepData.$inject = ['actuatorService', '$location', '$mdToast', '$translate'];
-    
-    
+
+
     /**
      * @name beansPrepData
      * @desc Retrieve beans via the Actuator WebService 
@@ -43,28 +46,28 @@
      * @return Object
      * @memberOf beansRouting
      */
-    function beansPrepData (actuatorService, $location, $mdToast, $translate) {
+    function beansPrepData(actuatorService, $location, $mdToast, $translate) {
         return $translate('COMMON.LOADING')
-        .then(function(loadingTranslation) { 
-            var loadingPromise = $mdToast.showSimple(loadingTranslation);
-        
-            return actuatorService
-            .beans()
-            .then(
-                function(response) {
-                    return response.data[0].beans;
-                }, 
-                function(responseInError) {
-                    if(responseInError.status === -1 || responseInError.status === 404) {
-                        $location.url('/');
-                    }
-                    
-                    return responseInError.data;
-                })
-            .finally(function() {
-                $mdToast.hide(loadingPromise);
+            .then(function (loadingTranslation) {
+                var loadingPromise = $mdToast.showSimple(loadingTranslation);
+
+                return actuatorService
+                    .beans()
+                    .then(
+                    function (response) {
+                        return response.data[0].beans;
+                    },
+                    function (responseInError) {
+                        if (responseInError.status === -1 || responseInError.status === 404) {
+                            $location.url('/');
+                        }
+
+                        return responseInError.data;
+                    })
+                    .finally(function () {
+                        $mdToast.hide(loadingPromise);
+                    });
             });
-        });
     }
-    
+
 })();
