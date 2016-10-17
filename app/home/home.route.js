@@ -23,10 +23,28 @@
         $stateProvider
             .state('home', {
                 url: '/',
-                templateUrl: 'app/home/home.html',
-                controller: 'HomeController',
-                controllerAs: 'vm',
-                title: 'HOME.MODULE_NAME'
+                views : {
+                    '' : {
+                        templateUrl: 'app/home/home.html',
+                        title: 'HOME.MODULE_NAME'
+                    },
+                    'health@home' : {
+                        templateUrl: 'app/health/home/health-home.html',
+                        controller: 'HealthHomeController',
+                        controllerAs: 'vm'
+                    },
+                    'beans@home' : {
+                        templateUrl: 'app/beans/home/beans-home.html',
+                        controller: 'BeansHomeController',
+                        controllerAs: 'vm'
+                    },
+                    'env@home' : {
+                        templateUrl: 'app/env/home/env-home.html',
+                        controller: 'EnvHomeController',
+                        controllerAs: 'vm'
+                    }
+                }
+                
             });
     }
 })();
