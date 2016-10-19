@@ -18,7 +18,7 @@
      */
     angular
     .module('app.core', [
-        'ngRoute',
+        'ui.router',
         'ngResource',
         'ngAria',
         'ngMaterial',

@@ -11,23 +11,26 @@
     .module('app.health')
     .config(healthRouting);
     
-    healthRouting.$inject = ['$routeProvider'];
+    healthRouting.$inject = ['$stateProvider'];
     
     /**
      * @name healthRouting
      * @param {@link https://docs.angularjs.org/api/ngRoute/provider/$routeProvider | AngularService} $routeProvider
      * @memberOf Health
      */
-    function healthRouting ($routeProvider) {
-        $routeProvider.when('/health', {
-            templateUrl: 'app/health/health.html',
-            controller: 'HealthController',
-            controllerAs: 'vm',
-            title: 'HEALTH.MODULE_NAME',
-            resolve: {
-                healthPrepData: healthPrepData
-            }
-        });
+    function healthRouting ($stateProvider) {
+
+        $stateProvider
+            .state('health', {
+                url: '/health',
+                templateUrl: 'app/health/health.html',
+                controller: 'HealthController',
+                controllerAs: 'vm',
+                title: 'HEALTH.MODULE_NAME',
+                resolve: {
+                    healthPrepData: healthPrepData
+                }
+            });
     }
     
     healthPrepData.$inject = ['actuatorService', '$location', '$mdToast', '$translate'];
