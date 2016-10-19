@@ -25,8 +25,7 @@
                 url: '/',
                 views : {
                     '' : {
-                        templateUrl: 'app/home/home.html',
-                        title: 'HOME.MODULE_NAME'
+                        templateUrl: 'app/home/home.html'
                     },
                     'health@home' : {
                         templateUrl: 'app/health/home/health-home.html',
@@ -43,8 +42,8 @@
                         controller: 'EnvHomeController',
                         controllerAs: 'vm'
                     }
-                }
-                
+                },
+                title: 'HOME.MODULE_NAME'
             });
     }
 })();

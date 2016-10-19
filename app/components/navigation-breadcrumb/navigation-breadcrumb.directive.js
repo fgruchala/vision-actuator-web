@@ -42,7 +42,7 @@
         
         vm.current;
         
-        $scope.$on('$routeChangeSuccess', init);
+        $scope.$on('$stateChangeSuccess', init);
         
         
         
