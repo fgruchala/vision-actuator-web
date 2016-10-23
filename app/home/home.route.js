@@ -25,7 +25,8 @@
                 url: '/',
                 views : {
                     '' : {
-                        templateUrl: 'app/home/home.html'
+                        templateUrl : 'app/home/home.html',
+                        controller : 'HomeController'
                     },
                     'health@home' : {
                         templateUrl: 'app/health/home/health-home.html',

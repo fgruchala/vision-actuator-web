@@ -23,14 +23,19 @@
     function actuatorService ($http) {
    
         var service = {}
+        var baseUrl = 'http://localhost:9090';
         var endpoints = ['health', 'beans', 'env', 'actuator', 'autoconfig', 'configprops', 'dump',
                         'flyway', 'info', 'liquibase', 'metrics', 'mappings', 'shutdown', 'trace',
                         'docs', 'heapdump', 'jolokia', 'logfile'];
         
         activate();
 
+
+
+        /*
+        * Initialisation des endpoints
+        */
         function activate() {
-            // Initialisation des endpoints
             endpoints.forEach(function(endpoint) {
                 service[endpoint] = function() {
                     return get('/' + endpoint);
@@ -38,19 +43,17 @@
             });
 
             service.endpoints = endpoints;
+            service.setServiceUrl = setServiceUrl;
         }
 
-        /**
-         * @name get
-         * @desc Create a HTTP GET request
-         * @param String url
-         * @return Promise
-         * @memberOf actuatorService
-         */
+        function setServiceUrl(newUrl) {
+            baseUrl = newUrl;
+        }
+
         function get(url) {
             return $http({
                method: 'GET',
-               url: 'http://localhost:9090' + url 
+               url: baseUrl + url 
             });
         }
         
