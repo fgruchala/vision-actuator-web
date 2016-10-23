@@ -11,14 +11,14 @@
     .module('app.env')
     .controller('EnvHomeController', EnvHomeController);
     
-    EnvHomeController.$inject = ['actuatorService'];
+    EnvHomeController.$inject = ['$rootScope', 'actuatorService'];
     
     /**
      * @name beansController
      * @param Object actuatorService
      * @memberOf Beans
      */
-    function EnvHomeController(actuatorService) {
+    function EnvHomeController($rootScope, actuatorService) {
         var vm = this;
         vm.env = {};
 
@@ -27,6 +27,11 @@
         
 
         function activate() {
+            getDatas();
+            $rootScope.$on('serviceUrlChange', getDatas);
+        }
+
+        function getDatas() {
             vm.env.promise = actuatorService.env();
 
             vm.env.promise

@@ -11,22 +11,27 @@
     .module('app.health')
     .controller('HealthHomeController', HealthHomeController);
     
-    HealthHomeController.$inject = ['actuatorService'];
+    HealthHomeController.$inject = ['$rootScope', 'actuatorService'];
     
     /**
      * @name healthController
      * @param Object actuatorService
      * @memberOf Health
      */
-    function HealthHomeController(actuatorService) {
+    function HealthHomeController($rootScope, actuatorService) {
         var vm = this;
         vm.health = {};
 
         activate();
 
-        
+
 
         function activate() {
+            getDatas();
+            $rootScope.$on('serviceUrlChange', getDatas);
+        }
+
+        function getDatas() {
             vm.health.promise = actuatorService.health();
 
             vm.health.promise
@@ -41,6 +46,6 @@
                     vm.health.data = responseInError.data;
                 }
             });
-        }    
+        }
     }
 })();

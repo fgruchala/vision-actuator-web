@@ -11,14 +11,14 @@
     .module('app.beans')
     .controller('BeansHomeController', BeansHomeController);
     
-    BeansHomeController.$inject = ['actuatorService'];
+    BeansHomeController.$inject = ['$rootScope', 'actuatorService'];
     
     /**
      * @name beansController
      * @param Object actuatorService
      * @memberOf Beans
      */
-    function BeansHomeController(actuatorService) {
+    function BeansHomeController($rootScope, actuatorService) {
         var vm = this;
         vm.beans = {};
 
@@ -27,6 +27,11 @@
         
 
         function activate() {
+            getDatas();
+            $rootScope.$on('serviceUrlChange', getDatas);
+        }
+
+        function getDatas() {
             vm.beans.promise = actuatorService.beans();
 
             vm.beans.promise
