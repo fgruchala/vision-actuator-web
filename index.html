@@ -10,14 +10,16 @@
         
         <!-- EXTERNAL CSS -->
         <link rel="stylesheet" href="/node_modules/angular-material/angular-material.min.css"></link>
-        
+        <link rel="stylesheet" href="/node_modules/material-design-lite/material.min.css">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+
         <!-- INTERNAL CSS -->
         <link rel="stylesheet" href="/content/css/styles.css"></link>
         
         <!-- EXTERNAL JS -->
         <script src="/node_modules/angular/angular.min.js"></script>
         <script src="/node_modules/angular-resource/angular-resource.min.js"></script>
-        <script src="/node_modules/angular-route/angular-route.min.js"></script>
+        <script src="/node_modules/angular-ui-router/release/angular-ui-router.min.js"></script>
         <script src="/node_modules/angular-material/angular-material.min.js"></script>
         <script src="/node_modules/angular-animate/angular-animate.min.js"></script>
         <script src="/node_modules/angular-aria/angular-aria.min.js"></script>
@@ -28,6 +30,7 @@
         <script src="/node_modules/angular-translate/dist/angular-translate-storage-cookie/angular-translate-storage-cookie.min.js"></script>
         <script src="/content/lib/messageformat.js"></script>
         <script src="/node_modules/angular-translate/dist/angular-translate-interpolation-messageformat/angular-translate-interpolation-messageformat.min.js"></script>
+        <script src="/node_modules/material-design-lite/material.min.js"></script>
         
         <!-- INTERNAL JS -->
         <!-- APP -->
@@ -64,18 +67,26 @@
         
         <!-- MODULE HEALTH -->
         <script src="/app/health/health.module.js"></script>
+        <script src="/app/health/home/health-home.controller.js"></script>
         <script src="/app/health/health.route.js"></script>
         <script src="/app/health/health.controller.js"></script>
         
         <!-- MODULE BEANS -->
         <script src="/app/beans/beans.module.js"></script>
+        <script src="/app/beans/home/beans-home.controller.js"></script>
         <script src="/app/beans/beans.route.js"></script>
         <script src="/app/beans/beans.controller.js"></script>
         <script src="/app/beans/visu-bean-popup.controller.js"></script>
         <script src="/app/beans/filters/type-beans.filter.js"></script>
+
+        <!-- MODULE TRACE -->
+        <script src="app/trace/trace.module.js"></script>
+        <script src="app/trace/trace.route.js"></script>
+        <script src="app/trace/trace.controller.js"></script>
         
         <!-- MODULE ENV -->
         <script src="/app/env/env.module.js"></script>
+        <script src="/app/env/home/env-home.controller.js"></script>
         <script src="/app/env/env.route.js"></script>
         <script src="/app/env/env.controller.js"></script>
     </head>
@@ -94,9 +105,9 @@
         </md-toolbar>
         
         <!-- CONTENT -->
-        <div data-ng-view>
+        <ui-view>
             <md-progress-circular data-md-mode="indeterminate"></md-progress-circular>
-        </div>
+        </ui-view>
         
     </body>
 </html>

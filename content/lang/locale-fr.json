@@ -22,7 +22,8 @@
     },
     "VOLUME-DATA": "{UNIT, select, 1{Ko} 2{Mo} 3{Go} other{octet} }",
     "HOME": {
-        "MODULE_NAME": "Accueil"
+        "MODULE_NAME": "Accueil",
+        "URL_PLACEHOLDER" : "URL du service"
     },
     "HEALTH": {
         "MODULE_NAME": "Santé",
@@ -69,5 +70,9 @@
             }
         },
         "REFRESH": "{VAL, plural, =0{Cache} one{Cache} other{Cache} }"
+    },
+    "TRACE" : {
+        "MODULE_NAME": "Traces d'accès",
+        "CHECKBOX_LIBELLE": "Cacher les traces actuator"
     }
 }

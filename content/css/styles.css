@@ -57,3 +57,27 @@ md-input-container .hint {
     transition: all 0.3s cubic-bezier(0.55, 0, 0.55, 0.2);
     color: grey;
 }
+
+/* trace */
+.status2xx {
+    color: #4caf50;
+}
+
+.status4xx {
+    color: #ffeb3b;
+}
+
+.status5xx {
+    color: #f44336;
+}
+
+.httpMethodChip {
+    background-color: darkgoldenrod;
+    color: white;
+    border-radius: 5px;
+    padding: 5px;
+}
+
+.full-width {
+    width: 100%;
+}

@@ -1,0 +1,31 @@
+<md-content data-flex-offset="20" data-flex="60">
+
+	<!-- SEARCH BAR -->
+	<md-input-container>
+		<label data-translate="COMMON.SEARCH"></label>
+		<input data-ng-model="vm.filterValue" type="text" autofocus>
+	</md-input-container>
+	<md-input-container>
+		<md-checkbox data-ng-model="vm.filterCheckbox">
+			<span data-translate="TRACE.CHECKBOX_LIBELLE"></span>
+		</md-checkbox>
+	</md-input-container>
+
+	<!-- TABLE CONTENT -->
+	<table class="mdl-data-table mdl-data-table--selectable mdl-shadow--2dp full-width">
+		<thead>
+			<tr>
+				<th class="mdl-data-table__cell--non-numeric">Methode</th>
+				<th class="mdl-data-table__cell--non-numeric full-width">Path</th>
+				<th class="mdl-data-table__cell--non-numeric">Status</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr data-ng-repeat="trace in vm.traces | filter:vm.filtrer() | limitTo: 50">
+				<td class="mdl-data-table__cell--non-numeric"><strong class="httpMethodChip">{{trace.info.method}}</strong></td>
+				<td class="mdl-data-table__cell--non-numeric">{{trace.info.path}}</td>
+				<td><strong data-ng-class="vm.colorFromStatus(trace.info.headers.response.status)">{{trace.info.headers.response.status}}</strong></td>
+			</tr>
+		</tbody>
+	</table>
+</md-content>

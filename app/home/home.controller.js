@@ -1,76 +1,26 @@
-/**
- * Controller of the home page
- * @namespace Home
- * @memberOf App
- */
-(function () {
+'use strict';
     
-    'use strict';
+(function () {
     
     angular
     .module('app.home')
     .controller('HomeController', homeController);
     
-    homeController.$inject = ['actuatorService'];
+    homeController.$inject = ['$scope', '$rootScope', '$timeout', 'actuatorService'];
     
-    /**
-     * @name homeController
-     * @param Service actuatorService
-     * @memberOf Home
-     */
-    function homeController (actuatorService) {
+    function homeController ($scope, $rootScope, $timeout, actuatorService) {
         var vm = this;
+
+        var timeoutPromise = null;
+        var timeoutDelay = 500;
         
-        vm.health = {};
-        vm.beans = {};
-        vm.env = {};
-        
-        init();
-        
-        
-        
-        function init () {
-            vm.health.promise = actuatorService.health(); 
-            vm.beans.promise = actuatorService.beans();
-            vm.env.promise = actuatorService.env();
-            
-            vm.health.promise
-            .then(function(response) {
-                vm.health.data = response.data;
-            },
-            function(responseInError) {
-                if(responseInError.status === -1 || responseInError.status === 404) {
-                    vm.health.data = undefined;
-                }
-                else{
-                    vm.health.data = responseInError.data;
-                }
-            });
-            
-            vm.beans.promise
-            .then(function(response) {
-                vm.beans.data = response.data[0].beans;
-            },
-            function(responseInError) {
-                if(responseInError.status === -1 || responseInError.status === 404) {
-                    vm.beans.data = undefined;
-                }
-            });
-            
-            vm.env.promise
-            .then(function(response) {
-                vm.env.data = response.data;
-            },
-            function(responseInError) {
-                if(responseInError.status === -1 || responseInError.status === 404) {
-                    vm.env.data = undefined;
-                }
-                else{
-                    vm.env.data = responseInError.data;
-                }
-            });
-        }
-        
+        $scope.$watch('vm.serviceUrl', function(newValue) {
+            $timeout.cancel(timeoutPromise);
+
+            timeoutPromise = $timeout(function() {
+                actuatorService.setServiceUrl(newValue);
+                $rootScope.$broadcast('serviceUrlChange');
+            }, timeoutDelay);
+        });
     }
-    
 })();
