@@ -2,28 +2,23 @@
     
     <!-- SEARCH -->
     <section data-flex="20" data-layout="column" data-layout-margin>
-        <md-card>
-            <md-card-title>
-                <md-card-title-text>
-                    <span class="md-headline">{{ beanDefinitions.length }}</span>
-                    <span class="md-subhead">
-                        /
-                        <span data-translate="BEANS.SECTION.LIST" data-translate-values="{VAL:vm.beansPrepData.length}"></span>
-                    </span>
-                </md-card-title-text>
-            </md-card-title>
-            <md-card-content>
-                <div data-layout="row" data-layout-align="start center">
-                    <md-input-container class="md-block" style="margin-bottom:0">
-                        <label data-translate="COMMON.SEARCH"></label>
-                        <input data-ng-model="vm.searchValue" type="text" autofocus>
-                    </md-input-container>
-                    <md-button data-ng-show="vm.isSearch()" data-ng-click="vm.resetSearch()" class="md-icon-button" aria-label="Reset search">
-                        <md-icon data-md-svg-icon="md:clear-black"></md-icon>
-                    </md-button>
+        <div data-layout="row" data-layout-align="start center">
+            <md-input-container class="md-block" style="margin-bottom:0">
+                <label data-translate="COMMON.SEARCH"></label>
+                <input data-ng-model="vm.searchValue" type="text" autofocus>
+                <div class="hint">
+                    {{ beanDefinitions.length }}
+                    /
+                    <strong data-translate="BEANS.SECTION.LIST" data-translate-values="{VAL:vm.beansPrepData.length}"></strong>
                 </div>
-            </md-card-content>             
-        </md-card>
+            </md-input-container>
+            <md-button data-ng-show="!vm.isSearch()" data-ng-disabled="true" class="md-icon-button" aria-label="Search">
+                <md-icon data-md-svg-icon="md:search-black"></md-icon>
+            </md-button>
+            <md-button data-ng-show="vm.isSearch()" data-ng-click="vm.resetSearch()" class="md-icon-button" aria-label="Reset search">
+                <md-icon data-md-svg-icon="md:clear-black"></md-icon>
+            </md-button>
+        </div>
     </section>
           
     <!-- CONTENT -->
@@ -34,8 +29,10 @@
                     <div class="md-list-item-text" data-layout="column">
                         <h3>{{ beanDefinition.bean }}</h3>
                         <h4>{{ beanDefinition.scope }}</h4>
-                        <p>{{ beanDefinition.type }}</p>
+                        <p>{{ beanDefinition.type | typeBeans }}</p>
                     </div>
+
+                    <md-divider data-ng-hide="$last"></md-divider>
                 </md-list-item>
                 <md-list-item data-ng-hide="beanDefinitions.length>0">
                     <p data-translate="COMMON.NOTHING_TO_SEE"></p>
@@ -45,7 +42,7 @@
         
         <md-button 
             data-ng-click="vm.more()" 
-            data-ng-hide="beanDefinitions.length==0 || vm.limit>=vm.beansPrepData.length" 
+            data-ng-hide="vm.limitValue>beanDefinitions.length" 
             aria-label="More" 
             data-translate="COMMON.MORE_LIGHT"></md-button>
     </section>
