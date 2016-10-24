@@ -1,20 +1,20 @@
 /**
- * Filter on Bean type 
- * @memberOf Beans
+ * Filter on package name 
+ * @memberOf Filters
  */
 (function () {
     
     'use strict';
     
     angular
-    .module('app.beans')
-    .filter('typeBeans', typeBeansFilter);
+    .module('app.filters')
+    .filter('package', packageFilter);
     
     /**
-     * @name typeBeansFilter
-     * @memberOf Beans
+     * @name packageFilter
+     * @memberOf Filters
      */
-    function typeBeansFilter () {
+    function packageFilter () {
         var filter = function(input) {
             var type = input;
             

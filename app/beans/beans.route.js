@@ -27,12 +27,14 @@
                 controllerAs: 'vm',
                 title: 'BEANS.MODULE_NAME',
                 resolve: {
-                	beansPrepData: beansPrepData 
+                	beansPrepData: beansPrepData,
+                    filtersPrepData: filtersPrepData
                 }
             });
     }
 
-    beansPrepData.$inject = ['actuatorService', '$location', '$mdToast', '$translate'];
+    beansPrepData.$inject = ['actuatorService', '$location'];
+    filtersPrepData.$inject = [];
 
 
     /**
@@ -40,18 +42,12 @@
      * @desc Retrieve beans via the Actuator WebService 
      * @param {Service} [actuatorService]
      * @param {@link https://docs.angularjs.org/api/ng/service/$location | AngularService} [$location]
-     * @param {@link https://material.angularjs.org/latest/api/service/$mdToast | MaterialService} [$mdToast]
-     * @param {@link https://angular-translate.github.io/docs/#/api/pascalprecht.translate.$translate | TranslateService} [$translate]
      * @return {Object}
      * @memberOf beansRouting
      */
-    function beansPrepData(actuatorService, $location, $mdToast, $translate) {
-        return $translate('COMMON.LOADING')
-            .then(function (loadingTranslation) {
-                var loadingPromise = $mdToast.showSimple(loadingTranslation);
-
-                return actuatorService
-                    .beans()
+    function beansPrepData(actuatorService, $location) {
+        return actuatorService
+            .beans()
             .then(function(response) {
                 return response.data[0].beans;
             })
@@ -61,11 +57,18 @@
                 }
 
                 return responseInError.data;
-            })
-                    .finally(function () {
-                        $mdToast.hide(loadingPromise);
-                    });
             });
+    }
+
+    /**
+     * @name filtersPrepData
+     * @desc Designing filters 
+     * @param {Object} [beansPrepData]
+     * @return {Object}
+     * @memberOf beansRouting
+     */
+    function filtersPrepData() {
+        return undefined;
     }
 
 })();
