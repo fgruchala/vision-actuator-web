@@ -27,7 +27,7 @@
             <md-list>
                 <md-list-item class="md-3-line" data-ng-repeat="beanDefinition in beanDefinitions = (vm.beansPrepData | filter:vm.search() | limitTo:vm.limitValue)" data-ng-click="vm.showFullInformations(beanDefinition)">
                     <div class="md-list-item-text" data-layout="column">
-                        <h3>{{ beanDefinition.bean }}</h3>
+                        <h3>{{ beanDefinition.bean | package }}</h3>
                         <h4>{{ beanDefinition.scope }}</h4>
                         <p>{{ beanDefinition.type | package }}</p>
                     </div>

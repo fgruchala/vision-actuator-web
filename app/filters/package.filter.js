@@ -16,18 +16,25 @@
      */
     function packageFilter () {
         var filter = function(input) {
-            var type = input;
+            var result = '';
             
             if(angular.isDefined(input)){   
                 if(angular.isString(input)) {
-                    
+                    var packages = input.split('.');
+                    var className = packages.pop();
+
+                    angular.forEach(packages, function(packageName, idx) {
+                        result += packageName.substr(0, 1) + '.';
+                    });
+
+                    result += className;
                 }
                 else {
-                    throw new Error('Filter typeBeans : input has to be a String');
+                    throw new Error('Filter package : input has to be a String');
                 }
             }
             
-            return type;
+            return result;
         }
         
         return filter;
