@@ -28,13 +28,13 @@
                 title: 'BEANS.MODULE_NAME',
                 resolve: {
                 	beansPrepData: beansPrepData,
-                    filtersPrepData: filtersPrepData
+                    scopesPrepData: scopesPrepData
                 }
             });
     }
 
     beansPrepData.$inject = ['actuatorService', '$location'];
-    filtersPrepData.$inject = [];
+    scopesPrepData.$inject = ['beansPrepData'];
 
 
     /**
@@ -61,14 +61,22 @@
     }
 
     /**
-     * @name filtersPrepData
-     * @desc Designing filters 
+     * @name scopesPrepData
+     * @desc Designing scopes 
      * @param {Object} [beansPrepData]
      * @return {Object}
      * @memberOf beansRouting
      */
-    function filtersPrepData() {
-        return undefined;
+    function scopesPrepData(beansPrepData) {
+        var scopes = [];
+
+        angular.forEach(beansPrepData, function(bean, idx) {
+            if(scopes.indexOf(bean.scope) == -1){
+                scopes.push(bean.scope);
+            }
+        });
+
+        return scopes;
     }
 
 })();

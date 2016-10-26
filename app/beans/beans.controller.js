@@ -10,20 +10,25 @@
     .module('app.beans')
     .controller('BeansController', beansController);
     
-    beansController.$inject = ['beansPrepData', '$mdDialog'];
+    beansController.$inject = ['beansPrepData', 'scopesPrepData', '$mdDialog'];
     
     /**
      * @name beansController
      * @param {Object} [beansPrepData] - Beans data 
+     * @param {Object} [scopesPrepData] - Filters data providing by beans data
      * @param {@link https://material.angularjs.org/latest/api/service/$mdDialog | MaterialService} [$mdDialog]
      * @memberOf Beans
      */
-    function beansController (beansPrepData, $mdDialog) {
+    function beansController (beansPrepData, scopesPrepData, $mdDialog) {
         var vm = this;
         var INC_ITEMS = 25;
         
         vm.beansPrepData = beansPrepData;
-        vm.searchValue = "";
+        vm.scopesPrepData = scopesPrepData;
+        vm.searchValue = {
+            bean: '',
+            scopes: angular.copy(scopesPrepData)
+        };
         vm.limitValue = INC_ITEMS;
         
         vm.showFullInformations = showFullInformations;
@@ -31,6 +36,8 @@
         vm.search = search;        
         vm.isSearch = isSearch;
         vm.resetSearch = resetSearch;
+        vm.isSelectedScope = isSelectedScope;
+        vm.selectScope = selectScope;
 
         
         
@@ -58,15 +65,20 @@
          */
         function search () {
             return function (beanDefinition) {
-                if(vm.searchValue === "") {
-                    return true;
+                var searchValue = vm.searchValue.bean.toLowerCase();
+                var bean = beanDefinition.bean.toLowerCase();
+                var displayedByBean = true; 
+                var displayedByScope = false; 
+
+                if(searchValue !== '') {
+                    displayedByBean = bean.indexOf(searchValue) !== -1;
                 }
 
-                var searchValue = vm.searchValue.toLowerCase();
-                var bean = beanDefinition.bean.toLowerCase();
-                var scope = beanDefinition.scope.toLowerCase();
+                angular.forEach(vm.searchValue.scopes, function(scope, idx) {
+                    displayedByScope = displayedByScope || beanDefinition.scope.indexOf(scope) !== -1;
+                });
 
-                return (bean.indexOf(searchValue) !== -1 || scope.indexOf(searchValue) !== -1);
+                return displayedByBean && displayedByScope;
             }
         }
 
@@ -76,7 +88,7 @@
          * @memberOf beansController
          */
         function isSearch () {
-            return vm.searchValue !== '';
+            return vm.searchValue.bean !== '';
         }
 
         /**
@@ -84,7 +96,7 @@
          * @memberOf beansController
          */
         function resetSearch () {
-            vm.searchValue = '';
+            vm.searchValue.bean = '';
         }
 
         /**
@@ -93,6 +105,30 @@
          */
         function more () {
             vm.limitValue += INC_ITEMS;
+        }
+
+        /**
+         * @name isSelectedScope
+         * @params {String} [scope]
+         * @returns {boolean}
+         * @memberOf beansController
+         */
+        function isSelectedScope (scope) {
+            return vm.searchValue.scopes.indexOf(scope) !== -1;
+        }
+
+        /**
+         * @name selectScope
+         * @params {String} [scope]
+         * @memberOf beansController
+         */
+        function selectScope (scope) {
+            if(isSelectedScope(scope)) {
+                vm.searchValue.scopes.splice(vm.searchValue.scopes.indexOf(scope), 1);
+            }
+            else {
+                vm.searchValue.scopes.push(scope);
+            }
         }
         
     }
