@@ -22,5 +22,16 @@
         //         $rootScope.$broadcast('serviceUrlChange');
         //     }, timeoutDelay);
         // });
+
+        $scope.$watch('vm.serviceUrl', function(newValue, oldValue) {
+            $timeout.cancel(timeoutPromise);
+
+            if (oldValue !== newValue) {
+                timeoutPromise = $timeout(function () {
+                    actuatorService.setServiceUrl(newValue);
+                    $rootScope.$broadcast('serviceUrlChange');
+                }, timeoutDelay);
+            }
+        });
     }
 })();
