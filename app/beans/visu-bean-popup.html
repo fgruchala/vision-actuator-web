@@ -1,7 +1,7 @@
 <md-dialog aria-label="Full informations of bean">
     <md-toolbar>
         <div class="md-toolbar-tools">
-            <h2>{{ vm.beanPrepData.bean }}</h2>
+            <h2>{{ vm.beanPrepData.bean | package }}</h2>
             <span data-flex></span>
             <md-button class="md-icon-button" data-ng-click="vm.close()">
                 <md-icon data-md-svg-icon="md:close-white" aria-label="Close"></md-icon>
@@ -18,7 +18,7 @@
         <!-- TYPE -->
         <div data-layout="row" data-layout-align="start center" data-layout-padding>
             <span data-flex data-translate="BEANS.TYPE"></span>
-            <strong>{{ vm.beanPrepData.type }}</strong>
+            <strong>{{ vm.beanPrepData.type | package }}</strong>
         </div>
         
         <!-- RESOURCE -->

@@ -14,6 +14,15 @@
         var timeoutPromise = null;
         var timeoutDelay = 500;
         
+        // $scope.$watch('vm.serviceUrl', function(newValue) {
+        //     $timeout.cancel(timeoutPromise);
+
+        //     timeoutPromise = $timeout(function() {
+        //         actuatorService.setServiceUrl(newValue);
+        //         $rootScope.$broadcast('serviceUrlChange');
+        //     }, timeoutDelay);
+        // });
+
         $scope.$watch('vm.serviceUrl', function(newValue, oldValue) {
             $timeout.cancel(timeoutPromise);
 

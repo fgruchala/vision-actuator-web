@@ -6,3 +6,4 @@ doc/
 .project
 .settings/
 target/
+*.orig

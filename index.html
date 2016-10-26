@@ -28,7 +28,7 @@
         <script src="/node_modules/angular-translate/dist/angular-translate.min.js"></script>
         <script src="/node_modules/angular-translate/dist/angular-translate-loader-static-files/angular-translate-loader-static-files.min.js"></script>
         <script src="/node_modules/angular-translate/dist/angular-translate-storage-cookie/angular-translate-storage-cookie.min.js"></script>
-        <script src="/content/lib/messageformat.js"></script>
+        <script src="/node_modules/messageformat/messageformat.min.js"></script>
         <script src="/node_modules/angular-translate/dist/angular-translate-interpolation-messageformat/angular-translate-interpolation-messageformat.min.js"></script>
         <script src="/node_modules/material-design-lite/material.min.js"></script>
         
@@ -59,6 +59,8 @@
         <script src="/app/filters/filters.module.js"></script>
         <script src="/app/filters/volume-data.filter.js"></script>
         <script src="/app/filters/size.filter.js"></script>
+        <script src="/app/filters/package.filter.js"></script>
+        <script src="/app/filters/capitalize.filter.js"></script>
         
         <!-- MODULE HOME -->
         <script src="/app/home/home.module.js"></script>
@@ -105,7 +107,9 @@
         
         <!-- CONTENT -->
         <ui-view>
-            <md-progress-circular data-md-mode="indeterminate"></md-progress-circular>
+            <md-content data-layout data-layout-align="center center" data-flex>
+                <md-progress-linear class="md-accent" data-md-mode="indeterminate"></md-progress-linear>
+            </md-content>
         </ui-view>
         
     </body>
