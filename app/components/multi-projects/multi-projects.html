@@ -1,3 +1,18 @@
 <div data-layout="row">
-    <input type="text" class="multi-projects" placeholder="http(s)://" data-flex />
+    <md-autocomplete
+            data-md-search-text="vm.searchText"
+            data-md-items="project in vm.searchProject()"
+            data-md-item-text="project.url + ' - ' + project.name"
+            data-md-selected-item-change="vm.selectProject(project)"
+            data-md-min-length="0"
+            placeholder="http(s)://"
+            data-flex>
+        <md-item-template>
+            <span data-md-highlight-text="vm.searchText" data-md-highlight-flags="^i">{{ project.url }} - {{ project.name }}</span>
+        </md-item-template>
+        <md-not-found>
+            <span data-translate="COMMON.NO_RESULT"></span>
+            <a data-ng-click="vm.saveProject()" data-translate="COMMON.SAVE_QUESTION"></a>
+        </md-not-found>
+    </md-autocomplete>
 </div>
