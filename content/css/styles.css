@@ -58,6 +58,18 @@ md-input-container .hint {
     color: grey;
 }
 
+input.multi-projects {
+    padding: 10px;
+    background-color: rgba(255, 255, 255, 0.5);
+    border-radius: 3px;
+    border: none;
+}
+
+input.multi-projects:focus {
+    background-color:white;
+    outline: 0;
+}
+
 /* trace */
 .status2xx {
     color: #4caf50;
