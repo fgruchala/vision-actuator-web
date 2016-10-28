@@ -9,6 +9,7 @@
     "COMMON": {
         "OK": "OK",
         "CLOSE": "Fermer",
+        "SAVE": "Valider",
         "CANCEL": "Annuler",
         "MORE": "Plus d'infos",
         "MORE_LIGHT": "Plus",
@@ -20,18 +21,14 @@
         "UNAVAILABLE": "Indisponible",
         "NO_RESULT": "Pas de résultat",
         "TOTAL": "{VAL, plural, =0{Aucun} other{# au total}}",
-        "SAVE_QUESTION": "Enregistrer ?"
+        "SAVE_QUESTION": "Enregistrer ?",
+        "REQUIRED": "Obligatoire",
+        "URL_MAL_FORMED": "Url au mauvais format"
     },
     "MULTI_PROJECTS": {
         "NEW": "Nouveau projet",
-        "NAME": {
-            "LABEL": "Associer un nom à l'URL",
-            "PLACEHOLDER": "e.g. Projet Top Secret"
-        },
-        "URL": {
-            "LABEL": "Associer une URL à",
-            "PLACEHOLDER": "e.g. http://top.secret.com"
-        }
+        "NAME": "Nom (e.g. Project top secret)",
+        "URL": "Url (e.g. http://top.secret.com)"
     },
     "VOLUME-DATA": "{UNIT, select, 1{Ko} 2{Mo} 3{Go} other{octet} }",
     "HOME": {

@@ -44,10 +44,15 @@
 
             service.endpoints = endpoints;
             service.setServiceUrl = setServiceUrl;
+            service.getServiceUrl = getServiceUrl;
         }
 
         function setServiceUrl(newUrl) {
             baseUrl = newUrl;
+        }
+
+        function getServiceUrl() {
+            return baseUrl;
         }
 
         function get(url) {
