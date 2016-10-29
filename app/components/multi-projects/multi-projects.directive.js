@@ -79,7 +79,10 @@
 
             if(angular.isDefined(project)) {
                 actuatorService.setServiceUrl(project.url);
-                //$state.reload();
+                
+                if(!$state.current.abstract) {
+                    $state.reload();
+                }
             }
         }
 
