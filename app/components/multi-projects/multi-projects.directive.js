@@ -30,27 +30,30 @@
         return definition;
     }
 
-    multiProjectsDirectiveController.$inject = ['$mdDialog', '$translate', 'storageService', 'actuatorService'];
+    multiProjectsDirectiveController.$inject = ['$mdDialog', '$translate', '$state', 'storageService', 'actuatorService'];
     
     /**
      * @name multiProjectsDirectiveController
      * @desc Controller of the web component vMultiProjects
      * @param {@link https://material.angularjs.org/latest/api/service/$mdDialog | MaterialService} [$mdDialog]
      * @param {@link https://angular-translate.github.io/docs/#/api/pascalprecht.translate.$translate | TranslateService} [$translate]
+     * @param {UiRouterService} [$state]
      * @param {Service} [storageService]
      * @param {Service} [actuatorService]
      * @memberOf multiProjectsDirectiveDefinition
      */
-    function multiProjectsDirectiveController ($mdDialog, $translate, storageService, actuatorService) {
+    function multiProjectsDirectiveController ($mdDialog, $translate, $state, storageService, actuatorService) {
         var vm = this;
         var projects;
         var newProject; 
-
+        
         vm.searchText;
         vm.selectedProject;
 
         vm.selectProject = selectProject;
+        vm.selectDefaultProject = selectDefaultProject;
         vm.searchProject = searchProject;
+        vm.saveProjectFromSearch = saveProjectFromSearch;
         vm.saveProject = saveProject;
         vm.isDisabled = isDisabled;
 
@@ -61,23 +64,33 @@
         function init () {
             newProject = {};
             projects = [];
-            vm.searchText = '';
 
             if(angular.isDefined(storageService.getItem('projects'))) {
                 projects = storageService.getItem('projects');
-                vm.selectedProject = projects[0];
+                selectProject(projects[0]);
             }
             else{
-                vm.selectedProject = {
-                    name: 'Localhost',
-                    url: actuatorService.getServiceUrl()
-                };
+                selectDefaultProject();
             }
         }
 
         function selectProject (project) {
+            vm.selectedProject = project;
+
             if(angular.isDefined(project)) {
-                vm.selectedProject = project;
+                actuatorService.setServiceUrl(project.url);
+                //$state.reload();
+            }
+        }
+
+        function selectDefaultProject () {
+            if(angular.isUndefined(vm.selectedProject)) {
+                var project = {
+                    name: 'Localhost',
+                    url: 'http://localhost:9090'
+                };
+
+                selectProject(project);
             }
         }
 
@@ -127,39 +140,19 @@
                     projectPrepData: newProject
                 }
             })
-            .then(saveProjectInLocalStorage, init);
+            .then(saveProjectInLocalStorage, selectDefaultProject);
+        }
 
-            // $translate(['MULTI_PROJECTS.NEW', 'MULTI_PROJECTS.NAME.LABEL', 'MULTI_PROJECTS.NAME.PLACEHOLDER', 'COMMON.OK', 'COMMON.CANCEL'])
-            //     .then(function(translations) {
-            //         $mdDialog.show(
-            //             $mdDialog.prompt()
-            //             .clickOutsideToClose(true)
-            //             .title(translations['MULTI_PROJECTS.NEW'])
-            //             .textContent(translations['MULTI_PROJECTS.NAME.LABEL'] + ' ' + newProject.url)
-            //             .placeholder(translations['MULTI_PROJECTS.NAME.PLACEHOLDER'])
-            //             .ariaLabel('Name')
-            //             .ok(translations['COMMON.OK'])
-            //             .cancel(translations['COMMON.CANCEL'])
-            //         )
-            //         .then(function(project) {
-            //             newProject = project;
-            //             saveProjectInLocalStorage();
-            //         },
-            //         function() {
-            //             init();
-            //         });
-            //     });
+        function saveProjectInLocalStorage (project) {
+            projects.unshift(project);
+
+            storageService.setItem('projects', projects);
+            selectProject(project);
         }
 
         function isDisabled () {
             return angular.isUndefined(projects) || projects.length === 0;
         }
-
-        function saveProjectInLocalStorage (project) {
-            projects.push(project);
-
-            storageService.setItem('projects', projects);
-            selectProject(project);
-        }   
+   
     }
 })();

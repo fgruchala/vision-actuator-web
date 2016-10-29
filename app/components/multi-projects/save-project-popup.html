@@ -5,7 +5,7 @@
             <div data-layout="row">
                 <md-input-container data-flex>
                     <label for="name" data-translate="MULTI_PROJECTS.NAME"></label>
-                    <input type="text" name="projectName" maxlength="255" required data-ng-model="vm.projectPrepData.name" />
+                    <input type="text" name="projectName" maxlength="255" required data-ng-model="vm.projectPrepData.name" data-md-autofocus />
                     <div data-ng-messages="formSaveProject.projectName.$error">
                         <div data-ng-message="required" data-translate="COMMON.REQUIRED"></div>
                     </div>
@@ -29,6 +29,6 @@
     <md-dialog-actions layout="row">
         <span data-flex></span>
         <md-button class="md-link" data-ng-click="vm.close()" arial-label="Close" data-translate="COMMON.CANCEL"></md-button>
-        <md-button class="md-primary md-raised" data-ng-disabled="formSaveProject.$invalid" data-ng-click="vm.save()" arial-label="Save" data-translate="COMMON.SAVE"></md-button>
+        <md-button type="submit" class="md-primary md-raised" data-ng-disabled="formSaveProject.$invalid" data-ng-click="vm.save()" arial-label="Save" data-translate="COMMON.SAVE"></md-button>
     </md-dialog-actions>
 </md-dialog>

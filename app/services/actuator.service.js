@@ -12,18 +12,21 @@
     .module('app.services')
     .service('actuatorService', actuatorService);
     
-    actuatorService.$inject = ['$http'];
+    actuatorService.$inject = ['$http', 'storageService'];
     
     /**
      * @name actuatorService
-     * @param {@link https://docs.angularjs.org/api/ng/service/$http | AngularService} $http
+     * @param {@link https://docs.angularjs.org/api/ng/service/$http | AngularService} [$http]
+     * @param {Service} [storageService]
      * @return Array
      * @memberOf Services
      */
-    function actuatorService ($http) {
+    function actuatorService ($http, storageService) {
+
+        var DEFAULT_URL = 'http://localhost:9090';
    
-        var service = {}
-        var baseUrl = 'http://localhost:9090';
+        var service = {};
+        var baseUrl = DEFAULT_URL;
         var endpoints = ['health', 'beans', 'env', 'actuator', 'autoconfig', 'configprops', 'dump',
                         'flyway', 'info', 'liquibase', 'metrics', 'mappings', 'shutdown', 'trace',
                         'docs', 'heapdump', 'jolokia', 'logfile'];

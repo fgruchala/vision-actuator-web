@@ -7,7 +7,8 @@
             data-md-selected-item="vm.selectedProject"
             data-md-selected-item-change="vm.selectProject(project)"
             data-md-min-length="0"
-            placeholder="http(s)://"
+            placeholder="http://localhost:9090 - Localhost"
+            data-ng-blur="vm.selectDefaultProject()"
             data-flex>
         <md-item-template>
             <span data-md-highlight-text="vm.searchText" data-md-highlight-flags="^i">{{ project.url }} - {{ project.name }}</span>
