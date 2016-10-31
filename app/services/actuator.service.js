@@ -23,10 +23,9 @@
      */
     function actuatorService ($http, storageService) {
 
-        var DEFAULT_URL = 'http://localhost:9090';
-   
         var service = {};
-        var baseUrl = DEFAULT_URL;
+        var projects = [];
+        var currentProject;
         var endpoints = ['health', 'beans', 'env', 'actuator', 'autoconfig', 'configprops', 'dump',
                         'flyway', 'info', 'liquibase', 'metrics', 'mappings', 'shutdown', 'trace',
                         'docs', 'heapdump', 'jolokia', 'logfile'];
@@ -39,6 +38,14 @@
         * Initialisation des endpoints
         */
         function activate() {
+            if(angular.isDefined(storageService.getItem('projects'))) {
+                projects = storageService.getItem('projects');
+                currentProject = projects[0];
+            }
+            else{
+                setDefaultProject();
+            }
+
             endpoints.forEach(function(endpoint) {
                 service[endpoint] = function() {
                     return get('/' + endpoint);
@@ -46,22 +53,48 @@
             });
 
             service.endpoints = endpoints;
-            service.setServiceUrl = setServiceUrl;
-            service.getServiceUrl = getServiceUrl;
+            service.setDefaultProject = setDefaultProject;
+            service.getAllProjects = getAllProjects;
+            service.setAllProjects = setAllProjects;
+            service.addProject = addProject;
+            service.setCurrentProject = setCurrentProject;
+            service.getCurrentProject = getCurrentProject;
         }
 
-        function setServiceUrl(newUrl) {
-            baseUrl = newUrl;
+        function setDefaultProject() {
+            currentProject = {
+                name: 'Localhost',
+                url: 'http://localhost:9090'
+            }
         }
 
-        function getServiceUrl() {
-            return baseUrl;
+        function getAllProjects() {
+            return projects;
+        }
+
+        function setAllProjects(projects) {
+            storageService.setItem('projects', projects);
+        }
+
+        function addProject(project) {
+            projects.unshift(project);
+            setAllProjects(projects);
+
+            setCurrentProject(project);
+        }
+
+        function setCurrentProject(project) {
+            currentProject = project;
+        }
+
+        function getCurrentProject() {
+            return currentProject;
         }
 
         function get(url) {
             return $http({
                method: 'GET',
-               url: baseUrl + url 
+               url: currentProject.url + url 
             });
         }
         

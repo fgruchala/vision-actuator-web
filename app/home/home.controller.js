@@ -1,14 +1,11 @@
-'use strict';
-    
 (function () {
+    'use strict';
     
     angular
-    .module('app.home')
-    .controller('HomeController', homeController);
+        .module('app.home')
+        .controller('HomeController', homeController);
     
-    homeController.$inject = ['$scope', '$rootScope', '$timeout', 'actuatorService'];
-    
-    function homeController ($scope, $rootScope, $timeout, actuatorService) {
+    function homeController() {
         var vm = this;
     }
 })();

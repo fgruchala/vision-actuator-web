@@ -30,7 +30,7 @@
         return definition;
     }
 
-    multiProjectsDirectiveController.$inject = ['$mdDialog', '$translate', '$state', 'storageService', 'actuatorService'];
+    multiProjectsDirectiveController.$inject = ['$mdDialog', '$translate', '$state', 'actuatorService'];
     
     /**
      * @name multiProjectsDirectiveController
@@ -38,11 +38,10 @@
      * @param {@link https://material.angularjs.org/latest/api/service/$mdDialog | MaterialService} [$mdDialog]
      * @param {@link https://angular-translate.github.io/docs/#/api/pascalprecht.translate.$translate | TranslateService} [$translate]
      * @param {UiRouterService} [$state]
-     * @param {Service} [storageService]
      * @param {Service} [actuatorService]
      * @memberOf multiProjectsDirectiveDefinition
      */
-    function multiProjectsDirectiveController ($mdDialog, $translate, $state, storageService, actuatorService) {
+    function multiProjectsDirectiveController ($mdDialog, $translate, $state, actuatorService) {
         var vm = this;
         var projects;
         var newProject; 
@@ -53,7 +52,6 @@
         vm.selectProject = selectProject;
         vm.selectDefaultProject = selectDefaultProject;
         vm.searchProject = searchProject;
-        vm.saveProjectFromSearch = saveProjectFromSearch;
         vm.saveProject = saveProject;
         vm.isDisabled = isDisabled;
 
@@ -63,22 +61,15 @@
 
         function init () {
             newProject = {};
-            projects = [];
-
-            if(angular.isDefined(storageService.getItem('projects'))) {
-                projects = storageService.getItem('projects');
-                selectProject(projects[0]);
-            }
-            else{
-                selectDefaultProject();
-            }
+            projects = actuatorService.getAllProjects();
+            vm.selectedProject = actuatorService.getCurrentProject();
         }
 
         function selectProject (project) {
             vm.selectedProject = project;
 
             if(angular.isDefined(project)) {
-                actuatorService.setServiceUrl(project.url);
+                actuatorService.setCurrentProject(project);
                 
                 if(!$state.current.abstract) {
                     $state.reload();
@@ -87,14 +78,8 @@
         }
 
         function selectDefaultProject () {
-            if(angular.isUndefined(vm.selectedProject)) {
-                var project = {
-                    name: 'Localhost',
-                    url: 'http://localhost:9090'
-                };
-
-                selectProject(project);
-            }
+            actuatorService.setDefaultProject();
+            init();
         }
 
         function searchProject () {
@@ -143,14 +128,9 @@
                     projectPrepData: newProject
                 }
             })
-            .then(saveProjectInLocalStorage, selectDefaultProject);
-        }
-
-        function saveProjectInLocalStorage (project) {
-            projects.unshift(project);
-
-            storageService.setItem('projects', projects);
-            selectProject(project);
+            .then(function(project) {
+                actuatorService.addProject(project);
+            }, selectDefaultProject);
         }
 
         function isDisabled () {
