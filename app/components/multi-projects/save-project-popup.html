@@ -1,0 +1,34 @@
+<md-dialog aria-label="Save a new project">
+    <md-dialog-content class="md-dialog-content" style="min-width:300px">
+        <h2 class="md-title" data-translate="MULTI_PROJECTS.NEW"></h2>
+        <form name="formSaveProject" novalidate>
+            <div data-layout="row">
+                <md-input-container data-flex>
+                    <label for="name" data-translate="MULTI_PROJECTS.NAME"></label>
+                    <input type="text" name="projectName" maxlength="255" required data-ng-model="vm.projectPrepData.name" data-md-autofocus />
+                    <div data-ng-messages="formSaveProject.projectName.$error">
+                        <div data-ng-message="required" data-translate="COMMON.REQUIRED"></div>
+                    </div>
+                </md-input-container>
+            </div>
+            <div data-layout="row">
+                <md-input-container data-flex>
+                    <label for="url" data-translate="MULTI_PROJECTS.URL"></label>
+                    <input type="url" name="projectUrl" required data-ng-model="vm.projectPrepData.url" />
+                    <div data-ng-messages="formSaveProject.projectUrl.$error">
+                        <div data-ng-message-exp="['required', 'url']">
+                            <span data-translate="COMMON.REQUIRED"></span>
+                            /
+                            <span data-translate="COMMON.URL_MAL_FORMED"></span>
+                        </div>
+                    </div>
+                </md-input-container>
+            </div>
+        </form>
+    </md-dialog-content>
+    <md-dialog-actions layout="row">
+        <span data-flex></span>
+        <md-button class="md-link" data-ng-click="vm.close()" arial-label="Close" data-translate="COMMON.CANCEL"></md-button>
+        <md-button type="submit" class="md-primary md-raised" data-ng-disabled="formSaveProject.$invalid" data-ng-click="vm.save()" arial-label="Save" data-translate="COMMON.SAVE"></md-button>
+    </md-dialog-actions>
+</md-dialog>
