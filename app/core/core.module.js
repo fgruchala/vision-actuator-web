@@ -24,7 +24,8 @@
         'ngMaterial',
         'ngCookies',
         'ngSanitize',
-        'pascalprecht.translate'
+        'pascalprecht.translate',
+        'chart.js'
     ]);
     
 })();
