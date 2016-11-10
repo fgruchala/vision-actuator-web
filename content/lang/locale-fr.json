@@ -20,14 +20,13 @@
         "NC": "NC",
         "UNAVAILABLE": "Indisponible",
         "NO_RESULT": "Pas de résultat",
-        "TOTAL": "{VAL, plural, =0{Aucun} other{# au total}}",
         "SAVE_QUESTION": "Enregistrer ?",
         "REQUIRED": "Obligatoire",
         "URL_MAL_FORMED": "Url au mauvais format",
-        "DAY" : "{VAL, plural, one{Jour} other{Jours}}",
-        "HOUR" : "{VAL, plural, one{Heure} other{Heures}}",
-        "MINUTE" : "{VAL, plural, one{Minute} other{Minutes}}",
-        "SECOND" : "{VAL, plural, one{Seconde} other{Secondes}}"
+        "DAY" : "{VAL, plural, =1{Jour} other{Jours}}",
+        "HOUR" : "{VAL, plural, =1{Heure} other{Heures}}",
+        "MINUTE" : "{VAL, plural, =1{Minute} other{Minutes}}",
+        "SECOND" : "{VAL, plural, =1{Seconde} other{Secondes}}"
     },
     "MULTI_PROJECTS": {
         "NEW": "Nouveau projet",
