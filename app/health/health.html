@@ -1,10 +1,10 @@
-<md-content>
+<div>
     <!-- IN CASE OF ERROR -->
     <div data-ng-hide="vm.healthPrepData"></div>
     
     <!-- IN CASE OF SUCCESS -->
     <div data-ng-show="vm.healthPrepData" data-flex-offset="20" data-flex="60" data-layout="column">
-        <md-content data-layout="row" data-layout-margin>
+        <div data-layout="row" data-layout-margin>
             <!-- GENERAL -->
             <md-card data-flex data-ng-class="vm.healthPrepData.status" class="single-data">
                 <md-card-title>
@@ -50,6 +50,6 @@
                     <md-progress-linear value="{{ vm.percentOfUsedDiskSpace() }}"></md-progress-linear>
                 </md-card-content>
             </md-card>
-        </md-content>
+        </div>
     </div>
-</md-content>
+</div>

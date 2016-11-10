@@ -25,7 +25,7 @@
                 url: '/',
                 views : {
                     '' : {
-                        templateUrl : 'app/home/home.html',
+                        templateUrl : 'app/home/home.html'
                         controller : 'HomeController',
                         controllerAs: 'vm'
                     },
@@ -42,6 +42,11 @@
                     'env@home' : {
                         templateUrl: 'app/env/home/env-home.html',
                         controller: 'EnvHomeController',
+                        controllerAs: 'vm'
+                    },
+                    'metrics@home' : {
+                        templateUrl: 'app/metrics/home/metrics-home.html',
+                        controller: 'MetricsHomeController',
                         controllerAs: 'vm'
                     }
                 },
