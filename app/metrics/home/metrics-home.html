@@ -1,0 +1,37 @@
+<md-card>
+	<md-card-title>
+		<md-card-title-text>
+			<span class="md-headline" data-translate="METRICS.MODULE_NAME"></span>
+		</md-card-title-text>
+	</md-card-title>
+	<md-card-content>
+		<strong data-translate="METRICS.MEM"></strong> ({{vm.mem - vm.memFree}} Mo / {{vm.mem}} Mo)
+		<md-progress-linear data-md-mode="determinate" data-ng-value="vm.memPercent()"></md-progress-linear>
+		<br/>
+
+		<strong data-translate="METRICS.HEAP"></strong> ({{vm.heapUsed}} Mo / {{vm.heap}} Mo)
+		<md-progress-linear data-md-mode="determinate" data-ng-value="vm.heapPercent()"></md-progress-linear>
+		<br/>
+
+		<strong data-translate="METRICS.UPTIME"></strong>
+		<span data-ng-if="vm.uptime.days > 0">
+			{{vm.uptime.days}}
+			<span data-translate="COMMON.DAY" data-translate-values="{VAL:vm.uptime.days}"></span>
+		</span>
+		<span data-ng-if="vm.uptime.hours > 0">
+			{{vm.uptime.hours}}
+			<span data-translate="COMMON.HOUR" data-translate-values="{VAL:vm.uptime.hours}"></span>
+		</span>
+		<span data-ng-if="vm.uptime.minutes > 0">
+			{{vm.uptime.minutes}} 
+			<span data-translate="COMMON.MINUTE" data-translate-values="{VAL:vm.uptime.minutes}"></span>
+		</span>
+		<span data-ng-if="vm.uptime.second > 0">
+			{{vm.uptime.second}}
+			<span data-translate="COMMON.SECOND" data-translate-values="{VAL:vm.uptime.second}"></span>
+		</span>
+		<br/>
+
+		<strong>Sessions : </strong>{{vm.httpSession}} (max : {{vm.httpSessionMax}})
+	</md-card-content>
+</md-card>

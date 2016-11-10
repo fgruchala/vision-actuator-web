@@ -16,7 +16,8 @@
         'app.health',
         'app.beans',
         'app.trace',
-        'app.env'
+        'app.env',
+        'app.metrics'
     ]);
     
 })();

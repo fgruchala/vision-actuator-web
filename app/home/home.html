@@ -1,17 +1,18 @@
-<md-content data-layout="column" data-flex-offset="20" data-flex="60">
+<div data-layout="column" data-flex-offset="20" data-flex="60">
 
 	<div data-layout="row">
-    	<md-button data-ng-href="#/trace" aria-label="Traces" class="md-raised md-primary" data-translate="TRACE.MODULE_NAME" data-flex="20"></md-button>
+		<md-button data-ng-href="#/trace" aria-label="Traces" class="md-raised md-primary" data-translate="TRACE.MODULE_NAME" data-flex="20"></md-button>
 	</div>
 
 	<div data-layout="row">
-		<div data-layout="column" data-flex>
-			<div ui-view="health"></div>
-			<div ui-view="beans"></div>
+		<div data-layout="column" data-flex="50">
+			<div data-layout="row">
+				<div ui-view="health" data-flex="50"></div>
+				<div ui-view="beans" data-flex="50"></div>
+			</div>
+			<div ui-view="metrics" data-flex></div>
 		</div>
 
-		<div data-layout="column" data-flex>
-			<div ui-view="env"></div>
-		</div>
+		<div data-flex ui-view="env" data-flex="50"></div>
 	</div>
-</md-content>
+</div>
