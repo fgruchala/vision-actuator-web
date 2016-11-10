@@ -84,5 +84,8 @@
     "TRACE" : {
         "MODULE_NAME": "Traces d'accès",
         "CHECKBOX_LIBELLE": "Cacher les traces actuator"
+    },
+    "LOG" : {
+        "MODULE_NAME": "Logs applicatifs"
     }
 }
