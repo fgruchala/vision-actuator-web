@@ -93,5 +93,8 @@
         "MEM" : "Mémoire",
         "HEAP" : "Mémoire JVM (heap)",
         "UPTIME" : "Service démarré depuis"
+    },
+    "LOG" : {
+        "MODULE_NAME": "Logs applicatifs"
     }
 }

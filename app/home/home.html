@@ -1,7 +1,10 @@
 <div data-layout="column" data-flex-offset="20" data-flex="60">
 
 	<div data-layout="row">
-		<md-button data-ng-href="#/trace" aria-label="Traces" class="md-raised md-primary" data-translate="TRACE.MODULE_NAME" data-flex="20"></md-button>
+		<div data-flex>
+    		<md-button data-ng-href="#/trace" aria-label="Traces" class="md-raised md-primary" data-translate="TRACE.MODULE_NAME"></md-button>
+			<md-button data-ng-click="vm.getLogfile()" aria-label="Logs" class="md-raised md-primary" data-translate="LOG.MODULE_NAME"></md-button>
+		</div>
 	</div>
 
 	<div data-layout="row">
