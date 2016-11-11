@@ -18,7 +18,9 @@
         "SEARCH": "Rechercher",
         "NOTHING_TO_SEE": "Pas de résultat :/",
         "NC": "NC",
-        "UNAVAILABLE": "Indisponible",
+        "UNAVAILABLE": "Action indisponible",
+        "TECHNICAL_ERROR": "Erreur technique",
+        "DONE": "Fait !",
         "NO_RESULT": "Pas de résultat",
         "SAVE_QUESTION": "Enregistrer ?",
         "REQUIRED": "Obligatoire",
@@ -96,5 +98,13 @@
     },
     "LOG" : {
         "MODULE_NAME": "Logs applicatifs"
+    },
+    "SHUTDOWN" : {
+        "MODULE_NAME": "Arrêt",
+        "POPUP": {
+            "TITLE": "Arrêter l'application ?",
+            "CONTENT": "Cette action va entrainer l'arrêt de votre serveur à distance. Par conséquent, votre application va être indisponible.",
+            "IMPORTANT_CONTENT": "Attention, cette action est IRREVERSIBLE."
+        }
     }
 }
