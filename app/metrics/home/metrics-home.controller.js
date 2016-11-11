@@ -71,8 +71,6 @@
 			vm.uptime.minutes = uptimeMoment.asMinutes() | 0;
 			uptimeMoment.subtract(vm.uptime.minutes, 'm');
 			vm.uptime.second = uptimeMoment.asSeconds() | 0;
-
-			console.log(vm.uptime);
 		}
 	}
 })();

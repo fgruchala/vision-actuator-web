@@ -26,9 +26,12 @@
         var service = {};
         var projects = [];
         var currentProject;
-        var endpoints = ['health', 'beans', 'env', 'actuator', 'autoconfig', 'configprops', 'dump',
-                        'flyway', 'info', 'liquibase', 'metrics', 'mappings', 'shutdown', 'trace',
+        var endpointsGet = ['health', 'beans', 'env', 'actuator', 'autoconfig', 'configprops', 'dump',
+                        'flyway', 'info', 'liquibase', 'metrics', 'mappings', 'trace',
                         'docs', 'heapdump', 'jolokia', 'logfile'];
+        var endpointsPost = ['shutdown'];    
+        var endpoints = endpointsGet.concat(endpointsPost);
+        
         
         activate();
 
@@ -46,9 +49,15 @@
                 setDefaultProject();
             }
 
-            endpoints.forEach(function(endpoint) {
+            endpointsGet.forEach(function(endpoint) {
                 service[endpoint] = function() {
-                    return get('/' + endpoint);
+                    return path('/' + endpoint, 'GET');
+                }
+            });
+
+            endpointsPost.forEach(function(endpoint) {
+                service[endpoint] = function() {
+                    return path('/' + endpoint, 'POST');
                 }
             });
 
@@ -91,9 +100,9 @@
             return currentProject;
         }
 
-        function get(url) {
+        function path(url, requestMethod) {
             return $http({
-               method: 'GET',
+               method: requestMethod,
                url: currentProject.url + url 
             });
         }
