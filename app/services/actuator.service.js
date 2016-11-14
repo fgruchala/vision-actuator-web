@@ -12,7 +12,7 @@
     .module('app.services')
     .service('actuatorService', actuatorService);
     
-    actuatorService.$inject = ['$http', 'storageService'];
+    actuatorService.$inject = ['$http', '$interval', 'storageService'];
     
     /**
      * @name actuatorService
@@ -21,23 +21,46 @@
      * @return Array
      * @memberOf Services
      */
-    function actuatorService ($http, storageService) {
+    function actuatorService ($http, $interval, storageService) {
 
-        var service = {};
+        var service = {
+            // 'endpoints' : ['health', 'beans'],
+            'setDefaultProject' : setDefaultProject,
+            'getAllProjects' : getAllProjects,
+            'setAllProjects' : setAllProjects,
+            'addProject' : addProject,
+            'setCurrentProject' : setCurrentProject,
+            'getCurrentProject' : getCurrentProject
+        };
         var projects = [];
         var currentProject;
-        var endpoints = ['health', 'beans', 'env', 'actuator', 'autoconfig', 'configprops', 'dump',
-                        'flyway', 'info', 'liquibase', 'metrics', 'mappings', 'shutdown', 'trace',
-                        'docs', 'heapdump', 'jolokia', 'logfile'];
+        service.endpoints = {
+            'health' : {autoUpdate:true},
+            'beans' : {},
+            'env' : {},
+            // 'actuator' : {},
+            // 'autoconfig' : {},
+            // 'configprops' : {},
+            // 'dump' : {},
+            // 'flyway' : {},
+            // 'info' : {},
+            // 'liquibase' : {},
+            'metrics' : {autoUpdate:true},
+            // 'mappings' : {},
+            // 'shutdown' : {},
+            'trace' : {},
+            // 'docs' : {},
+            // 'heapdump' : {},
+            // 'jolokia' : {},
+            // 'logfile' : {}
+        };
         
         activate();
 
 
 
-        /*
-        * Initialisation des endpoints
-        */
         function activate() {
+            // Configuration des urls de service
             if(angular.isDefined(storageService.getItem('projects'))) {
                 projects = storageService.getItem('projects');
                 currentProject = projects[0];
@@ -45,26 +68,24 @@
             else{
                 setDefaultProject();
             }
-
-            endpoints.forEach(function(endpoint) {
-                service[endpoint] = function() {
-                    return get('/' + endpoint);
+            
+            // Configuration des methodes de récupération des données actuator (avec la gestion des auto update)
+            for (var key in service.endpoints) {
+                service[key] = function(successFn, errorFn) {
+					get('/' + key).then(successFn, errorFn);
+					if (service.endpoints[key].autoUpdate) {
+						$interval(function() {
+							get('/' + key).then(successFn, errorFn);
+						})
+					}
                 }
-            });
-
-            service.endpoints = endpoints;
-            service.setDefaultProject = setDefaultProject;
-            service.getAllProjects = getAllProjects;
-            service.setAllProjects = setAllProjects;
-            service.addProject = addProject;
-            service.setCurrentProject = setCurrentProject;
-            service.getCurrentProject = getCurrentProject;
+            }
         }
 
         function setDefaultProject() {
             currentProject = {
                 name: 'Localhost',
-                url: 'http://localhost:9090'
+                url: 'http://localhost:9090/'
             }
         }
 
@@ -94,7 +115,7 @@
         function get(url) {
             return $http({
                method: 'GET',
-               url: currentProject.url + url 
+               url: currentProject.url + url
             });
         }
         

@@ -4,15 +4,15 @@
  * @memberOf App
  */
 (function () {
-    
+
     'use strict';
-    
+
     angular
-    .module('app.health')
-    .controller('HealthHomeController', HealthHomeController);
-    
+        .module('app.health')
+        .controller('HealthHomeController', HealthHomeController);
+
     HealthHomeController.$inject = ['$rootScope', 'actuatorService'];
-    
+
     /**
      * @name healthController
      * @param Object actuatorService
@@ -20,32 +20,24 @@
      */
     function HealthHomeController($rootScope, actuatorService) {
         var vm = this;
-        vm.health = {};
+        vm.health;
+        vm.error = false;
 
         activate();
 
 
 
         function activate() {
-            getDatas();
-            $rootScope.$on('serviceUrlChange', getDatas);
+            actuatorService.health(successFn, errorFn);
         }
 
-        function getDatas() {
-            vm.health.promise = actuatorService.health();
+        function successFn(response) {
+            console.log(response);
+            vm.health = response.data;
+        }
 
-            vm.health.promise
-            .then(function(response) {
-                vm.health.data = response.data;
-            },
-            function(responseInError) {
-                if(responseInError.status === -1 || responseInError.status === 404) {
-                    vm.health.data = undefined;
-                }
-                else{
-                    vm.health.data = responseInError.data;
-                }
-            });
+        function errorFn(error) {
+            vm.error = true;
         }
     }
 })();
