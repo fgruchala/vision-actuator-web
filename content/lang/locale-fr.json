@@ -106,5 +106,45 @@
             "CONTENT": "Cette action va entrainer l'arrêt de votre serveur à distance. Par conséquent, votre application va être indisponible.",
             "IMPORTANT_CONTENT": "Attention, cette action est IRREVERSIBLE."
         }
+    },
+    "DUMP": {
+        "MODULE_NAME": "Threads Dump",
+        "ID": "ID",
+        "NAME": "Nom",
+        "SUSPENDED": "Suspendu ?",
+        "STACK": "Stacktrace",
+        "LOCKED_MONITOR": "Monitor",
+        "LOCKED_SYNC": "Sync.",
+        "LENGTH": "{VAL, plural, =0{Aucun thread} one{1 thread} other{# threads} }",
+        "SEARCH": {
+            "STATUS": "Affiner par status"
+        },
+        "STATUS": {
+            "HEADER": "Status",
+            "NEW": {
+                "SHORT": "Nouveau",
+                "LONG": "Ce thread n'a jamais été exécuté"
+            },
+            "RUNNABLE": {
+                "SHORT": "En cours",
+                "LONG": "Ce thread est en cours d'exécution"
+            },
+            "BLOCKED": {
+                "SHORT": "Bloqué",
+                "LONG": "Ce thread est bloqué en attentant l'accès à un block synchronisé"
+            },
+            "TIMED_WAITING": {
+                "SHORT": "En attente",
+                "LONG": "Ce thread est en attente pour un certain temps"
+            },
+            "WAITING": {
+                "SHORT": "En attente [Thread]",
+                "LONG": "Ce thread est en attente d'un autre thread"
+            },
+            "TERMINATED": {
+                "SHORT": "Terminé",
+                "LONG": "Ce thread a été exécuté"
+            }
+        }
     }
 }

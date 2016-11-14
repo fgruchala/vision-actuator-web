@@ -1,0 +1,51 @@
+<md-dialog aria-label="Display dump detail" style="min-width:500px">
+    <md-toolbar class="{{ vm.dumpPrepData.threadState | lowercase }}">
+        <div class="md-toolbar-tools">
+            <h2>#{{ vm.dumpPrepData.threadId }} {{ vm.dumpPrepData.threadName | truncate:25 }}</h2>
+            <span flex></span>
+            <span data-translate="DUMP.STATUS.{{ vm.dumpPrepData.threadState }}.SHORT">
+        </div>
+    </md-toolbar>
+    <div data-layout="row" data-layout-align="start center" data-layout-padding>
+        <span data-translate="DUMP.BLOCK"></span>
+        <span data-flex></span>
+        <div data-layout="column" data-layout-align="space-between end">
+            <div data-flex>
+                <strong>{{ vm.dumpPrepData.blockedTime }}</strong>
+                <md-icon data-md-svg-icon="md:time"></md-icon>
+            </div>
+            <div data-flex>
+                <strong>{{ vm.dumpPrepData.blockedCount }}</strong>
+                <md-icon data-md-svg-icon="md:number"></md-icon>
+            </div>
+        </div>
+    </div>
+    <md-divider></md-divider>
+    <div data-layout="row" data-layout-align="start center" data-layout-padding>
+        <span data-translate="DUMP.WAIT"></span>
+        <span data-flex></span>
+        <div data-layout="column" data-layout-align="space-between end">
+            <div data-flex>
+                <strong>{{ vm.dumpPrepData.waitedTime }}</strong>
+                <md-icon data-md-svg-icon="md:time"></md-icon>
+            </div>
+            <div data-flex>
+                <strong>{{ vm.dumpPrepData.waitedCount }}</strong>
+                <md-icon data-md-svg-icon="md:number"></md-icon>
+            </div>
+        </div>
+    </div>
+    <md-divider data-ng-show="vm.dumpPrepData.lockInfo"></md-divider>
+    <div data-layout="row" data-layout-align="start center" data-layout-padding data-ng-show="vm.dumpPrepData.lockInfo">
+        <span data-translate="DUMP.LOCK"></span>
+        <span data-flex></span>
+        <div data-layout="column" data-layout-align="space-between end">
+            <strong data-flex>{{ vm.dumpPrepData.lockInfo.className | package }}</strong>
+            <strong data-flex>{{ vm.dumpPrepData.lockInfo.identityHashCode }}</strong>
+        </div>
+    </div>
+    <md-dialog-actions layout="row">
+        <span data-flex></span>
+        <md-button class="md-link" data-ng-click="vm.close()" arial-label="Close" data-translate="COMMON.CLOSE"></md-button>
+    </md-dialog-actions>
+</md-dialog>

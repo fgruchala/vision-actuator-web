@@ -1,0 +1,56 @@
+<div data-layout="row" data-layout-margin>
+    <!-- SEARCH -->
+    <div data-flex="20">
+        <md-subheader>
+            <div data-layout="row">
+                <span data-translate="DUMP.SEARCH.STATUS"></span>
+                <span data-flex></span>
+                <span>
+                    {{ dumps.length }}
+                    /
+                    <strong data-translate="DUMP.LENGTH" data-translate-values="{VAL:vm.dumpPrepData.length}"></strong>
+                </span>
+            </div>
+        </md-subheader>
+        <div data-ng-repeat="status in vm.statusPrepData">
+            <md-checkbox data-ng-checked="vm.isSelectedStatus(status)" data-ng-click="vm.selectStatus(status)" aria-label="Choose {{ status }}">
+                <span data-translate="DUMP.STATUS.{{ status }}.SHORT"></span>
+            </md-checkbox>
+        </div>
+    </div>
+
+    <!-- CONTENT -->
+    <div data-flex>
+        <table class="mdl-data-table mdl-data-table--selectable mdl-shadow--2dp full-width">
+            <thead>
+                <tr>
+                    <th style="width:5%" data-ng-click="vm.sortBy('threadId')" data-ng-class="{'mdl-data-table__header--sorted-ascending':vm.isSortedBy('+threadId'), 'mdl-data-table__header--sorted-descending':vm.isSortedBy('-threadId')}" data-translate="DUMP.ID"></th>
+                    <th style="width:65%" data-ng-click="vm.sortBy('threadName')" data-ng-class="{'mdl-data-table__header--sorted-ascending':vm.isSortedBy('+threadName'), 'mdl-data-table__header--sorted-descending':vm.isSortedBy('-threadName')}" class="mdl-data-table__cell--non-numeric" data-translate="DUMP.NAME"></th>
+                    <th style="width:10%" class="mdl-data-table__cell--non-numeric" data-translate="DUMP.STATUS.HEADER"></th>
+                    <th style="width:5%" class="mdl-data-table__cell--non-numeric" data-translate="DUMP.SUSPENDED"></th>
+                    <th style="width:5%" class="mdl-data-table__cell--non-numeric" data-translate="DUMP.STACK"></th>
+                    <th style="width:5%" class="mdl-data-table__cell--non-numeric" data-translate="DUMP.LOCKED_MONITOR"></th>
+                    <th style="width:5%" class="mdl-data-table__cell--non-numeric" data-translate="DUMP.LOCKED_SYNC"></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr data-ng-repeat="dump in dumps = (vm.dumpPrepData | filter:vm.search() | orderBy:vm.sortedValue)">
+                    <td data-ng-click="vm.displayDetailOfDump(dump)">
+                        #<strong>{{ dump.threadId }}</strong>
+                    </td>
+                    <td data-ng-click="vm.displayDetailOfDump(dump)" class="mdl-data-table__cell--non-numeric">{{ dump.threadName | truncate:50 }}</td>
+                    <td class="mdl-data-table__cell--non-numeric">
+                        <strong class="badge {{ dump.threadState | lowercase }}" data-translate="DUMP.STATUS.{{ dump.threadState }}.SHORT"></strong>
+                        <md-tooltip data-md-direction="left">
+                            <span data-translate="DUMP.STATUS.{{ dump.threadState }}.LONG"></span>
+                        </md-tooltip>
+                    </td>
+                    <td class="mdl-data-table__cell--non-numeric">{{ dump.suspended }}</td>
+                    <td>{{ dump.stackTrace.length }}</td>
+                    <td>{{ dump.lockedMonitors.length }}</td>
+                    <td>{{ dump.lockedSynchronizers.length }}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

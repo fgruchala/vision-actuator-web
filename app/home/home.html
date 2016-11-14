@@ -4,7 +4,7 @@
 		<div data-flex>
 			<div data-layout="column" data-layout-align="center center">
     			<md-button data-ng-href="#/trace" aria-label="Traces" class="md-raised md-fab md-primary">
-					<md-icon md-svg-icon="md:trace" class="white"></md-icon>
+					<md-icon data-md-svg-icon="md:trace" class="white"></md-icon>
 				</md-button>
 				<span data-translate="TRACE.MODULE_NAME"></span>
 			</div>
@@ -12,7 +12,7 @@
 		<div data-flex>
 			<div data-layout="column" data-layout-align="center center">
 				<md-button data-ng-click="vm.getLogfile()" aria-label="Logs" class="md-raised md-fab md-primary">
-					<md-icon md-svg-icon="md:log" class="white"></md-icon>
+					<md-icon data-md-svg-icon="md:log" class="white"></md-icon>
 				</md-button>
 				<span data-translate="LOG.MODULE_NAME"></span>
 			</div>
@@ -20,7 +20,7 @@
 		<div data-flex>
 			<div data-layout="column" data-layout-align="center center">
 				<md-button data-ng-click="vm.confirmShutdown()" aria-label="Shutdown" class="md-raised md-fab md-warn">
-					<md-icon md-svg-icon="md:shutdown" class="white"></md-icon>
+					<md-icon data-md-svg-icon="md:shutdown" class="white"></md-icon>
 				</md-button>
 				<span data-translate="SHUTDOWN.MODULE_NAME"></span>
 			</div>
@@ -30,12 +30,15 @@
 	<div data-layout="row">
 		<div data-layout="column" data-flex="50">
 			<div data-layout="row">
-				<div ui-view="health" data-flex="50"></div>
-				<div ui-view="beans" data-flex="50"></div>
+				<div data-ui-view="health" data-flex="50"></div>
+				<div data-ui-view="beans" data-flex="50"></div>
 			</div>
-			<div ui-view="metrics" data-flex></div>
+			<div data-ui-view="metrics" data-flex></div>
 		</div>
 
-		<div data-flex ui-view="env" data-flex="50"></div>
+		<div data-layout="column" data-flex="50">
+			<div data-ui-view="env"></div>
+			<div data-ui-view="dump"></div>
+		</div>
 	</div>
 </div>

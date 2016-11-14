@@ -66,6 +66,7 @@
         <script src="/app/filters/size.filter.js"></script>
         <script src="/app/filters/package.filter.js"></script>
         <script src="/app/filters/capitalize.filter.js"></script>
+        <script src="/app/filters/truncate.filter.js"></script>
         
         <!-- MODULE HOME -->
         <script src="/app/home/home.module.js"></script>
@@ -100,6 +101,13 @@
          <!-- MODULE METRICS -->
         <script src="/app/metrics/metrics.module.js"></script>
         <script src="/app/metrics/home/metrics-home.controller.js"></script>
+
+         <!-- MODULE DUMP -->
+        <script src="/app/dump/dump.module.js"></script>
+        <script src="/app/dump/dump.route.js"></script>
+        <script src="/app/dump/home/dump-home.controller.js"></script>
+        <script src="/app/dump/dump.controller.js"></script>
+        <script src="/app/dump/display-dump-popup.controller.js"></script>
     </head>
     <body>
         
@@ -107,7 +115,7 @@
         <md-toolbar class="md-tall md-whiteframe-z1">
             <div class="md-toolbar-tools">
                 <v-navigation-breadcrumb data-flex="20"></v-navigation-breadcrumb>
-                <v-multi-projects data-flex="60"></v-multi-projects>
+                <v-multi-projects data-flex="60" style="margin-left:16px"></v-multi-projects>
                 <span data-flex></span>
                 <v-translate-choice></v-translate-choice>
             </div>

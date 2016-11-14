@@ -48,6 +48,11 @@
                         templateUrl: 'app/metrics/home/metrics-home.html',
                         controller: 'MetricsHomeController',
                         controllerAs: 'vm'
+                    },
+                    'dump@home': {
+                        templateUrl: 'app/dump/home/dump-home.html',
+                        controller: 'DumpHomeController',
+                        controllerAs: 'vm'
                     }
                 },
                 title: 'HOME.MODULE_NAME'
