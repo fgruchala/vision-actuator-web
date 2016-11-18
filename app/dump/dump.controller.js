@@ -22,7 +22,7 @@
         vm.isSelectedStatus = isSelectedStatus;
         vm.search = search;
         vm.displayDetailOfDump = displayDetailOfDump;
-
+        
         function sortBy(attribute) {
             var prev = angular.copy(vm.sortedValue);
             vm.sortedValue = '+' + attribute;
@@ -68,6 +68,7 @@
                 }
             });
         }
+
     }
     
 })();

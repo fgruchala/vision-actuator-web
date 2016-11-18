@@ -103,3 +103,7 @@ md-icon.small > svg {
 th[data-ng-click]:hover, tr[data-ng-click]:hover, td[data-ng-click]:hover {
     cursor: pointer;
 }
+
+td.text-center {
+    text-align: center;
+}
