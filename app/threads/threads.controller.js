@@ -3,15 +3,15 @@
     'use strict';
     
     angular
-    .module('app.dump')
-    .controller('DumpController', dumpController);
+    .module('app.threads')
+    .controller('ThreadsController', threadsController);
     
-    dumpController.$inject = ['dumpPrepData', 'statusPrepData', '$mdDialog'];
+    threadsController.$inject = ['threadsPrepData', 'statusPrepData', '$mdDialog'];
     
-    function dumpController (dumpPrepData, statusPrepData, $mdDialog) {
+    function threadsController (threadsPrepData, statusPrepData, $mdDialog) {
         var vm = this;
         
-        vm.dumpPrepData = dumpPrepData;
+        vm.threadsPrepData = threadsPrepData;
         vm.statusPrepData = statusPrepData;
         vm.sortedValue = '+threadId';
         vm.statusValue = angular.copy(statusPrepData);
@@ -21,7 +21,7 @@
         vm.selectStatus = selectStatus;
         vm.isSelectedStatus = isSelectedStatus;
         vm.search = search;
-        vm.displayDetailOfDump = displayDetailOfDump;
+        vm.displayDetailOfThread = displayDetailOfThread;
         
         function sortBy(attribute) {
             var prev = angular.copy(vm.sortedValue);
@@ -52,19 +52,19 @@
         }
 
         function search() {
-            return function(dump) {
-                return vm.statusValue.indexOf(dump.threadState) !== -1;
+            return function(thread) {
+                return vm.statusValue.indexOf(thread.threadState) !== -1;
             }
         }
 
-        function displayDetailOfDump(dump) {
+        function displayDetailOfThread(thread) {
             $mdDialog.show({
-                controller: 'DisplayDumpPopupController',
+                controller: 'DisplayThreadsPopupController',
                 controllerAs: 'vm',
-                templateUrl: 'app/dump/display-dump-popup.html',
+                templateUrl: 'app/threads/display-threads-popup.html',
                 clickOutsideToClose: true,
                 locals: {
-                    dumpPrepData: dump
+                    threadPrepData: thread
                 }
             });
         }

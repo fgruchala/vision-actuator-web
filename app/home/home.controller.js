@@ -12,6 +12,7 @@
         var loadingPromise;
 
         vm.getLogfile = getLogfile;
+        vm.getHeapDump = getHeapDump;
         vm.confirmShutdown = confirmShutdown;
 
         function getLogfile() {
@@ -22,7 +23,8 @@
                     actuatorService
                         .logfile()
                         .then(function(response) {
-                            downloadData(response.data);
+                            var today = new Date();
+                            downloadData(response.data, 'plain/text', 'log_' + today.toLocaleDateString() + '_' + today.toLocaleTimeString() + '.log');
                         })
                         .catch(function(err) {
                             $log.error('Failed to load logfile WS.');
@@ -34,13 +36,33 @@
                 });
         }
 
-        function downloadData(response) {
-            var blob = new Blob([response], { type: 'plain/text' });
+        function getHeapDump() {
+            $translate('COMMON.LOADING')
+                .then(function (loadingTranslation) {
+                    loadingPromise = $mdToast.showSimple(loadingTranslation);
+                    
+                    actuatorService
+                        .heapdump()
+                        .then(function(response) {
+                            var today = new Date();
+                            downloadData(response.data, 'application/octet-stream', 'heapdump_' + today.toLocaleDateString() + '_' + today.toLocaleTimeString() + '.hprof.gz');
+                        })
+                        .catch(function(err) {
+                            $log.error('Failed to load heapDump WS.');
+                            handleWSError(err);
+                        })
+                        .finally(function() {
+                            $mdToast.hide(loadingPromise);
+                        });
+                });
+        }
+
+        function downloadData(response, type, filename) {
+            var blob = new Blob([response], { type: type });
             var url = window.URL.createObjectURL(blob);
-            var today = new Date();
             var link = angular
                 .element('<a></a>')
-                .attr('download', 'log_' + today.toLocaleDateString() + '_' + today.toLocaleTimeString() + '.log')
+                .attr('download', filename)
                 .attr('href', url);
 
             link[0].click();

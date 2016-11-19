@@ -19,6 +19,14 @@
 		</div>
 		<div data-flex>
 			<div data-layout="column" data-layout-align="center center">
+				<md-button data-ng-click="vm.getHeapDump()" aria-label="HeapDump" class="md-raised md-fab md-primary">
+					<md-icon data-md-svg-icon="md:memory" class="white"></md-icon>
+				</md-button>
+				<span data-translate="HEAP.MODULE_NAME"></span>
+			</div>
+		</div>
+		<div data-flex>
+			<div data-layout="column" data-layout-align="center center">
 				<md-button data-ng-click="vm.confirmShutdown()" aria-label="Shutdown" class="md-raised md-fab md-warn">
 					<md-icon data-md-svg-icon="md:shutdown" class="white"></md-icon>
 				</md-button>
@@ -38,7 +46,7 @@
 
 		<div data-layout="column" data-flex="50">
 			<div data-ui-view="env"></div>
-			<div data-ui-view="dump"></div>
+			<div data-ui-view="threads"></div>
 		</div>
 	</div>
 </div>

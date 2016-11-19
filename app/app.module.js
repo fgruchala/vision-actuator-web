@@ -18,7 +18,7 @@
         'app.trace',
         'app.env',
         'app.metrics',
-        'app.dump'
+        'app.threads'
     ]);
     
 })();

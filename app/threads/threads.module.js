@@ -3,6 +3,6 @@
     'use strict';
     
     angular
-    .module('app.dump', []);
+    .module('app.threads', []);
     
 })();
