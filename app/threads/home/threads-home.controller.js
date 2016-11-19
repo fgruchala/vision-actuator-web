@@ -3,12 +3,12 @@
     'use strict';
     
     angular
-    .module('app.dump')
-    .controller('DumpHomeController', dumpHomeController);
+    .module('app.threads')
+    .controller('ThreadsHomeController', threadsHomeController);
     
-    dumpHomeController.$inject = ['actuatorService'];
+    threadsHomeController.$inject = ['actuatorService'];
     
-    function dumpHomeController(actuatorService) {
+    function threadsHomeController(actuatorService) {
         var vm = this;
         vm.threads = {};
 

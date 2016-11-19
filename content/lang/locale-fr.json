@@ -109,8 +109,8 @@
             "IMPORTANT_CONTENT": "Attention, cette action est IRREVERSIBLE."
         }
     },
-    "DUMP": {
-        "MODULE_NAME": "Threads Dump",
+    "THREADS": {
+        "MODULE_NAME": "Threads",
         "ID": "ID",
         "NAME": "Nom",
         "SUSPENDED": "Suspendu ?",

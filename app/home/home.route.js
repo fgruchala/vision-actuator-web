@@ -49,9 +49,9 @@
                         controller: 'MetricsHomeController',
                         controllerAs: 'vm'
                     },
-                    'dump@home': {
-                        templateUrl: 'app/dump/home/dump-home.html',
-                        controller: 'DumpHomeController',
+                    'threads@home': {
+                        templateUrl: 'app/threads/home/threads-home.html',
+                        controller: 'ThreadsHomeController',
                         controllerAs: 'vm'
                     }
                 },
