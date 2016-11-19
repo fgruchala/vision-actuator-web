@@ -1,21 +1,23 @@
 <div data-layout="row" data-layout-margin>
     <!-- SEARCH -->
     <div data-flex="20">
-        <md-subheader>
-            <div data-layout="row">
-                <span data-translate="THREADS.SEARCH.STATUS"></span>
-                <span data-flex></span>
-                <span>
-                    {{ threads.length }}
-                    /
-                    <strong data-translate="THREADS.LENGTH" data-translate-values="{VAL:vm.threadsPrepData.length}"></strong>
-                </span>
+        <div  data-v-scroll-fixed>
+            <md-subheader>
+                <div data-layout="row">
+                    <span data-translate="THREADS.SEARCH.STATUS"></span>
+                    <span data-flex></span>
+                    <span>
+                        {{ threads.length }}
+                        /
+                        <strong data-translate="THREADS.LENGTH" data-translate-values="{VAL:vm.threadsPrepData.length}"></strong>
+                    </span>
+                </div>
+            </md-subheader>
+            <div data-ng-repeat="status in vm.statusPrepData">
+                <md-checkbox data-ng-checked="vm.isSelectedStatus(status)" data-ng-click="vm.selectStatus(status)" aria-label="Choose {{ status }}">
+                    <span data-translate="THREADS.STATUS.{{ status }}.SHORT"></span>
+                </md-checkbox>
             </div>
-        </md-subheader>
-        <div data-ng-repeat="status in vm.statusPrepData">
-            <md-checkbox data-ng-checked="vm.isSelectedStatus(status)" data-ng-click="vm.selectStatus(status)" aria-label="Choose {{ status }}">
-                <span data-translate="THREADS.STATUS.{{ status }}.SHORT"></span>
-            </md-checkbox>
         </div>
     </div>
 
