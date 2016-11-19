@@ -1,0 +1,30 @@
+<div data-layout="row" data-layout-margin>
+    <!-- CONTENT -->
+    <div data-layout="row" data-flex>
+        <md-content data-flex-offset="20" data-flex="60" class="md-whiteframe-z1 bg">
+            <md-list>
+                <md-list-item data-ng-repeat="mappings in vm.mappingsPrepData">
+                    <!--<md-card data-flex>
+                        <md-card-title>
+                            <md-card-title-text>
+                                <span class="md-headline">{{ mappings.request.url }}</span>
+                                <span class="md-subhead">{{ mappings.request.methods }} - {{ mappings.request.produces }}</span>
+                            </md-card-title-text>
+                        </md-card-title>
+                    </md-card>
+                    <md-icon></md-icon>
+                    <md-card data-flex>
+                        <md-card-title>
+                            <md-card-title-text>
+                                <span class="md-headline">{{ mappings.java.bean }}</span>
+                                <span class="md-subhead">{{ mappings.java.method }}</span>
+                            </md-card-title-text>
+                        </md-card-title>
+                    </md-card>-->
+                    
+                    <md-divider data-ng-if="!$last"></md-divider>
+                </md-list-item>
+            </md-list>
+        </md-content>
+    </div>
+</div>

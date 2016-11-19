@@ -175,5 +175,8 @@
     },
     "HEAP": {
         "MODULE_NAME": "Mémoire"
+    },
+    "MAPPINGS": {
+        "MODULE_NAME": "Mappings"
     }
 }
