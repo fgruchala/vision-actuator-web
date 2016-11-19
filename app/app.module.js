@@ -17,7 +17,8 @@
         'app.beans',
         'app.trace',
         'app.env',
-        'app.metrics'
+        'app.metrics',
+        'app.dump'
     ]);
     
 })();

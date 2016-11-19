@@ -41,7 +41,9 @@
         .icon('md:add-white', 'content/img/icons/md/add-white.svg')
         .icon('md:trace', 'content/img/icons/md/trace.svg')
         .icon('md:log', 'content/img/icons/md/log.svg')
-        .icon('md:shutdown', 'content/img/icons/md/shutdown.svg');
+        .icon('md:shutdown', 'content/img/icons/md/shutdown.svg')
+        .icon('md:time', 'content/img/icons/md/time.svg')
+        .icon('md:number', 'content/img/icons/md/number.svg');
         
         $translateProvider
         .useStaticFilesLoader({

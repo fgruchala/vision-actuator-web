@@ -1,0 +1,143 @@
+<md-dialog aria-label="Display dump detail" style="min-width:500px">
+    <md-toolbar class="{{ vm.dumpPrepData.threadState | lowercase }}">
+        <div class="md-toolbar-tools">
+            <h2>#{{ vm.dumpPrepData.threadId }} &#183; {{ vm.dumpPrepData.threadName | truncate:25 }}</h2>
+            <span data-flex></span>
+            <span data-translate="DUMP.STATUS.{{ vm.dumpPrepData.threadState }}.SHORT">
+        </div>
+    </md-toolbar>
+    <md-dialog-content style="width:800px;max-height:810px;">
+        <md-tabs data-md-dynamic-height data-md-border-bottom>
+            <!-- GENERAL -->
+            <md-tab data-label="{{ 'DUMP.GENERAL' | translate }}">
+                <md-content>
+                    <div data-layout="row" data-layout-align="start center" data-layout-padding>
+                        <span data-translate="DUMP.BLOCK"></span>
+                        <span data-flex></span>
+                        <div data-layout="column" data-layout-align="space-between end">
+                            <div data-flex>
+                                <strong>{{ vm.dumpPrepData.blockedTime }}</strong>
+                                <md-icon data-md-svg-icon="md:time"></md-icon>
+                            </div>
+                            <div data-flex>
+                                <strong>{{ vm.dumpPrepData.blockedCount }}</strong>
+                                <md-icon data-md-svg-icon="md:number"></md-icon>
+                            </div>
+                        </div>
+                    </div>
+                    <md-divider></md-divider>
+                    <div data-layout="row" data-layout-align="start center" data-layout-padding>
+                        <span data-translate="DUMP.WAIT"></span>
+                        <span data-flex></span>
+                        <div data-layout="column" data-layout-align="space-between end">
+                            <div data-flex>
+                                <strong>{{ vm.dumpPrepData.waitedTime }}</strong>
+                                <md-icon data-md-svg-icon="md:time"></md-icon>
+                            </div>
+                            <div data-flex>
+                                <strong>{{ vm.dumpPrepData.waitedCount }}</strong>
+                                <md-icon data-md-svg-icon="md:number"></md-icon>
+                            </div>
+                        </div>
+                    </div>
+                    <md-divider data-ng-show="vm.dumpPrepData.lockInfo"></md-divider>
+                    <div data-layout="row" data-layout-align="start center" data-layout-padding data-ng-show="vm.dumpPrepData.lockInfo">
+                        <span data-translate="DUMP.LOCK"></span>
+                        <span data-flex></span>
+                        <div data-layout="column" data-layout-align="space-between end">
+                            <strong data-flex>{{ vm.dumpPrepData.lockInfo.className | package }}</strong>
+                            <strong data-flex>{{ vm.dumpPrepData.lockInfo.identityHashCode }}</strong>
+                        </div>
+                    </div>
+                </md-content>
+            </md-tab>
+
+            <!-- STACKTRACE -->
+            <md-tab data-label="{{ 'DUMP.STACK.HEADER' | translate }}" data-ng-disabled="vm.dumpprepData.stackTrace.length===0">
+                <md-content>
+                    <table class="mdl-data-table full-width">
+                        <thead>
+                            <tr>
+                                <th class="mdl-data-table__cell--non-numeric" data-translate="DUMP.STACK.METHOD_NAME"></th>
+                                <th class="mdl-data-table__cell--non-numeric" data-translate="DUMP.STACK.FILENAME"></th>
+                                <th class="mdl-data-table__cell--non-numeric" data-translate="DUMP.STACK.LINE_NUMBER"></th>
+                                <th class="mdl-data-table__cell--non-numeric" data-translate="DUMP.STACK.CLASSNAME"></th>
+                                <th class="mdl-data-table__cell--non-numeric" data-translate="DUMP.STACK.NATIVE_METHOD"></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr data-ng-repeat="stack in vm.dumpPrepData.stackTrace">
+                                <td class="mdl-data-table__cell--non-numeric">{{ stack.methodName }}</td>
+                                <td class="mdl-data-table__cell--non-numeric">{{ stack.fileName }}</td>
+                                <td>{{ stack.lineNumber }}</td>
+                                <td class="mdl-data-table__cell--non-numeric">{{ stack.className | package }}</td>
+                                <td class="text-center">
+                                    <span data-ng-show="stack.nativeMethod" data-translate="COMMON.YES"></span>
+                                    <span data-ng-hide="stack.nativeMethod" data-translate="COMMON.NO"></span>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </md-content>
+            </md-tab>
+
+            <!-- LOCKED MONITORS -->
+            <md-tab data-label="{{ 'DUMP.LOCKED_MONITOR.HEADER' | translate }}" data-ng-disabled="vm.dumpPrepData.lockedMonitors.length===0">
+                <md-content>
+                    <table class="mdl-data-table full-width">
+                        <thead>
+                            <tr>
+                                <th class="mdl-data-table__cell--non-numeric" data-translate="DUMP.LOCKED_MONITOR.CLASSNAME"></th>
+                                <th class="mdl-data-table__cell--non-numeric" data-translate="DUMP.LOCKED_MONITOR.IDENTITY_HASHCODE"></th>
+                                <th class="mdl-data-table__cell--non-numeric" data-translate="DUMP.LOCKED_MONITOR.LOCKED_STACK_DEPTH"></th>
+                                <th class="mdl-data-table__cell--non-numeric" data-translate="DUMP.LOCKED_MONITOR.LOCKED_STACK_FRAME"></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr data-ng-repeat="lockedMonitor in vm.dumpPrepData.lockedMonitors">
+                                <td class="mdl-data-table__cell--non-numeric">{{ lockedMonitor.className | package }}</td>
+                                <td class="mdl-data-table__cell--non-numeric">{{ lockedMonitor.identityHashCode }}</td>
+                                <td>{{ lockedMonitor.lockedStackDepth }}</td>
+                                <td class="mdl-data-table__cell--non-numeric">
+                                    <span data-translate="DUMP.LOCKED_MONITOR.METHOD_NAME"></span> <strong>{{ lockedMonitor.lockedStackFrame.methodName }}</strong>
+                                        <br />
+                                    <span data-translate="DUMP.LOCKED_MONITOR.NATIVE_METHOD"></span> <strong data-ng-show="lockedMonitor.lockedStackFrame.nativeMethod" data-translate="COMMON.YES"></strong><strong data-ng-hide="lockedMonitor.lockedStackFrame.nativeMethod" data-translate="COMMON.NO"></strong>
+                                        <br />
+                                    <span data-translate="DUMP.LOCKED_MONITOR.CLASSNAME"></span> <strong>{{ lockedMonitor.lockedStackFrame.className | package }}</strong> 
+                                        <br />
+                                    <span data-translate="DUMP.LOCKED_MONITOR.FILENAME"></span> <strong>{{ lockedMonitor.lockedStackFrame.fileName }} ({{ lockedMonitor.lockedStackFrame.lineNumber }})</strong>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </md-content>
+            </md-tab>
+
+            <!-- LOCKED SYNC -->
+            <md-tab data-label="{{ 'DUMP.LOCKED_SYNC.HEADER' | translate }}" data-ng-disabled="vm.dumpPrepData.lockedSynchronizers.length===0">
+                <md-content>
+                    <table class="mdl-data-table full-width">
+                        <thead>
+                            <tr>
+                                <th class="mdl-data-table__cell--non-numeric" data-translate="DUMP.LOCKED_SYNC.CLASSNAME"></th>
+                                <th class="mdl-data-table__cell--non-numeric" data-translate="DUMP.LOCKED_SYNC.IDENTITY_HASHCODE"></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr data-ng-repeat="lockedSync in vm.dumpPrepData.lockedSynchronizers">
+                                <td class="mdl-data-table__cell--non-numeric">{{ lockedSync.className | package }}</td>
+                                <td class="mdl-data-table__cell--non-numeric">{{ lockedSync.identityHashCode }}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </md-content>
+            </md-tab>
+
+            <md-tab data-label=""></md-tab>
+        </md-tabs>
+    </md-dialog-content>
+    <md-dialog-actions layout="row">
+        <span data-flex></span>
+        <md-button class="md-link" data-ng-click="vm.close()" aria-label="Close" data-translate="COMMON.CLOSE"></md-button>
+    </md-dialog-actions>
+</md-dialog>
