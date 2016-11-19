@@ -1,7 +1,7 @@
 <md-card data-flex class="single-data">
 	<md-card-title data-layout="row" data-layout-align="start center">
 		<md-card-title-text>
-			<span class="md-headline" data-translate="DUMP.MODULE_NAME"></span>
+			<span class="md-headline" data-translate="THREADS.MODULE_NAME"></span>
 		</md-card-title-text>
 		<span data-flex></span>
 		<div data-ng-show="vm.threads.promise.$$state.status>0 && !vm.threads.data">
@@ -16,6 +16,6 @@
 		{{ vm.threads.data.length }}
 	</md-card-content>
 	<md-card-actions data-ng-show="vm.threads.promise.$$state.status>0 && vm.threads.data" data-layout="row" data-layout-align="end center">
-		<md-button data-ng-href="#/threads-dump" aria-label="More" data-translate="COMMON.MORE"></md-button>
+		<md-button data-ng-href="#/threads" aria-label="More" data-translate="COMMON.MORE"></md-button>
 	</md-card-actions>
 </md-card>

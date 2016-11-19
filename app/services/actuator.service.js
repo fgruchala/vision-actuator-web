@@ -101,10 +101,17 @@
         }
 
         function path(url, requestMethod) {
-            return $http({
+            var params = {
                method: requestMethod,
                url: currentProject.url + url 
-            });
+            };
+
+
+            if(url === '/heapdump') {
+                params.responseType = 'arraybuffer';
+            }
+
+            return $http(params);
         }
         
         return service;

@@ -43,7 +43,8 @@
         .icon('md:log', 'content/img/icons/md/log.svg')
         .icon('md:shutdown', 'content/img/icons/md/shutdown.svg')
         .icon('md:time', 'content/img/icons/md/time.svg')
-        .icon('md:number', 'content/img/icons/md/number.svg');
+        .icon('md:number', 'content/img/icons/md/number.svg')
+        .icon('md:memory', 'content/img/icons/md/memory.svg');
         
         $translateProvider
         .useStaticFilesLoader({
