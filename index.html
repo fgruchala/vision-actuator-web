@@ -66,10 +66,13 @@
         <script src="/app/filters/size.filter.js"></script>
         <script src="/app/filters/package.filter.js"></script>
         <script src="/app/filters/capitalize.filter.js"></script>
+        <script src="/app/filters/truncate.filter.js"></script>
         
         <!-- MODULE HOME -->
         <script src="/app/home/home.module.js"></script>
         <script src="/app/home/home.route.js"></script>
+        <script src="/app/home/home.controller.js"></script>
+        <script src="/app/home/shutdown-popup.controller.js"></script>
         
         <!-- MODULE HEALTH -->
         <script src="/app/health/health.module.js"></script>
@@ -98,6 +101,13 @@
          <!-- MODULE METRICS -->
         <script src="/app/metrics/metrics.module.js"></script>
         <script src="/app/metrics/home/metrics-home.controller.js"></script>
+
+         <!-- MODULE THREADS -->
+        <script src="/app/threads/threads.module.js"></script>
+        <script src="/app/threads/threads.route.js"></script>
+        <script src="/app/threads/home/threads-home.controller.js"></script>
+        <script src="/app/threads/threads.controller.js"></script>
+        <script src="/app/threads/display-threads-popup.controller.js"></script>
     </head>
     <body>
         
@@ -105,7 +115,7 @@
         <md-toolbar class="md-tall md-whiteframe-z1">
             <div class="md-toolbar-tools">
                 <v-navigation-breadcrumb data-flex="20"></v-navigation-breadcrumb>
-                <v-multi-projects data-flex="60"></v-multi-projects>
+                <v-multi-projects data-flex="60" style="margin-left:16px"></v-multi-projects>
                 <span data-flex></span>
                 <v-translate-choice></v-translate-choice>
             </div>

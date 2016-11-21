@@ -24,7 +24,6 @@
     function actuatorService ($http, $interval, storageService) {
 
         var service = {
-            // 'endpoints' : ['health', 'beans'],
             'setDefaultProject' : setDefaultProject,
             'getAllProjects' : getAllProjects,
             'setAllProjects' : setAllProjects,
@@ -34,27 +33,12 @@
         };
         var projects = [];
         var currentProject;
-        service.endpoints = {
-            'health' : {autoUpdate:true},
-            'beans' : {},
-            'env' : {},
-            // 'actuator' : {},
-            // 'autoconfig' : {},
-            // 'configprops' : {},
-            // 'dump' : {},
-            // 'flyway' : {},
-            // 'info' : {},
-            // 'liquibase' : {},
-            'metrics' : {autoUpdate:true},
-            // 'mappings' : {},
-            // 'shutdown' : {},
-            'trace' : {},
-            // 'docs' : {},
-            // 'heapdump' : {},
-            // 'jolokia' : {},
-            // 'logfile' : {}
-        };
-        
+        var endpointsGet = ['health', 'beans', 'env', 'actuator', 'autoconfig', 'configprops', 'dump',
+                        'flyway', 'info', 'liquibase', 'metrics', 'mappings', 'trace',
+                        'docs', 'heapdump', 'jolokia', 'logfile'];
+        var endpointsPost = ['shutdown'];    
+        var endpoints = endpointsGet.concat(endpointsPost);
+                
         activate();
 
 
@@ -68,18 +52,18 @@
             else{
                 setDefaultProject();
             }
-            
-            // Configuration des methodes de récupération des données actuator (avec la gestion des auto update)
-            for (var key in service.endpoints) {
-                service[key] = function(successFn, errorFn) {
-					get('/' + key).then(successFn, errorFn);
-					if (service.endpoints[key].autoUpdate) {
-						$interval(function() {
-							get('/' + key).then(successFn, errorFn);
-						})
-					}
+
+            endpointsGet.forEach(function(endpoint) {
+                service[endpoint] = function() {
+                    return path('/' + endpoint, 'GET');
                 }
-            }
+            });
+
+            endpointsPost.forEach(function(endpoint) {
+                service[endpoint] = function() {
+                    return path('/' + endpoint, 'POST');
+                }
+            })
         }
 
         function setDefaultProject() {
@@ -112,11 +96,18 @@
             return currentProject;
         }
 
-        function get(url) {
-            return $http({
-               method: 'GET',
-               url: currentProject.url + url
-            });
+        function path(url, requestMethod) {
+            var params = {
+               method: requestMethod,
+               url: currentProject.url + url 
+            };
+
+
+            if(url === '/heapdump') {
+                params.responseType = 'arraybuffer';
+            }
+
+            return $http(params);
         }
         
         return service;
