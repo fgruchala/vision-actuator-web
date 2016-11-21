@@ -11,33 +11,59 @@
         .module('app.health')
         .controller('HealthHomeController', HealthHomeController);
 
-    HealthHomeController.$inject = ['$rootScope', 'actuatorService'];
+    HealthHomeController.$inject = ['$rootScope', '$interval', 'actuatorService'];
 
     /**
      * @name healthController
      * @param Object actuatorService
      * @memberOf Health
      */
-    function HealthHomeController($rootScope, actuatorService) {
+    function HealthHomeController($rootScope, $interval, actuatorService) {
         var vm = this;
-        vm.health;
+        var interval;
+
+        vm.health = {};
         vm.error = false;
+        vm.autoUpdate = true;
+
+        vm.switchAutoUpdate = switchAutoUpdate;
 
         activate();
 
 
 
-        function activate() {
-            actuatorService.health(successFn, errorFn);
+       function activate() {
+            getDatas();
+            switchAutoUpdate();
+            $rootScope.$on('serviceUrlChange', getDatas);
         }
 
-        function successFn(response) {
-            console.log(response);
-            vm.health = response.data;
+        function switchAutoUpdate() {
+            if (vm.autoUpdate) {
+                interval = $interval(function() {
+                    getDatas();
+                }, 1000);
+            } else {
+                $interval.cancel(interval);
+            }
         }
 
-        function errorFn(error) {
-            vm.error = true;
+        function getDatas() {
+            console.log('get datas');
+            vm.health.promise = actuatorService.health();
+
+            vm.health.promise
+            .then(function(response) {
+                vm.health.data = response.data;
+            },
+            function(responseInError) {
+                if(responseInError.status === -1 || responseInError.status === 404) {
+                    vm.health.data = undefined;
+                }
+                else{
+                    vm.health.data = responseInError.data;
+                }
+            });
         }
     }
 })();
