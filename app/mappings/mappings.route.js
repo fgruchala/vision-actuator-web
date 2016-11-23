@@ -16,12 +16,14 @@
                 controllerAs: 'vm',
                 title: 'MAPPINGS.MODULE_NAME',
                 resolve: {
-                    mappingsPrepData: mappingsPrepData
+                    mappingsPrepData: mappingsPrepData,
+                    tagsPrepData: tagsPrepData
                 }
             });
     }
 
     mappingsPrepData.$inject = ['actuatorService'];
+    tagsPrepData.$inject = ['mappingsPrepData'];
 
     function mappingsPrepData(actuatorService) {
         return actuatorService
@@ -38,18 +40,23 @@
                 });
     }
 
+    function tagsPrepData(mappingsPrepData) {
+
+    }
+
     function transformData(mappings) {
         var transformedMappings = [];
-        var requestRegex = /{?\[?([/a-z.| *]*)\]?(,methods=\[([A-Z| ]*)\])?(,produces=\[([a-z |/-]*)\])?}?/g;
+        var requestRegex = /^{?\[?([\/a-z.{}:| *]*)\]?(,methods=\[([A-Z| ]*)\])?(,produces=\[([a-z |\/-]*)\])?}?$/;
         var matches;
 
         angular.forEach(mappings, function(mapping, key) {
             matches = requestRegex.exec(key) || [];
+
             transformedMappings.push({
                 request: {
-                    url: matches[1],
-                    methods: matches[3],
-                    produced: matches[5]
+                    urls: (matches[1] ? matches[1].split(' || ') : null),
+                    methods: (matches[3] ? matches[3].split(' || ') : null),
+                    produces: (matches[5] ? matches[5].split(' || ') : null)
                 },
                 java: {
                     bean: mapping.bean,

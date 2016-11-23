@@ -1,30 +1,44 @@
 <div data-layout="row" data-layout-margin>
-    <!-- CONTENT -->
     <div data-layout="row" data-flex>
-        <md-content data-flex-offset="20" data-flex="60" class="md-whiteframe-z1 bg">
-            <md-list>
-                <md-list-item data-ng-repeat="mappings in vm.mappingsPrepData">
-                    <!--<md-card data-flex>
-                        <md-card-title>
-                            <md-card-title-text>
-                                <span class="md-headline">{{ mappings.request.url }}</span>
-                                <span class="md-subhead">{{ mappings.request.methods }} - {{ mappings.request.produces }}</span>
-                            </md-card-title-text>
-                        </md-card-title>
-                    </md-card>
-                    <md-icon></md-icon>
-                    <md-card data-flex>
-                        <md-card-title>
-                            <md-card-title-text>
-                                <span class="md-headline">{{ mappings.java.bean }}</span>
-                                <span class="md-subhead">{{ mappings.java.method }}</span>
-                            </md-card-title-text>
-                        </md-card-title>
-                    </md-card>-->
+        <div data-flex="60" data-flex-offset="20">
+            <!-- SEARCH -->
+            <md-chips 
+                data-ng-model="vm.selectedTags" 
+                data-md-removable="vm.selectTag()"
+                data-md-autocomplete-snap
+                data-md-require-match="true">
+                
+                <md-autocomplete
+                    placeholder="{{ 'COMMON.SEARCH' | translate }}" 
+                    data-md-selected-item="vm.selectedTag"
+                    data-md-search-text="vm.searchText"
+                    data-md-items="tag in vm.searchInAvailableTags(vm.searchText)"
+                    data-md-item-text="tag">
                     
-                    <md-divider data-ng-if="!$last"></md-divider>
-                </md-list-item>
-            </md-list>
-        </md-content>
+                    <span data-md-highlight-text="vm.searchText">{{ tag }}</span>
+                
+                </md-autocomplete>
+
+            </md-chips>
+
+            <!-- CONTENT -->
+            <md-content class="md-whiteframe-z1 bg" style="margin-top:20px">
+                <md-list>
+                    <md-list-item class="md-3-line" data-ng-repeat="mapping in vm.mappingsPrepData">
+                        <div class="md-list-item-text" data-layout="column">
+                            <h3 data-layout="row" data-layout-align="start center">
+                                <strong data-ng-repeat="method in mapping.request.methods" class="http-method" style="margin-right:10px">{{ method | uppercase }}</strong>
+                                <span data-ng-repeat="url in mapping.request.urls" style="margin-right:10px">{{ url }}</span>
+                                <span data-flex></span>
+                                <span data-ng-repeat="produce in mapping.request.produces">{{ produce }}</span>
+                            </h3>
+                            <h4>{{ mapping.java.bean }}</h4>
+                            <p>{{ mapping.java.method | method }}</p>
+                        </div>
+                        <md-divider data-ng-if="!$last"></md-divider>
+                    </md-list-item>
+                </md-list>
+            </md-content>
+        </div>
     </div>
 </div>

@@ -66,6 +66,10 @@ md-list.md-whiteframe-z1, .bg {
     padding: 5px;
 }
 
+strong.http-method {
+    color: darkgoldenrod;
+}
+
 .full-width {
     width: 100%;
 }
