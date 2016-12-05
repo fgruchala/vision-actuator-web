@@ -14,8 +14,12 @@
             
             if(angular.isDefined(input)){   
                 if(angular.isString(input)) {
-                    var method = input.split(' ');
-                    // TODO
+                    result = input
+                        .split(' ')
+                        .map(function(value) {
+                            return $filter('package')(value);
+                        })
+                        .join(' ');
                 }
                 else {
                     throw new Error('Filter method : input has to be a String');

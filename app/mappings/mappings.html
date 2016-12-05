@@ -1,44 +1,65 @@
 <div data-layout="row" data-layout-margin>
-    <div data-layout="row" data-flex>
-        <div data-flex="60" data-flex-offset="20">
-            <!-- SEARCH -->
-            <md-chips 
-                data-ng-model="vm.selectedTags" 
-                data-md-removable="vm.selectTag()"
-                data-md-autocomplete-snap
-                data-md-require-match="true">
-                
-                <md-autocomplete
-                    placeholder="{{ 'COMMON.SEARCH' | translate }}" 
-                    data-md-selected-item="vm.selectedTag"
-                    data-md-search-text="vm.searchText"
-                    data-md-items="tag in vm.searchInAvailableTags(vm.searchText)"
-                    data-md-item-text="tag">
-                    
-                    <span data-md-highlight-text="vm.searchText">{{ tag }}</span>
-                
-                </md-autocomplete>
+    <!-- FILTER -->
+    <div data-flex="20" data-ng-if="vm.mappingsPrepData.length>0">
+        <md-content class="md-whiteframe-z1 bg">
+            <!-- BY REQUEST METHOD -->
+            <md-subheader>
+                <span data-translate="MAPPINGS.METHOD.HEADER"></span>
+            </md-subheader>
+            <md-divider></md-divider>
+            <md-list class="md-dense">
+                <md-list-item data-ng-repeat="method in vm.filtersPrepData.methods" data-ng-click="vm.selectFilterByKey('methods', method)">
+                    <span data-translate data-translate-values="{GENDER:'FEMALE'}">{{ method }}</span>
+                    <span data-flex></span>
+                    <md-icon data-md-svg-icon="md:visibility-on" class="grey" data-ng-if="vm.isFilteringByKey('methods', method)"></md-icon>
+                    <md-icon data-md-svg-icon="md:visibility-off" class="grey" data-ng-if="!vm.isFilteringByKey('methods', method)"></md-icon>
+                </md-list-item>
+            </md-list>
+            <md-divider></md-divider>
 
-            </md-chips>
-
-            <!-- CONTENT -->
-            <md-content class="md-whiteframe-z1 bg" style="margin-top:20px">
-                <md-list>
-                    <md-list-item class="md-3-line" data-ng-repeat="mapping in vm.mappingsPrepData">
-                        <div class="md-list-item-text" data-layout="column">
-                            <h3 data-layout="row" data-layout-align="start center">
-                                <strong data-ng-repeat="method in mapping.request.methods" class="http-method" style="margin-right:10px">{{ method | uppercase }}</strong>
-                                <span data-ng-repeat="url in mapping.request.urls" style="margin-right:10px">{{ url }}</span>
-                                <span data-flex></span>
-                                <span data-ng-repeat="produce in mapping.request.produces">{{ produce }}</span>
-                            </h3>
-                            <h4>{{ mapping.java.bean }}</h4>
-                            <p>{{ mapping.java.method | method }}</p>
-                        </div>
-                        <md-divider data-ng-if="!$last"></md-divider>
-                    </md-list-item>
-                </md-list>
-            </md-content>
-        </div>
+            <!-- BY REQUEST PRODUCE -->
+            <md-subheader>
+                <span data-translate="MAPPINGS.PRODUCE.HEADER"></span>
+            </md-subheader>
+            <md-divider></md-divider>
+            <md-list class="md-dense">
+                <md-list-item data-ng-repeat="produce in vm.filtersPrepData.produces" data-ng-click="vm.selectFilterByKey('produces', produce)">
+                    <span data-translate>{{ produce }}</span>
+                    <span data-flex></span>
+                    <md-icon data-md-svg-icon="md:visibility-on" class="grey" data-ng-if="vm.isFilteringByKey('produces', produce)"></md-icon>
+                    <md-icon data-md-svg-icon="md:visibility-off" class="grey" data-ng-if="!vm.isFilteringByKey('produces', produce)"></md-icon>
+                </md-list-item>
+            </md-list>
+            
+        </md-content>
+    </div>
+    <div data-flex>
+        <!-- IN CASE OF NOTHING -->
+        <v-no-result data-ng-show="mappings.length===0"></v-no-result>
+        
+        <!-- CONTENT -->
+        <md-content class="md-whiteframe-z1 bg" data-ng-show="mappings.length>0">
+            <md-subheader style="text-align:right">
+                <span data-translate="MAPPINGS.LIST_FILTERED" data-translate-values="{VAL:mappings.length}"></span>
+                / 
+                <strong>{{ vm.mappingsPrepData.length }}</strong>
+            </md-subheader>
+            <md-divider></md-divider>
+            <md-list>
+                <md-list-item class="md-3-line md-long-text" data-ng-repeat="mapping in mappings = (vm.mappingsPrepData | filter:vm.filter())">
+                    <div class="md-list-item-text" data-layout="column">
+                        <h3 data-layout="row" data-layout-align="start center">
+                            <strong data-ng-repeat="method in mapping.request.methods" data-ng-show="method !== 'NONE'" class="http-method" style="margin-right:10px">{{ method | uppercase }}</strong>
+                            <span data-ng-repeat="url in mapping.request.urls" style="margin-right:10px">{{ url }}</span>
+                            <span data-flex></span>
+                            <span data-ng-repeat="produce in mapping.request.produces" data-ng-show="produce !== 'NONE'">{{ produce }}</span>
+                        </h3>
+                        <h4>{{ mapping.java.bean }}</h4>
+                        <p>{{ mapping.java.method | method }}</p>
+                    </div>
+                    <md-divider data-ng-if="!$last"></md-divider>
+                </md-list-item>
+            </md-list>
+        </md-content>
     </div>
 </div>

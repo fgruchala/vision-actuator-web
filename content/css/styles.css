@@ -78,6 +78,16 @@ md-icon.white > svg {
     fill: white;
 }
 
+md-icon.grey > svg {
+    fill: lightgrey;
+}
+
+md-icon.big > svg {
+    height: 72px;
+    width: 72px;
+    viewBox: 0 0 72 72;
+}
+
 md-icon.small > svg {
     height: 12px;
     width: 12px;

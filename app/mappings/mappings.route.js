@@ -17,13 +17,13 @@
                 title: 'MAPPINGS.MODULE_NAME',
                 resolve: {
                     mappingsPrepData: mappingsPrepData,
-                    tagsPrepData: tagsPrepData
+                    filtersPrepData: filtersPrepData
                 }
             });
     }
 
     mappingsPrepData.$inject = ['actuatorService'];
-    tagsPrepData.$inject = ['mappingsPrepData'];
+    filtersPrepData.$inject = ['mappingsPrepData'];
 
     function mappingsPrepData(actuatorService) {
         return actuatorService
@@ -40,8 +40,26 @@
                 });
     }
 
-    function tagsPrepData(mappingsPrepData) {
+    function filtersPrepData(mappingsPrepData) {
+        var filters = {};
+        filters.methods = [];
+        filters.produces = [];
 
+        angular.forEach(mappingsPrepData, function(mapping) {
+            angular.forEach(mapping.request.methods, function(method) {
+                if(filters.methods.indexOf(method) === -1) {
+                    filters.methods.push(method);
+                }
+            });
+
+            angular.forEach(mapping.request.produces, function(produce) {
+                if(filters.produces.indexOf(produce) === -1) {
+                    filters.produces.push(produce);
+                }
+            });
+        });
+
+        return filters;
     }
 
     function transformData(mappings) {
@@ -55,8 +73,8 @@
             transformedMappings.push({
                 request: {
                     urls: (matches[1] ? matches[1].split(' || ') : null),
-                    methods: (matches[3] ? matches[3].split(' || ') : null),
-                    produces: (matches[5] ? matches[5].split(' || ') : null)
+                    methods: (matches[3] ? matches[3].split(' || ') : ['NONE']),
+                    produces: (matches[5] ? matches[5].split(' || ') : ['NONE'])
                 },
                 java: {
                     bean: mapping.bean,

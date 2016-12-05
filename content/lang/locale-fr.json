@@ -6,6 +6,7 @@
         "en": "Anglais",
         "fr": "Français"
     },
+    "NONE": "{GENDER, select, FEMALE{Non renseignée} other{Non renseigné}}",
     "COMMON": {
         "OK": "OK",
         "CLOSE": "Fermer",
@@ -177,6 +178,13 @@
         "MODULE_NAME": "Mémoire"
     },
     "MAPPINGS": {
-        "MODULE_NAME": "Mappings"
+        "MODULE_NAME": "Mappings",
+        "LIST_FILTERED": "{VAL, plural, =0{0 affiché} one{1 affiché} other{# affichés} }",
+        "METHOD": {
+            "HEADER": "Affiner par méthode"
+        },
+        "PRODUCE": {
+            "HEADER": "Affiner par type de contenu"
+        }
     }
 }

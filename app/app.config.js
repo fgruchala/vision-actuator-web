@@ -45,7 +45,10 @@
         .icon('md:time', 'content/img/icons/md/time.svg')
         .icon('md:number', 'content/img/icons/md/number.svg')
         .icon('md:memory', 'content/img/icons/md/memory.svg')
-        .icon('md:equals', 'content/img/icons/md/equals.svg');
+        .icon('md:equals', 'content/img/icons/md/equals.svg')
+        .icon('md:visibility-on', 'content/img/icons/md/visibility-on.svg')
+        .icon('md:visibility-off', 'content/img/icons/md/visibility-off.svg')
+        .icon('md:nothing-to-see', 'content/img/icons/md/nothing-to-see.svg');
         
         $translateProvider
         .useStaticFilesLoader({
