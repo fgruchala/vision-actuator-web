@@ -53,6 +53,11 @@
                         templateUrl: 'app/threads/home/threads-home.html',
                         controller: 'ThreadsHomeController',
                         controllerAs: 'vm'
+                    },
+                    'mappings@home': {
+                        templateUrl: 'app/mappings/home/mappings-home.html',
+                        controller: 'MappingsHomeController',
+                        controllerAs: 'vm'
                     }
                 },
                 title: 'HOME.MODULE_NAME'
