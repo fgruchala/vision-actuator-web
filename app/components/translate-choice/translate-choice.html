@@ -1,6 +1,9 @@
 <md-menu>
     <md-button aria-label="Choose language" class="md-icon-button" data-ng-click="$mdOpenMenu($event)">
         <md-icon data-md-menu-origin data-md-svg-icon="md:translate-white"></md-icon>
+        <md-tooltip>
+            <span data-translate="{{ 'LANG.' + vm.actualLanguage }}"></span>
+        </md-tooltip>
     </md-button>
     <md-menu-content width="4">
         <md-menu-item>

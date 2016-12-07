@@ -48,8 +48,12 @@
         .icon('md:equals', 'content/img/icons/md/equals.svg')
         .icon('md:visibility-on', 'content/img/icons/md/visibility-on.svg')
         .icon('md:visibility-off', 'content/img/icons/md/visibility-off.svg')
-        .icon('md:nothing-to-see', 'content/img/icons/md/nothing-to-see.svg');
-        
+        .icon('md:nothing-to-see', 'content/img/icons/md/nothing-to-see.svg')
+        .icon('md:feedback', 'content/img/icons/md/feedback.svg')
+        .icon('md:notifications-active', 'content/img/icons/md/notifications-active.svg')
+        .icon('md:notifications-none', 'content/img/icons/md/notifications-none.svg')
+        .icon('md:notifications-off', 'content/img/icons/md/notifications-off.svg');
+
         $translateProvider
         .useStaticFilesLoader({
             prefix: '/content/lang/locale-',
