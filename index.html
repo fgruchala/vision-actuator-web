@@ -55,11 +55,13 @@
         <script src="/app/components/multi-projects/multi-projects.directive.js"></script>
         <script src="/app/components/multi-projects/save-project-popup.controller.js"></script>
         <script src="/app/components/no-result/no-result.directive.js"></script>
+        <script src="/app/components/notification/notification.directive.js"></script>
         
         <!-- SERVICES -->
         <script src="/app/services/services.module.js"></script>
         <script src="/app/services/actuator.service.js"></script>
         <script src="/app/services/storage.service.js"></script>
+        <script src="/app/services/notification.service.js"></script>
         
         <!-- FILTERS -->
         <script src="/app/filters/filters.module.js"></script>
@@ -125,7 +127,14 @@
                 <v-navigation-breadcrumb data-flex="20"></v-navigation-breadcrumb>
                 <v-multi-projects data-flex="60"></v-multi-projects>
                 <span data-flex></span>
+                <v-notification></v-notification>
                 <v-translate-choice></v-translate-choice>
+                <md-button href="https://github.com/fgruchala/Vision/issues" target="_blank" class="md-icon-button" aria-label="Feedback">
+                    <md-icon data-md-svg-icon="md:feedback" class="white"></md-icon>
+                    <md-tooltip>
+                        <span data-translate="COMMON.FEEDBACK"></span>
+                    </md-tooltip>
+                </md-button>
             </div>
         </md-toolbar>
         

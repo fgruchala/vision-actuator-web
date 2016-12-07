@@ -31,7 +31,8 @@
         "MINUTE" : "{VAL, plural, =1{Minute} other{Minutes}}",
         "SECOND" : "{VAL, plural, =1{Seconde} other{Secondes}}",
         "YES": "Oui",
-        "NO": "Non"
+        "NO": "Non",
+        "FEEDBACK": "Un problème et/ou un mot gentil ?"
     },
     "MULTI_PROJECTS": {
         "NEW": "Nouveau projet",
@@ -45,7 +46,9 @@
     },
     "HEALTH": {
         "MODULE_NAME": "Santé",
-        "UP": "Tout fonctionne bien",
+        "UP": "UP",
+        "DOWN": "DOWN",
+        "NONE": "Pas de connexion avec Actuator",
         "SECTION": {
             "GENERAL": "Général",
             "DISKSPACE": "Espace disque",

@@ -1,0 +1,8 @@
+<md-button href="#/health" class="md-icon-button" aria-label="Notification">
+    <md-icon data-md-svg-icon="md:notifications-active" class="white" data-ng-show="vm.currentHealth==='DOWN'"></md-icon>
+    <md-icon data-md-svg-icon="md:notifications-none" class="white" data-ng-show="vm.currentHealth==='UP'"></md-icon>
+    <md-icon data-md-svg-icon="md:notifications-off" class="white" data-ng-show="vm.currentHealth==='NONE'"></md-icon>
+    <md-tooltip>
+        <span data-translate="{{ 'HEALTH.' + vm.currentHealth }}"></span>
+    </md-tooltip>
+</md-button>
