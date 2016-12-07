@@ -18,7 +18,8 @@
         'app.trace',
         'app.env',
         'app.metrics',
-        'app.threads'
+        'app.threads',
+        'app.mappings'
     ]);
     
 })();

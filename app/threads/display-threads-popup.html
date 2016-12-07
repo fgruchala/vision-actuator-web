@@ -10,7 +10,8 @@
         <md-tabs data-md-dynamic-height data-md-border-bottom>
             <!-- GENERAL -->
             <md-tab data-label="{{ 'THREADS.GENERAL' | translate }}">
-                <md-content>
+                <md-content class="bg">
+                    <md-divider></md-divider>
                     <div data-layout="row" data-layout-align="start center" data-layout-padding>
                         <span data-translate="THREADS.BLOCK"></span>
                         <span data-flex></span>
@@ -49,6 +50,7 @@
                             <strong data-flex>{{ vm.threadPrepData.lockInfo.identityHashCode }}</strong>
                         </div>
                     </div>
+                    <md-divider></md-divider>
                 </md-content>
             </md-tab>
 
