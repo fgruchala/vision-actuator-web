@@ -10,7 +10,7 @@
     .module('app')
     .config(globalConfiguration);
     
-    globalConfiguration.$inject = ['$mdThemingProvider', '$mdIconProvider', '$translateProvider', '$anchorScrollProvider'];
+    globalConfiguration.$inject = ['$mdThemingProvider', '$mdIconProvider', '$translateProvider', '$anchorScrollProvider', 'ConfigurationsProvider'];
     
     /**
      * @name globalConfiguration
@@ -20,7 +20,7 @@
      * @param {@link https://docs.angularjs.org/api/ng/provider/$anchorScrollProvider | AngularService} [$anchorScrollProvider]
      * @memberOf App
      */
-    function globalConfiguration ($mdThemingProvider, $mdIconProvider, $translateProvider, $anchorScrollProvider) {
+    function globalConfiguration ($mdThemingProvider, $mdIconProvider, $translateProvider, $anchorScrollProvider, ConfigurationsProvider) {
         $mdThemingProvider
         .theme('default')
         .primaryPalette('teal')
@@ -38,10 +38,10 @@
         .icon('md:info-black', 'content/img/icons/md/info-black.svg')
         .icon('md:clear-black', 'content/img/icons/md/clear-black.svg')
         .icon('md:search-black', 'content/img/icons/md/search-black.svg')
-        .icon('md:add-white', 'content/img/icons/md/add-white.svg');
+        .icon('md:add-white', 'content/img/icons/md/add-white.svg')
+        .icon('md:settings-white', 'content/img/icons/md/settings-white.svg');
         
-        $translateProvider
-        .useStaticFilesLoader({
+        $translateProvider.useStaticFilesLoader({
             prefix: '/content/lang/locale-',
             suffix: '.json'
         });
@@ -53,6 +53,31 @@
         $translateProvider.preferredLanguage('fr');
         
         $anchorScrollProvider.disableAutoScrolling();
+
+        // Configuration des endpoints utilisés dans l'application
+        var endpoints = [
+            'health',
+            'beans',
+            // 'env',
+            // 'actuator',
+            // 'autoconfig',
+            // 'configprops',
+            // 'dump',
+            // 'flyway',
+            // 'info',
+            // 'liquibase',
+            // 'metrics',
+            // 'mappings', 
+            // 'shutdown',
+            // 'trace',
+            // 'docs',
+            // 'heapdump',
+            // 'jolokia',
+            // 'logfile'
+            ];
+
+        ConfigurationsProvider.setActuatorEndpoint(endpoints);
+        // TODO ajouter la conf du actuator service
     }
     
 })();

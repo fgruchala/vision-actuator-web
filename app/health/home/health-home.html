@@ -1,4 +1,4 @@
-<md-card data-flex data-ng-class="vm.health.data.status" class="single-data">
+<md-card data-flex data-ng-class="vm.health.status" class="single-data">
 	<md-card-title data-layout="row" data-layout-align="start center">
 		<md-card-title-text>
 			<span class="md-headline" data-translate="HEALTH.MODULE_NAME"></span>
@@ -10,12 +10,12 @@
 				<span data-translate="COMMON.UNAVAILABLE"></span>
 			</md-tooltip>
 		</div>
-		<md-progress-circular data-ng-show="!vm.health && !vm.error" data-md-mode="indeterminate" data-md-diameter="20"></md-progress-circular>
+		<md-progress-circular data-ng-show="vm.loading" data-md-mode="indeterminate" data-md-diameter="20"></md-progress-circular>
 	</md-card-title>
-	<md-card-content data-ng-show="vm.health && !vm.error">
-		{{ vm.health.data.status }}
+	<md-card-content data-ng-show="!vm.error && !vm.loading">
+		{{ vm.health.status }}
 	</md-card-content>
-	<md-card-actions data-ng-show="vm.health && !vm.error" data-layout="row" data-layout-align="end center">
+	<md-card-actions data-ng-show="!vm.error && !vm.loading" data-layout="row" data-layout-align="end center">
 		<md-button data-ng-href="#/health" aria-label="More" data-translate="COMMON.MORE"></md-button>
 	</md-card-actions>
 </md-card>

@@ -1,43 +1,67 @@
-/**
- * Controller of the health home tempalte
- * @namespace Health
- * @memberOf App
- */
+'use strict';
+
 (function () {
-
-    'use strict';
-
     angular
         .module('app.health')
         .controller('HealthHomeController', HealthHomeController);
 
-    HealthHomeController.$inject = ['$rootScope', 'actuatorService'];
+    HealthHomeController.$inject = ['$rootScope', '$scope', '$interval', 'actuatorService', 'Configurations'];
 
-    /**
-     * @name healthController
-     * @param Object actuatorService
-     * @memberOf Health
-     */
-    function HealthHomeController($rootScope, actuatorService) {
+    function HealthHomeController($rootScope, $scope, $interval, actuatorService, Configurations) {
         var vm = this;
+        var interval;
+
         vm.health;
         vm.error = false;
+        vm.loading = true;
 
         activate();
 
 
 
         function activate() {
-            actuatorService.health(successFn, errorFn);
+            getDatas();
+            onConfigurationChange();
+            $rootScope.$on('configurationChange', onConfigurationChange);
+            $scope.$on('$destroy', stopInterval);
+            $rootScope.$on('serviceUrlChange', getDatas);
         }
 
-        function successFn(response) {
-            console.log(response);
-            vm.health = response.data;
+        function onConfigurationChange() {
+            var autoRefreshEnabled = Configurations.get('health');
+            if (autoRefreshEnabled) {
+               startInterval();
+            } else {
+                stopInterval();
+            }                
         }
 
-        function errorFn(error) {
-            vm.error = true;
+        function startInterval() {
+            if (!interval) {
+                interval = $interval(function () {
+                    getDatas();
+                }, 2000);
+            }
+        }
+
+        function stopInterval() {
+            $interval.cancel(interval);
+            interval = undefined;
+        }
+
+        function getDatas() {
+            var promise = actuatorService.health();
+            promise.success(function(data) {
+                vm.health = data;
+                vm.error = false;
+            });
+            promise.error(function(data) {
+                vm.health = undefined;
+                vm.error = true;
+            });
+            promise.finally(function() {
+                vm.loading = false;
+            });
         }
     }
 })();

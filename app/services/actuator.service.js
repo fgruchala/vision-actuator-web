@@ -12,7 +12,7 @@
     .module('app.services')
     .service('actuatorService', actuatorService);
     
-    actuatorService.$inject = ['$http', '$interval', 'storageService'];
+    actuatorService.$inject = ['$http', 'storageService'];
     
     /**
      * @name actuatorService
@@ -21,10 +21,12 @@
      * @return Array
      * @memberOf Services
      */
-    function actuatorService ($http, $interval, storageService) {
+    function actuatorService ($http, storageService) {
 
+        // TODO transformer le service en provider et bouger les endpoints dans la partie config de l'app
         var service = {
-            // 'endpoints' : ['health', 'beans'],
+            'endpoints' : ['health', 'beans', 'env', 'actuator', 'autoconfig', 'configprops', 'dump', 'flyway', 'info', 'liquibase', 'metrics', 'mappings', 
+                            'shutdown', 'trace', 'docs', 'heapdump', 'jolokia', 'logfile'],
             'setDefaultProject' : setDefaultProject,
             'getAllProjects' : getAllProjects,
             'setAllProjects' : setAllProjects,
@@ -34,26 +36,6 @@
         };
         var projects = [];
         var currentProject;
-        service.endpoints = {
-            'health' : {autoUpdate:true},
-            'beans' : {},
-            'env' : {},
-            // 'actuator' : {},
-            // 'autoconfig' : {},
-            // 'configprops' : {},
-            // 'dump' : {},
-            // 'flyway' : {},
-            // 'info' : {},
-            // 'liquibase' : {},
-            'metrics' : {autoUpdate:true},
-            // 'mappings' : {},
-            // 'shutdown' : {},
-            'trace' : {},
-            // 'docs' : {},
-            // 'heapdump' : {},
-            // 'jolokia' : {},
-            // 'logfile' : {}
-        };
         
         activate();
 
@@ -70,16 +52,11 @@
             }
             
             // Configuration des methodes de récupération des données actuator (avec la gestion des auto update)
-            for (var key in service.endpoints) {
-                service[key] = function(successFn, errorFn) {
-					get('/' + key).then(successFn, errorFn);
-					if (service.endpoints[key].autoUpdate) {
-						$interval(function() {
-							get('/' + key).then(successFn, errorFn);
-						})
-					}
+            angular.forEach(service.endpoints, function(endpoint) {
+                service[endpoint] = function() {
+					return get('/' + endpoint)
                 }
-            }
+            });
         }
 
         function setDefaultProject() {
