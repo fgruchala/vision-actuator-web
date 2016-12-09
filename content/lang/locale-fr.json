@@ -6,6 +6,7 @@
         "en": "Anglais",
         "fr": "Français"
     },
+    "NONE": "{GENDER, select, FEMALE{Non renseignée} other{Non renseigné}}",
     "COMMON": {
         "OK": "OK",
         "CLOSE": "Fermer",
@@ -30,7 +31,8 @@
         "MINUTE" : "{VAL, plural, =1{Minute} other{Minutes}}",
         "SECOND" : "{VAL, plural, =1{Seconde} other{Secondes}}",
         "YES": "Oui",
-        "NO": "Non"
+        "NO": "Non",
+        "FEEDBACK": "Un problème et/ou un mot gentil ?"
     },
     "MULTI_PROJECTS": {
         "NEW": "Nouveau projet",
@@ -44,7 +46,9 @@
     },
     "HEALTH": {
         "MODULE_NAME": "Santé",
-        "UP": "Tout fonctionne bien",
+        "UP": "UP",
+        "DOWN": "DOWN",
+        "NONE": "Pas de connexion avec Actuator",
         "SECTION": {
             "GENERAL": "Général",
             "DISKSPACE": "Espace disque",
@@ -175,5 +179,15 @@
     },
     "HEAP": {
         "MODULE_NAME": "Mémoire"
+    },
+    "MAPPINGS": {
+        "MODULE_NAME": "Mappings",
+        "LIST_FILTERED": "{VAL, plural, =0{0 affiché} one{1 affiché} other{# affichés} }",
+        "METHOD": {
+            "HEADER": "Affiner par méthode"
+        },
+        "PRODUCE": {
+            "HEADER": "Affiner par type de contenu"
+        }
     }
 }

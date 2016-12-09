@@ -54,17 +54,21 @@
         <script src="/app/components/multi-lines/multi-lines.directive.js"></script>
         <script src="/app/components/multi-projects/multi-projects.directive.js"></script>
         <script src="/app/components/multi-projects/save-project-popup.controller.js"></script>
+        <script src="/app/components/no-result/no-result.directive.js"></script>
+        <script src="/app/components/notification/notification.directive.js"></script>
         
         <!-- SERVICES -->
         <script src="/app/services/services.module.js"></script>
         <script src="/app/services/actuator.service.js"></script>
         <script src="/app/services/storage.service.js"></script>
+        <script src="/app/services/notification.service.js"></script>
         
         <!-- FILTERS -->
         <script src="/app/filters/filters.module.js"></script>
         <script src="/app/filters/volume-data.filter.js"></script>
         <script src="/app/filters/size.filter.js"></script>
         <script src="/app/filters/package.filter.js"></script>
+        <script src="/app/filters/method.filter.js"></script>
         <script src="/app/filters/capitalize.filter.js"></script>
         <script src="/app/filters/truncate.filter.js"></script>
         
@@ -108,6 +112,12 @@
         <script src="/app/threads/home/threads-home.controller.js"></script>
         <script src="/app/threads/threads.controller.js"></script>
         <script src="/app/threads/display-threads-popup.controller.js"></script>
+
+         <!-- MODULE MAPPINGS -->
+        <script src="/app/mappings/mappings.module.js"></script>
+        <script src="/app/mappings/mappings.route.js"></script>
+        <script src="/app/mappings/mappings.controller.js"></script>
+        <script src="/app/mappings/home/mappings-home.controller.js"></script>
     </head>
     <body>
         
@@ -115,9 +125,16 @@
         <md-toolbar class="md-tall md-whiteframe-z1">
             <div class="md-toolbar-tools">
                 <v-navigation-breadcrumb data-flex="20"></v-navigation-breadcrumb>
-                <v-multi-projects data-flex="60" style="margin-left:16px"></v-multi-projects>
+                <v-multi-projects data-flex="60"></v-multi-projects>
                 <span data-flex></span>
+                <v-notification></v-notification>
                 <v-translate-choice></v-translate-choice>
+                <md-button href="https://github.com/fgruchala/Vision/issues" target="_blank" class="md-icon-button" aria-label="Feedback">
+                    <md-icon data-md-svg-icon="md:feedback" class="white"></md-icon>
+                    <md-tooltip>
+                        <span data-translate="COMMON.FEEDBACK"></span>
+                    </md-tooltip>
+                </md-button>
             </div>
         </md-toolbar>
         

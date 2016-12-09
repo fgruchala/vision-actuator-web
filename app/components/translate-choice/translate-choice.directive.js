@@ -20,6 +20,7 @@
     function translateChoiceDirectiveDefinition () {
         var definition = {
             restrict: 'E',
+            scope: {},
             templateUrl: 'app/components/translate-choice/translate-choice.html',
             controller: translateChoiceDirectiveController,
             controllerAs: 'vm'

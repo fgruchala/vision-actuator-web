@@ -66,12 +66,26 @@ md-list.md-whiteframe-z1, .bg {
     padding: 5px;
 }
 
+strong.http-method {
+    color: darkgoldenrod;
+}
+
 .full-width {
     width: 100%;
 }
 
 md-icon.white > svg {
     fill: white;
+}
+
+md-icon.grey > svg {
+    fill: lightgrey;
+}
+
+md-icon.big > svg {
+    height: 72px;
+    width: 72px;
+    viewBox: 0 0 72 72;
 }
 
 md-icon.small > svg {
