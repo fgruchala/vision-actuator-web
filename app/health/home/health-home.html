@@ -1,7 +1,11 @@
 <md-card data-flex data-ng-class="vm.health.status" class="single-data">
 	<md-card-title data-layout="row" data-layout-align="start center">
 		<md-card-title-text>
-			<span class="md-headline" data-translate="HEALTH.MODULE_NAME"></span>
+			<span class="md-headline">
+				<span data-translate="HEALTH.MODULE_NAME"></span>
+				<md-checkbox ng-model="vm.autoUpdate" ng-change="vm.switchAutoUpdate()" aria-label="auto update data">
+          		</md-checkbox>
+			</span>
 		</md-card-title-text>
 		<span data-flex></span>
 		<div data-ng-show="vm.error">

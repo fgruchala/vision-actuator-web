@@ -22,11 +22,7 @@
      * @memberOf Services
      */
     function actuatorService ($http, storageService) {
-
-        // TODO transformer le service en provider et bouger les endpoints dans la partie config de l'app
         var service = {
-            'endpoints' : ['health', 'beans', 'env', 'actuator', 'autoconfig', 'configprops', 'dump', 'flyway', 'info', 'liquibase', 'metrics', 'mappings', 
-                            'shutdown', 'trace', 'docs', 'heapdump', 'jolokia', 'logfile'],
             'setDefaultProject' : setDefaultProject,
             'getAllProjects' : getAllProjects,
             'setAllProjects' : setAllProjects,
@@ -36,7 +32,12 @@
         };
         var projects = [];
         var currentProject;
-        
+        var endpointsGet = ['health', 'beans', 'env', 'actuator', 'autoconfig', 'configprops', 'dump',
+                        'flyway', 'info', 'liquibase', 'metrics', 'mappings', 'trace',
+                        'docs', 'heapdump', 'jolokia', 'logfile'];
+        var endpointsPost = ['shutdown'];    
+        var endpoints = endpointsGet.concat(endpointsPost); 
+
         activate();
 
 
@@ -50,13 +51,18 @@
             else{
                 setDefaultProject();
             }
-            
-            // Configuration des methodes de récupération des données actuator (avec la gestion des auto update)
-            angular.forEach(service.endpoints, function(endpoint) {
+
+            endpointsGet.forEach(function(endpoint) {
                 service[endpoint] = function() {
-					return get('/' + endpoint)
+                    return path('/' + endpoint, 'GET');
                 }
             });
+
+            endpointsPost.forEach(function(endpoint) {
+                service[endpoint] = function() {
+                    return path('/' + endpoint, 'POST');
+                }
+            })
         }
 
         function setDefaultProject() {
@@ -89,11 +95,18 @@
             return currentProject;
         }
 
-        function get(url) {
-            return $http({
-               method: 'GET',
-               url: currentProject.url + url
-            });
+        function path(url, requestMethod) {
+            var params = {
+               method: requestMethod,
+               url: currentProject.url + url 
+            };
+
+
+            if(url === '/heapdump') {
+                params.responseType = 'arraybuffer';
+            }
+
+            return $http(params);
         }
         
         return service;
