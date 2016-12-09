@@ -47,7 +47,6 @@ md-list.md-whiteframe-z1, .bg {
     background-color: #ffffff;
 }
 
-/* trace */
 .status2xx {
     color: #4caf50;
 }
@@ -69,4 +68,42 @@ md-list.md-whiteframe-z1, .bg {
 
 .full-width {
     width: 100%;
+}
+
+md-icon.white > svg {
+    fill: white;
+}
+
+md-icon.small > svg {
+    height: 12px;
+    width: 12px;
+    viewBox: 0 0 12 12;
+}
+
+.badge {
+    border-radius: 5px;
+    padding: 5px;
+}
+
+.new, .runnable, .terminated, md-toolbar.new, md-toolbar.runnable, md-toolbar.terminated {
+    color: white;
+    background-color: #4caf50;    
+}
+
+.timed_waiting, .waiting, md-toolbar.timed_waiting, md-toolbar.waiting {
+    color: black;
+    background-color: #ffeb3b;    
+}
+
+.blocked, md-toolbar.blocked {
+    color: white;
+    background-color: #f44336;    
+}
+
+th[data-ng-click]:hover, tr[data-ng-click]:hover, td[data-ng-click]:hover {
+    cursor: pointer;
+}
+
+td.text-center {
+    text-align: center;
 }

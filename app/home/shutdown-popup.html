@@ -1,0 +1,15 @@
+<md-dialog aria-label="Shutdown">
+    <md-dialog-content class="md-dialog-content" style="min-width:300px">
+        <h2 class="md-title" data-translate="SHUTDOWN.POPUP.TITLE"></h2>
+        <p data-translate="SHUTDOWN.POPUP.CONTENT"></p>
+        <strong data-translate="SHUTDOWN.POPUP.IMPORTANT_CONTENT"></strong>
+    </md-dialog-content>
+    <md-dialog-actions layout="row">
+        <span data-flex></span>
+        <md-button class="md-link" data-ng-click="vm.cancel()" arial-label="Close" data-translate="COMMON.CANCEL"></md-button>
+        <md-button class="md-warn md-raised" data-ng-disabled="vm.isCounterDown()" data-ng-click="vm.ok()" arial-label="Shutdown">
+            <span data-ng-hide="vm.isCounterDown()" data-translate="COMMON.OK"></span>
+            <span data-ng-show="vm.isCounterDown()">{{ vm.counter }}</span>
+        </md-button>
+    </md-dialog-actions>
+</md-dialog>
