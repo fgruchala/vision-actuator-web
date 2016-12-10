@@ -1,10 +1,18 @@
 <md-card>
-	<md-card-title>
+	<md-card-title data-layout-align="start center">
 		<md-card-title-text>
 			<span class="md-headline" data-translate="METRICS.MODULE_NAME"></span>
 		</md-card-title-text>
+		<span data-flex></span>
+		<div data-ng-show="vm.error">
+			<md-icon data-md-svg-icon="md:warning-black"></md-icon>
+			<md-tooltip>
+				<span data-translate="COMMON.UNAVAILABLE"></span>
+			</md-tooltip>
+		</div>
+		<md-progress-circular data-ng-show="vm.loading" data-md-mode="indeterminate" data-md-diameter="20"></md-progress-circular>
 	</md-card-title>
-	<md-card-content>
+	<md-card-content data-ng-show="!vm.error && !vm.loading">
 		<strong data-translate="METRICS.MEM"></strong> ({{vm.mem - vm.memFree}} Mo / {{vm.mem}} Mo)
 		<md-progress-linear data-md-mode="determinate" data-ng-value="vm.memPercent()"></md-progress-linear>
 		<br/>

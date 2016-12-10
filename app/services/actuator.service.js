@@ -22,25 +22,28 @@
      * @memberOf Services
      */
     function actuatorService ($http, storageService) {
-
-        var service = {};
+        var service = {
+            'setDefaultProject' : setDefaultProject,
+            'getAllProjects' : getAllProjects,
+            'setAllProjects' : setAllProjects,
+            'addProject' : addProject,
+            'setCurrentProject' : setCurrentProject,
+            'getCurrentProject' : getCurrentProject
+        };
         var projects = [];
         var currentProject;
         var endpointsGet = ['health', 'beans', 'env', 'actuator', 'autoconfig', 'configprops', 'dump',
                         'flyway', 'info', 'liquibase', 'metrics', 'mappings', 'trace',
                         'docs', 'heapdump', 'jolokia', 'logfile'];
         var endpointsPost = ['shutdown'];    
-        var endpoints = endpointsGet.concat(endpointsPost);
-        
-        
+        var endpoints = endpointsGet.concat(endpointsPost); 
+
         activate();
 
 
 
-        /*
-        * Initialisation des endpoints
-        */
         function activate() {
+            // Configuration des urls de service
             if(angular.isDefined(storageService.getItem('projects'))) {
                 projects = storageService.getItem('projects');
                 currentProject = projects[0];
@@ -59,21 +62,13 @@
                 service[endpoint] = function() {
                     return path('/' + endpoint, 'POST');
                 }
-            });
-
-            service.endpoints = endpoints;
-            service.setDefaultProject = setDefaultProject;
-            service.getAllProjects = getAllProjects;
-            service.setAllProjects = setAllProjects;
-            service.addProject = addProject;
-            service.setCurrentProject = setCurrentProject;
-            service.getCurrentProject = getCurrentProject;
+            })
         }
 
         function setDefaultProject() {
             currentProject = {
                 name: 'Localhost',
-                url: 'http://localhost:9090'
+                url: 'http://localhost:9090/'
             }
         }
 

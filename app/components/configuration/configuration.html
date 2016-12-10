@@ -1,0 +1,22 @@
+<md-menu data-md-position-mode="target-right target">
+    <md-button aria-label="Configuration" class="md-icon-button" data-ng-click="$mdOpenMenu($event)">
+        <md-icon data-md-menu-origin data-md-svg-icon="md:settings-white"></md-icon>
+    </md-button>
+    <md-menu-content width="5">    
+        <md-menu-item>
+            <md-button data-ng-disabled="true" aria-label="Configuration de l'auto-refresh" title="Permet de configurer la mise à jour automatique de chaque endpoint">
+                Configuration de l'auto-refresh
+            </md-button>
+        </md-menu-item>
+
+        <md-divider></md-divider>
+
+        <md-menu-item data-ng-repeat="config in vm.configurations">
+            <md-button data-ng-click="vm.switchValue(config.key)" md-prevent-menu-close="md-prevent-menu-close">
+                <md-icon data-md-svg-icon="md:radio-checked-black" data-ng-if="config.value" data-md-menu-align-target></md-icon>
+                <md-icon data-md-svg-icon="md:radio-black" data-ng-if="!config.value" data-md-menu-align-target></md-icon>
+                <span>{{config.key}}</span>
+            </md-button>
+        </md-menu-item>
+    </md-menu-content>
+</md-menu>
