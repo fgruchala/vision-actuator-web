@@ -80,7 +80,7 @@
             // 'flyway',
             // 'info',
             // 'liquibase',
-            // 'metrics',
+            'metrics'
             // 'mappings', 
             // 'shutdown',
             // 'trace',
