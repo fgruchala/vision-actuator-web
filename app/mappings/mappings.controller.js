@@ -48,7 +48,7 @@
             if(idx === -1) {
                 vm.filtering[key].push(value);
             }
-            else if(vm.filtering[key].length>1) {
+            else {
                 vm.filtering[key].splice(idx, 1);
             }
         }

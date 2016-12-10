@@ -1,10 +1,4 @@
-/**
- * Routing of the health module
- * @namespace Health
- * @memberOf App
- */
 (function () {
-    
     'use strict';
     
     angular
@@ -13,11 +7,6 @@
     
     healthRouting.$inject = ['$stateProvider'];
     
-    /**
-     * @name healthRouting
-     * @param {@link https://docs.angularjs.org/api/ngRoute/provider/$routeProvider | AngularService} $routeProvider
-     * @memberOf Health
-     */
     function healthRouting ($stateProvider) {
 
         $stateProvider
@@ -33,41 +22,21 @@
             });
     }
     
-    healthPrepData.$inject = ['actuatorService', '$location', '$mdToast', '$translate'];
+    healthPrepData.$inject = ['actuatorService', '$location'];
     
-    
-    /**
-     * @name healthPrepData
-     * @desc Retrieve health status via the Actuator WebService 
-     * @param Service actuatorService
-     * @param {@link https://docs.angularjs.org/api/ng/service/$location | AngularService} $location
-     * @param {@link https://material.angularjs.org/latest/api/service/$mdToast | MaterialService} $mdToast
-     * @param {@link https://angular-translate.github.io/docs/#/api/pascalprecht.translate.$translate | TranslateService} $translate
-     * @return Object
-     * @memberOf healthRouting
-     */
-    function healthPrepData (actuatorService, $location, $mdToast, $translate) {
-        return $translate('COMMON.LOADING')
-        .then(function(loadingTranslation) { 
-            var loadingPromise = $mdToast.showSimple(loadingTranslation);
-            
-            return actuatorService
-            .health()
-            .then(
-                function(response) {
+    function healthPrepData (actuatorService, $location) {
+        return actuatorService
+                .health()
+                .then(function(response) {
                     return response.data;
-                }, 
-                function(responseInError) {
-                    if(responseInError.status === -1 || responseInError.status === 404) {
+                })
+                .catch(function(err) {
+                    if(err.status === -1 || err.status === 404) {
                         $location.url('/');
                     }
                     
-                    return responseInError.data;
-                })
-            .finally(function() {
-                $mdToast.hide(loadingPromise);
-            });
-        });
+                    return err.data;
+                });
     }
     
 })();

@@ -74,6 +74,11 @@ strong.http-method {
     width: 100%;
 }
 
+.no-border {
+    border-right: 0;
+    border-left: 0;
+}
+
 md-icon.white > svg {
     fill: white;
 }
@@ -120,4 +125,12 @@ th[data-ng-click]:hover, tr[data-ng-click]:hover, td[data-ng-click]:hover {
 
 td.text-center {
     text-align: center;
+}
+
+div.input-filter > input {
+    border: 0;
+}
+
+div.input-filter > input:focus {
+    outline: none;
 }
