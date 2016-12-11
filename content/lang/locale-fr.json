@@ -62,9 +62,14 @@
     },
     "BEANS": {
         "MODULE_NAME": "Beans",
-        "SECTION": {
-            "LIST": "{VAL, plural, =0{Aucun bean déclaré} one{1 bean déclaré} other{# beans déclarés} }",
-            "LIST_FILTERED": "{VAL, plural, =0{0 affiché} one{1 affiché} other{# affichés} }"
+        "LIST_FILTERED": "{VAL, plural, =0{0 affiché} one{1 affiché} other{# affichés} }",
+        "FILTER": {
+            "BEAN": {
+                "PLACEHOLDER": "e.g. application"
+            },
+            "SCOPE": {
+                "HEADER": "Affiner par scope"
+            }
         },
         "SCOPE": "Scope",
         "TYPE": "Type",
