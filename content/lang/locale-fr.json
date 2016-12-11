@@ -133,6 +133,7 @@
     },
     "THREADS": {
         "MODULE_NAME": "Threads",
+        "LIST_FILTERED": "{VAL, plural, =0{0 affiché} one{1 affiché} other{# affichés} }",
         "ID": "ID",
         "NAME": "Nom",
         "SUSPENDED": "Suspendu ?",
@@ -161,7 +162,7 @@
             "IDENTITY_HASHCODE": "Hashcode"
         },
         "LENGTH": "{VAL, plural, =0{Aucun thread} one{1 thread} other{# threads} }",
-        "SEARCH": {
+        "FILTER": {
             "STATUS": "Affiner par status"
         },
         "BLOCK": "Bloqué",
