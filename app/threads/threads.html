@@ -1,63 +1,71 @@
 <div data-layout="row" data-layout-margin>
-    <div data-layout="row" data-flex>
-        <!-- SEARCH -->
-        <div data-flex="20">
-            <div  data-v-scroll-fixed>
+    <!-- FILTER -->
+    <div data-flex="20">
+        <div data-v-scroll-fixed="136">
+            <md-content class="md-whiteframe-z1 bg">
+                <!-- BY STATUS -->
                 <md-subheader>
-                    <div data-layout="row">
-                        <span data-translate="THREADS.SEARCH.STATUS"></span>
-                        <span data-flex></span>
-                        <span>
-                            {{ threads.length }}
-                            /
-                            <strong data-translate="THREADS.LENGTH" data-translate-values="{VAL:vm.threadsPrepData.length}"></strong>
-                        </span>
-                    </div>
+                    <span data-translate="THREADS.FILTER.STATUS"></span>
                 </md-subheader>
-                <div data-ng-repeat="status in vm.statusPrepData">
-                    <md-checkbox data-ng-checked="vm.isSelectedStatus(status)" data-ng-click="vm.selectStatus(status)" aria-label="Choose {{ status }}">
+                <md-divider></md-divider>
+                <md-list class="md-dense">
+                    <md-list-item data-ng-repeat="status in vm.statusPrepData" data-ng-click="vm.selectStatus(status)">
                         <span data-translate="THREADS.STATUS.{{ status }}.SHORT"></span>
-                    </md-checkbox>
-                </div>
-            </div>
+                        <span data-flex></span>
+                        <md-icon data-md-svg-icon="md:visibility-on" class="grey" data-ng-if="vm.isSelectedStatus(status)"></md-icon>
+                        <md-icon data-md-svg-icon="md:visibility-off" class="grey" data-ng-if="!vm.isSelectedStatus(status)"></md-icon>
+                    </md-list-item>
+                </md-list>
+            </md-content>
         </div>
+    </div>
 
         <!-- CONTENT -->
         <div data-flex>
-            <table class="mdl-data-table mdl-data-table--selectable mdl-shadow--2dp full-width">
-                <thead>
-                    <tr>
-                        <th style="width:5%" data-ng-click="vm.sortBy('threadId')" data-ng-class="{'mdl-data-table__header--sorted-ascending':vm.isSortedBy('+threadId'), 'mdl-data-table__header--sorted-descending':vm.isSortedBy('-threadId')}" data-translate="THREADS.ID"></th>
-                        <th style="width:65%" data-ng-click="vm.sortBy('threadName')" data-ng-class="{'mdl-data-table__header--sorted-ascending':vm.isSortedBy('+threadName'), 'mdl-data-table__header--sorted-descending':vm.isSortedBy('-threadName')}" class="mdl-data-table__cell--non-numeric" data-translate="THREADS.NAME"></th>
-                        <th style="width:10%" class="mdl-data-table__cell--non-numeric" data-translate="THREADS.STATUS.HEADER"></th>
-                        <th style="width:5%" class="mdl-data-table__cell--non-numeric" data-translate="THREADS.SUSPENDED"></th>
-                        <th style="width:5%" class="mdl-data-table__cell--non-numeric" data-translate="THREADS.STACK.HEADER"></th>
-                        <th style="width:5%" class="mdl-data-table__cell--non-numeric" data-translate="THREADS.LOCKED_MONITOR.HEADER"></th>
-                        <th style="width:5%" class="mdl-data-table__cell--non-numeric" data-translate="THREADS.LOCKED_SYNC.HEADER"></th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr data-ng-repeat="thread in threads = (vm.threadsPrepData | filter:vm.search() | orderBy:vm.sortedValue)" data-ng-click="vm.displayDetailOfThread(thread)">
-                        <td>
-                            #<strong>{{ thread.threadId }}</strong>
-                        </td>
-                        <td class="mdl-data-table__cell--non-numeric">{{ thread.threadName | truncate:50 }}</td>
-                        <td class="mdl-data-table__cell--non-numeric">
-                            <strong class="badge {{ thread.threadState | lowercase }}" data-translate="THREADS.STATUS.{{ thread.threadState }}.SHORT"></strong>
-                            <md-tooltip data-md-direction="left">
-                                <span data-translate="THREADS.STATUS.{{ thread.threadState }}.LONG"></span>
-                            </md-tooltip>
-                        </td>
-                        <td class="text-center">
-                            <span data-ng-show="thread.suspended" data-translate="COMMON.YES"></span>
-                            <span data-ng-hide="thread.suspended" data-translate="COMMON.NO"></span>
-                        </td>
-                        <td class="text-center">{{ thread.stackTrace.length }}</td>
-                        <td class="text-center">{{ thread.lockedMonitors.length }}</td>
-                        <td class="text-center">{{ thread.lockedSynchronizers.length }}</td>
-                    </tr>
-                </tbody>
-            </table>
+            <!-- IN CASE OF NOTHING -->
+            <v-no-result data-ng-show="threads.length===0"></v-no-result>
+
+            <md-content class="md-whiteframe-z1" data-ng-show="threads.length>0">
+                <md-subheader style="text-align:right">
+                    <span data-translate="THREADS.LIST_FILTERED" data-translate-values="{VAL:threads.length}"></span>
+                    / 
+                    <strong>{{ vm.threadsPrepData.length }}</strong>
+                </md-subheader>
+                <table class="mdl-data-table mdl-data-table--selectable mdl-shadow--2dp full-width no-border">
+                    <thead>
+                        <tr>
+                            <th style="width:5%" data-ng-click="vm.sortBy('threadId')" data-ng-class="{'mdl-data-table__header--sorted-ascending':vm.isSortedBy('+threadId'), 'mdl-data-table__header--sorted-descending':vm.isSortedBy('-threadId')}" data-translate="THREADS.ID"></th>
+                            <th style="width:65%" data-ng-click="vm.sortBy('threadName')" data-ng-class="{'mdl-data-table__header--sorted-ascending':vm.isSortedBy('+threadName'), 'mdl-data-table__header--sorted-descending':vm.isSortedBy('-threadName')}" class="mdl-data-table__cell--non-numeric" data-translate="THREADS.NAME"></th>
+                            <th style="width:10%" class="mdl-data-table__cell--non-numeric" data-translate="THREADS.STATUS.HEADER"></th>
+                            <th style="width:5%" class="mdl-data-table__cell--non-numeric" data-translate="THREADS.SUSPENDED"></th>
+                            <th style="width:5%" class="mdl-data-table__cell--non-numeric" data-translate="THREADS.STACK.HEADER"></th>
+                            <th style="width:5%" class="mdl-data-table__cell--non-numeric" data-translate="THREADS.LOCKED_MONITOR.HEADER"></th>
+                            <th style="width:5%" class="mdl-data-table__cell--non-numeric" data-translate="THREADS.LOCKED_SYNC.HEADER"></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr data-ng-repeat="thread in threads = (vm.threadsPrepData | filter:vm.search() | orderBy:vm.sortedValue)" data-ng-click="vm.displayDetailOfThread(thread)">
+                            <td>
+                                #<strong>{{ thread.threadId }}</strong>
+                            </td>
+                            <td class="mdl-data-table__cell--non-numeric">{{ thread.threadName | truncate:50 }}</td>
+                            <td class="mdl-data-table__cell--non-numeric">
+                                <strong class="badge {{ thread.threadState | lowercase }}" data-translate="THREADS.STATUS.{{ thread.threadState }}.SHORT"></strong>
+                                <md-tooltip data-md-direction="left">
+                                    <span data-translate="THREADS.STATUS.{{ thread.threadState }}.LONG"></span>
+                                </md-tooltip>
+                            </td>
+                            <td class="text-center">
+                                <span data-ng-show="thread.suspended" data-translate="COMMON.YES"></span>
+                                <span data-ng-hide="thread.suspended" data-translate="COMMON.NO"></span>
+                            </td>
+                            <td class="text-center">{{ thread.stackTrace.length }}</td>
+                            <td class="text-center">{{ thread.lockedMonitors.length }}</td>
+                            <td class="text-center">{{ thread.lockedSynchronizers.length }}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </md-content>
         </div>
     </div>
 </div>

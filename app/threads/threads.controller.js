@@ -38,9 +38,7 @@
 
         function selectStatus(status) {
             if(isSelectedStatus(status)) {
-                if(vm.statusValue.length > 1) {
-                    vm.statusValue.splice(vm.statusValue.indexOf(status), 1);
-                }   
+                vm.statusValue.splice(vm.statusValue.indexOf(status), 1);   
             }
             else {
                 vm.statusValue.push(status);
