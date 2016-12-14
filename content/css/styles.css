@@ -7,6 +7,14 @@ a:hover {
     color: #616161;
 }
 
+.card-grid md-card {
+    margin: 0;
+}
+
+.card-grid md-card + md-card {
+    margin-top: 8px;
+}
+
 md-card.UP, md-card.DOWN, md-card.UP a:hover, md-card.DOWN a:hover {
     color: #ffffff;
 }
@@ -134,3 +142,4 @@ div.input-filter > input {
 div.input-filter > input:focus {
     outline: none;
 }
+

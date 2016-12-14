@@ -1,24 +1,13 @@
-/**
- * Routing of the beans module
- * @namespace Beans
- * @memberOf App
- */
 (function () {
     'use strict';
 
     angular
-        .module('app.beans')
-        .config(beansRouting);
+    .module('app.beans')
+    .config(beansRouting);
 
     beansRouting.$inject = ['$stateProvider'];
 
-    /**
-     * @name beansRouting
-     * @param {@link https://docs.angularjs.org/api/ngRoute/provider/$routeProvider | AngularService} [$routeProvider]
-     * @memberOf Beans
-     */
     function beansRouting($stateProvider) {
-
         $stateProvider
             .state('beans', {
                 url: '/beans',
@@ -36,15 +25,6 @@
     beansPrepData.$inject = ['actuatorService', '$location'];
     scopesPrepData.$inject = ['beansPrepData'];
 
-
-    /**
-     * @name beansPrepData
-     * @desc Retrieve beans via the Actuator WebService 
-     * @param {Service} [actuatorService]
-     * @param {@link https://docs.angularjs.org/api/ng/service/$location | AngularService} [$location]
-     * @return {Object}
-     * @memberOf beansRouting
-     */
     function beansPrepData(actuatorService, $location) {
         return actuatorService
             .beans()
@@ -60,13 +40,6 @@
             });
     }
 
-    /**
-     * @name scopesPrepData
-     * @desc Designing scopes 
-     * @param {Object} [beansPrepData]
-     * @return {Object}
-     * @memberOf beansRouting
-     */
     function scopesPrepData(beansPrepData) {
         var scopes = [];
 

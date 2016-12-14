@@ -5,15 +5,66 @@
         .module('app.home')
         .controller('HomeController', homeController);
     
-    homeController.$inject = ['$log', '$translate', '$mdToast', '$mdDialog', 'actuatorService'];
+    homeController.$inject = ['$log', '$translate', '$mdToast', '$mdDialog', '$rootScope', 'actuatorService'];
 
-    function homeController($log, $translate, $mdToast, $mdDialog, actuatorService) {
+    function homeController($log, $translate, $mdToast, $mdDialog, $rootScope, actuatorService) {
         var vm = this;
         var loadingPromise;
+        
+        vm.health = {};
 
         vm.getLogfile = getLogfile;
         vm.getHeapDump = getHeapDump;
         vm.confirmShutdown = confirmShutdown;
+        vm.percentOfUsedDiskSpace = percentOfUsedDiskSpace;
+        vm.showError = showError;
+
+        init();
+        $rootScope.$on('serviceUrlChange', init());
+
+        function init() {
+            vm.health.promise = actuatorService.health();
+
+            vm.health.promise
+            .then(function(response) {
+                vm.health.data = response.data;
+            },
+            function(responseInError) {
+                if(responseInError.status === -1 || responseInError.status === 404) {
+                    vm.health.data = undefined;
+                }
+                else{
+                    vm.health.data = responseInError.data;
+                }
+            });
+        }
+        
+        function percentOfUsedDiskSpace () {
+            var percentOfUsedDiskSpace = 0;
+            
+            if(angular.isDefined(vm.health.data) && angular.isDefined(vm.health.data.diskSpace)) {
+                var usedDiskSpace = vm.health.data.diskSpace.total - vm.health.data.diskSpace.free;
+                percentOfUsedDiskSpace = Math.round((usedDiskSpace/vm.health.data.diskSpace.total)*100);
+            }
+            
+            return percentOfUsedDiskSpace;
+        }
+        
+        function showError (content) {
+            if(angular.isDefined(content)) {
+                $translate(['COMMON.TITLE-ERROR', 'COMMON.OK'])
+                .then(function(translations) {
+                    $mdDialog.show(
+                        $mdDialog.alert()
+                        .clickOutsideToClose(true)
+                        .title(translations['COMMON.TITLE-ERROR'])
+                        .textContent(content)
+                        .ariaLabel('Error Dialog')
+                        .ok(translations['COMMON.OK'])
+                    );
+                });
+            }
+        }
 
         function getLogfile() {
             $translate('COMMON.LOADING')

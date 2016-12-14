@@ -18,8 +18,11 @@
 				<div class="md-list-item-text">
 					<h3 data-translate="ENV.PROFILES" data-translate-values="{VAL:{{ vm.env.data.profiles | size }}}"></h3>
 					<p>
+						<span data-translate="ENV.PROFILE_DEFAULT"></span>
 						<span data-ng-repeat="profile in vm.env.data.profiles">
-                                    {{ profile }}<span data-ng-hide="$last">, </span>
+							<span data-ng-show="$first">, </span>
+							{{ profile }}
+							<span data-ng-hide="$last">, </span>
 						</span>
 					</p>
 				</div>

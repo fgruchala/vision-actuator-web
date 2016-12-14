@@ -78,6 +78,9 @@
     },
     "ENV": {
         "MODULE_NAME": "Environnement",
+        "ACCESS": {
+            "HEADER": "Accès rapide"
+        },
         "PROFILES": "{VAL, plural, =0{Profil chargé} one{Profil chargé} other{Profils chargés} }",
         "PROFILE_DEFAULT": "Defaut",
         "SERVER": {

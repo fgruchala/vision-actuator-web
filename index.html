@@ -78,12 +78,6 @@
         <script src="/app/home/home.controller.js"></script>
         <script src="/app/home/shutdown-popup.controller.js"></script>
         
-        <!-- MODULE HEALTH -->
-        <script src="/app/health/health.module.js"></script>
-        <script src="/app/health/home/health-home.controller.js"></script>
-        <script src="/app/health/health.route.js"></script>
-        <script src="/app/health/health.controller.js"></script>
-        
         <!-- MODULE BEANS -->
         <script src="/app/beans/beans.module.js"></script>
         <script src="/app/beans/home/beans-home.controller.js"></script>
@@ -128,13 +122,6 @@
                 <v-multi-projects data-flex="60"></v-multi-projects>
                 <span data-flex></span>
                 <v-notification></v-notification>
-                <v-translate-choice></v-translate-choice>
-                <md-button href="https://github.com/fgruchala/Vision/issues" target="_blank" class="md-icon-button" aria-label="Feedback">
-                    <md-icon data-md-svg-icon="md:feedback" class="white"></md-icon>
-                    <md-tooltip>
-                        <span data-translate="COMMON.FEEDBACK"></span>
-                    </md-tooltip>
-                </md-button>
             </div>
         </md-toolbar>
         
@@ -144,6 +131,16 @@
                 <md-progress-linear class="md-accent" data-md-mode="indeterminate"></md-progress-linear>
             </md-content>
         </ui-view>
+
+        <footer data-layout="row" data-layout-align="center center" data-layout-margin>
+            <v-translate-choice></v-translate-choice>
+            <md-button href="https://github.com/fgruchala/Vision/issues" target="_blank" class="md-icon-button" aria-label="Feedback">
+                <md-icon data-md-svg-icon="md:feedback"></md-icon>
+                <md-tooltip data-md-direction="top">
+                    <span data-translate="COMMON.FEEDBACK"></span>
+                </md-tooltip>
+            </md-button>
+        </footer>
         
     </body>
 </html>
