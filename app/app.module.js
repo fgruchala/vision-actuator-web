@@ -12,7 +12,7 @@
         'app.services',
         'app.filters',
         'app.components',
-        'app.home',
+        'app.dashboard',
         'app.health',
         'app.beans',
         'app.trace',

@@ -2,12 +2,12 @@
     'use strict';
     
     angular
-        .module('app.home')
-        .controller('HomeController', homeController);
+        .module('app.dashboard')
+        .controller('DashboardController', dashboardController);
     
-    homeController.$inject = ['$log', '$translate', '$mdToast', '$mdDialog', 'actuatorService'];
+    dashboardController.$inject = ['$log', '$translate', '$mdToast', '$mdDialog', 'actuatorService'];
 
-    function homeController($log, $translate, $mdToast, $mdDialog, actuatorService) {
+    function dashboardController($log, $translate, $mdToast, $mdDialog, actuatorService) {
         var vm = this;
         var loadingPromise;
 
@@ -72,7 +72,7 @@
             $mdDialog.show({
                 controller: 'ShutdownPopupController',
                 controllerAs: 'vm',
-                templateUrl: 'app/home/shutdown-popup.html',
+                templateUrl: 'app/dashboard/shutdown-popup.html',
                 clickOutsideToClose: true
             })
             .then(shutdown);

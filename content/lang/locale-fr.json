@@ -40,9 +40,8 @@
         "URL": "Url (e.g. http://top.secret.com)"
     },
     "VOLUME-DATA": "{UNIT, select, 1{Ko} 2{Mo} 3{Go} other{octet} }",
-    "HOME": {
-        "MODULE_NAME": "Accueil",
-        "URL_PLACEHOLDER" : "URL du service"
+    "DASHBOARD": {
+        "MODULE_NAME": "Accueil"
     },
     "HEALTH": {
         "MODULE_NAME": "Santé",

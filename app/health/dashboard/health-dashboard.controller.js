@@ -3,11 +3,11 @@
 (function () {
     angular
         .module('app.health')
-        .controller('HealthHomeController', HealthHomeController);
+        .controller('HealthDashboardController', HealthDashboardController);
 
-    HealthHomeController.$inject = ['$rootScope', '$scope', '$interval', 'actuatorService', 'Configurations'];
+    HealthDashboardController.$inject = ['$rootScope', '$scope', '$interval', 'actuatorService', 'Configurations'];
 
-    function HealthHomeController($rootScope, $scope, $interval, actuatorService, Configurations) {
+    function HealthDashboardController($rootScope, $scope, $interval, actuatorService, Configurations) {
         var vm = this;
         var interval;
 

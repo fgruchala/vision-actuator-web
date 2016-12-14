@@ -3,11 +3,11 @@
 
 	angular
 		.module('app.mappings')
-		.controller('MappingsHomeController', MappingsHomeController);
+		.controller('MappingsDashboardController', MappingsDashboardController);
 
-	MappingsHomeController.$inject = ['$rootScope', 'actuatorService'];
+	MappingsDashboardController.$inject = ['$rootScope', 'actuatorService'];
 
-	function MappingsHomeController($rootScope, actuatorService) {
+	function MappingsDashboardController($rootScope, actuatorService) {
 		var vm = this;
 		vm.mappings = {};
 
