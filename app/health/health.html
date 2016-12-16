@@ -1,10 +1,6 @@
-<div>
-    <!-- IN CASE OF ERROR -->
-    <div data-ng-hide="vm.healthPrepData"></div>
-    
-    <!-- IN CASE OF SUCCESS -->
-    <div data-ng-show="vm.healthPrepData" data-flex-offset="20" data-flex="60" data-layout="column">
-        <div data-layout="row" data-layout-margin>
+<div data-layout="row">
+    <div data-flex-offset="20" data-flex="60">
+        <div data-layout="row">
             <!-- GENERAL -->
             <md-card data-flex data-ng-class="vm.healthPrepData.status" class="single-data">
                 <md-card-title>
@@ -12,9 +8,10 @@
                         <span class="md-headline" data-translate="HEALTH.SECTION.GENERAL"></span>
                     </md-card-title-text>
                 </md-card-title>
-                <md-card-content data-layout data-layout-align="center center">
+                <md-card-content data-layout data-layout-align="center center" data-layout-padding>
                     {{ vm.healthPrepData.status }}
                 </md-card-content>
+                <md-card-actions></md-card-actions>
             </md-card>
             
             <!-- DATABASE -->
@@ -29,27 +26,27 @@
                     {{ vm.healthPrepData.db.status }}
                 </md-card-content>
             </md-card>
-            
-            <!-- DISKSPACE -->
-            <md-card data-ng-show="vm.healthPrepData.diskSpace" data-flex>
-                <md-card-title>
-                    <md-card-title-text>
-                        <span class="md-headline" data-translate="HEALTH.SECTION.DISKSPACE"></span>
-                        <span class="md-subhead">
-                            <strong>
-                                {{ vm.healthPrepData.diskSpace.free | volumeData }} <span data-translate="HEALTH.DISKSPACE.FREE"></span> 
-                            </strong>
-                            /
-                            {{ vm.healthPrepData.diskSpace.total | volumeData }} <span data-translate="HEALTH.DISKSPACE.TOTAL"></span>
-                                <br />
-                            <span data-translate="HEALTH.DISKSPACE.THRESHOLD"></span> {{ vm.healthPrepData.diskSpace.threshold | volumeData }}
-                        </span>
-                    </md-card-title-text>
-                </md-card-title>
-                <md-card-content>
-                    <md-progress-linear value="{{ vm.percentOfUsedDiskSpace() }}"></md-progress-linear>
-                </md-card-content>
-            </md-card>
         </div>
+            
+        <!-- DISKSPACE -->
+        <md-card data-ng-show="vm.healthPrepData.diskSpace" data-flex>
+            <md-card-title>
+                <md-card-title-text>
+                    <span class="md-headline" data-translate="HEALTH.SECTION.DISKSPACE"></span>
+                    <span class="md-subhead">
+                        <strong>
+                            {{ vm.healthPrepData.diskSpace.free | volumeData }} <span data-translate="HEALTH.DISKSPACE.FREE"></span> 
+                        </strong>
+                        /
+                        {{ vm.healthPrepData.diskSpace.total | volumeData }} <span data-translate="HEALTH.DISKSPACE.TOTAL"></span>
+                            <br />
+                        <span data-translate="HEALTH.DISKSPACE.THRESHOLD"></span> {{ vm.healthPrepData.diskSpace.threshold | volumeData }}
+                    </span>
+                </md-card-title-text>
+            </md-card-title>
+            <md-card-content>
+                <md-progress-linear value="{{ vm.percentOfUsedDiskSpace() }}"></md-progress-linear>
+            </md-card-content>
+        </md-card>
     </div>
 </div>

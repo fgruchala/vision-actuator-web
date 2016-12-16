@@ -3,7 +3,7 @@
 
 	angular
 	.module('app.home')
-	config(homeConfig);
+	.config(homeConfig);
 
 	homeConfig.$inject = ['$stateProvider'];
 

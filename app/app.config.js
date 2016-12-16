@@ -28,7 +28,7 @@
         
         $mdIconProvider
         .icon('md:menu-white', 'content/img/icons/md/menu-white.svg')
-        .icon('md:translate-white', 'content/img/icons/md/translate-white.svg')
+        .icon('md:translate', 'content/img/icons/md/translate.svg')
         .icon('md:radio-black', 'content/img/icons/md/radio-black.svg')
         .icon('md:radio-checked-black', 'content/img/icons/md/radio-checked-black.svg')
         .icon('md:chevron-right-white', 'content/img/icons/md/chevron-right-white.svg')
@@ -37,7 +37,7 @@
         .icon('md:warning-black', 'content/img/icons/md/warning-black.svg')
         .icon('md:info-black', 'content/img/icons/md/info-black.svg')
         .icon('md:clear-black', 'content/img/icons/md/clear-black.svg')
-        .icon('md:search-black', 'content/img/icons/md/search-black.svg')
+        .icon('md:search', 'content/img/icons/md/search.svg')
         .icon('md:add-white', 'content/img/icons/md/add-white.svg')
         .icon('md:settings-white', 'content/img/icons/md/settings-white.svg')
         .icon('md:trace', 'content/img/icons/md/trace.svg')

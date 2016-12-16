@@ -41,7 +41,11 @@
                 })
                 .catch(function(err) {
                     prevHealth = angular.copy(vm.currentHealth);
-                    vm.currentHealth = 'NONE';
+                    vm.currentHealth = 'DOWN';
+
+                    if(err.status === -1 || err.status === 404) {
+                        vm.currentHealth = 'NONE';
+                    }
                 })
                 .finally(function(){
                     if(angular.isDefined(prevHealth) && vm.currentHealth !== prevHealth) {

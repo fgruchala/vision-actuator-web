@@ -1,8 +1,6 @@
 /**
- * Web component to fixed a block
- * @namespace Components
- * @memberOf App
  * @example <ANY data-v-scroll-fixed></ANY>
+ * @example <ANY data-v-scroll-fixed="136"></ANY>
  */
 (function () {
     'use strict';
@@ -13,13 +11,6 @@
     
     scrollFixedDirectiveDefinition.$inject = ['$document', '$window'];
     
-    /**
-     * @name scrollFixedDirectiveDefinition
-     * @desc Definition of the web component vScrollFixed
-     * @param {@link https://docs.angularjs.org/api/ng/service/$document | AngularService} [$document]
-     * @param {@link https://docs.angularjs.org/api/ng/service/$window | AngularService} [$window]
-     * @memberOf Components
-     */
     function scrollFixedDirectiveDefinition ($document, $window) {
         var definition = {
             restrict: 'A',
@@ -28,26 +19,16 @@
         
         scrollFixedDirectiveLink.$inject = ['$scope', '$element', '$attrs'];
         
-        /**
-         * @name scrollFixedDirectiveLink
-         * @desc Link function of the web component vScrollFixed
-         * @param {@link https://docs.angularjs.org/guide/scope | AngularService} [$scope]
-         * @param {Object} [$element]
-         * @param {Object} [$attrs]
-         * @memberOf scrollFixedDirectiveDefinition
-         */
         function scrollFixedDirectiveLink ($scope, $element, $attrs) {
-            var level = $element[0].getBoundingClientRect().top;
-            
-            
-            
+            var level = ($attrs['vScrollFixed'] && angular.isNumber($attrs['vScrollFixed'])) ? $attrs['vScrollFixed'] : $element[0].getBoundingClientRect().top;
+        
             $document.on('scroll', fixedOrNot);
             
             function fixedOrNot() {
                 if($window.scrollY > level) {
                     $element
                     .css('position', 'fixed')
-                    .css('top', 0);
+                    .css('top', '0');
                 }
                 else{
                     $element

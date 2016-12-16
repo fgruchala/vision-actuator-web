@@ -1,31 +1,90 @@
-<md-content data-flex-offset="20" data-flex="60">
+<div data-layout="row" data-layout-margin>
+    <!-- FILTER -->
+    <div data-flex="20" data-ng-if="vm.traces.length>0">
+        <div data-v-scroll-fixed="136" class="md-whiteframe-z1 bg">
+            <!-- BY PATH -->
+            <div class="input-filter" data-layout="row" data-layout-padding data-layout-align="start center">
+                <input type="text" placeholder="{{ 'TRACE.FILTER.PATH.PLACEHOLDER' | translate }}" data-ng-model="vm.filtering.value" data-flex autocomplete="off" autofocus>
+                <div>
+                    <md-icon data-md-svg-src="md:search" class="grey"></md-icon>
+                </div>
+            </div>
+            <md-divider></md-divider>
 
-	<!-- SEARCH BAR -->
-	<md-input-container>
-		<label data-translate="COMMON.SEARCH"></label>
-		<input data-ng-model="vm.filterValue" type="text" autofocus>
-	</md-input-container>
-	<md-input-container>
-		<md-checkbox data-ng-model="vm.filterCheckbox">
-			<span data-translate="TRACE.CHECKBOX_LIBELLE"></span>
-		</md-checkbox>
-	</md-input-container>
+            <!-- BY REQUEST METHOD -->
+            <md-subheader>
+                <span data-translate="TRACE.FILTER.METHOD.HEADER"></span>
+            </md-subheader>
+            <md-divider></md-divider>
+            <md-list class="md-dense">
+                <md-list-item data-ng-repeat="method in vm.filtersPrepData.methods" data-ng-click="vm.selectFilterByKey('methods', method)">
+                    <span data-translate>{{ method }}</span>
+                    <span data-flex></span>
+                    <md-icon data-md-svg-icon="md:visibility-on" class="grey" data-ng-if="vm.isFilteringByKey('methods', method)"></md-icon>
+                    <md-icon data-md-svg-icon="md:visibility-off" class="grey" data-ng-if="!vm.isFilteringByKey('methods', method)"></md-icon>
+                </md-list-item>
+            </md-list>
+            <md-divider></md-divider>
 
-	<!-- TABLE CONTENT -->
-	<table class="mdl-data-table mdl-data-table--selectable mdl-shadow--2dp full-width">
-		<thead>
-			<tr>
-				<th class="mdl-data-table__cell--non-numeric">Methode</th>
-				<th class="mdl-data-table__cell--non-numeric full-width">Path</th>
-				<th class="mdl-data-table__cell--non-numeric">Status</th>
-			</tr>
-		</thead>
-		<tbody>
-			<tr data-ng-repeat="trace in vm.traces | filter:vm.filtrer() | limitTo: 50">
-				<td class="mdl-data-table__cell--non-numeric"><strong class="httpMethodChip">{{trace.info.method}}</strong></td>
-				<td class="mdl-data-table__cell--non-numeric">{{trace.info.path}}</td>
-				<td><strong data-ng-class="vm.colorFromStatus(trace.info.headers.response.status)">{{trace.info.headers.response.status}}</strong></td>
-			</tr>
-		</tbody>
-	</table>
-</md-content>
+            <!-- BY STATUS CODE -->
+            <md-subheader>
+                <span data-translate="TRACE.FILTER.STATUS.HEADER"></span>
+            </md-subheader>
+            <md-divider></md-divider>
+            <md-list class="md-dense">
+                <md-list-item data-ng-repeat="status in vm.filtersPrepData.status" data-ng-click="vm.selectFilterByKey('status', status)">
+                    <span data-translate>{{ status }}</span>
+                    <span data-flex></span>
+                    <md-icon data-md-svg-icon="md:visibility-on" class="grey" data-ng-if="vm.isFilteringByKey('status', status)"></md-icon>
+                    <md-icon data-md-svg-icon="md:visibility-off" class="grey" data-ng-if="!vm.isFilteringByKey('status', status)"></md-icon>
+                </md-list-item>
+            </md-list>  
+            <md-divider></md-divider>
+
+            <!-- BY OTHER -->
+            <md-subheader>
+                <span data-translate="TRACE.FILTER.OTHER.HEADER"></span>
+            </md-subheader>
+            <md-divider></md-divider>
+            <md-list class="md-dense">
+                <md-list-item data-ng-click="vm.selectFilterByKey('other', 'actuator')">
+                    <span data-translate="TRACE.FILTER.OTHER.ACTUATOR"></span>
+                    <span data-flex></span>
+                    <md-icon data-md-svg-icon="md:visibility-on" class="grey" data-ng-if="vm.isFilteringByKey('other', 'actuator')"></md-icon>
+                    <md-icon data-md-svg-icon="md:visibility-off" class="grey" data-ng-if="!vm.isFilteringByKey('other', 'actuator')"></md-icon>
+                </md-list-item>
+            </md-list>  
+        </div>
+    </div>
+
+    <div data-flex>
+        <!-- IN CASE OF NOTHING -->
+        <v-no-result data-ng-show="traces.length===0"></v-no-result>
+
+        <!-- CONTENT -->
+        <md-content class="md-whiteframe-z1" data-ng-show="traces.length>0">
+            <md-subheader style="text-align:right">
+                <span data-translate="TRACE.LIST_FILTERED" data-translate-values="{VAL:traces.length}"></span>
+                / 
+                <strong>{{ vm.traces.length }}</strong>
+            </md-subheader>
+
+            <table class="mdl-data-table mdl-data-table--selectable full-width no-border">
+                <thead>
+                    <tr>
+                        <th class="mdl-data-table__cell--non-numeric" data-translate="TRACE.METHOD"></th>
+                        <th class="mdl-data-table__cell--non-numeric full-width" data-translate="TRACE.PATH"></th>
+                        <th class="mdl-data-table__cell--non-numeric" data-translate="TRACE.STATUS"></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr data-ng-repeat="trace in traces = (vm.traces | filter:vm.filter() | limitTo: 50)">
+                        <td class="mdl-data-table__cell--non-numeric"><strong class="httpMethodChip">{{trace.info.method}}</strong></td>
+                        <td class="mdl-data-table__cell--non-numeric">{{trace.info.path}}</td>
+                        <td><strong data-ng-class="vm.colorFromStatus(trace.info.headers.response.status)">{{trace.info.headers.response.status}}</strong></td>
+                    </tr>
+                </tbody>
+            </table>
+        </md-content>
+    </div>
+</div>

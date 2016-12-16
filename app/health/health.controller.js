@@ -1,10 +1,4 @@
-/**
- * Controller of the health page
- * @namespace Health
- * @memberOf App
- */
-(function () {
-    
+(function () { 
     'use strict';
     
     angular
@@ -13,13 +7,6 @@
     
     healthController.$inject = ['healthPrepData', '$mdDialog', '$translate'];
     
-    /**
-     * @name healthController
-     * @param Object healthPrepData
-     * @param {@link https://material.angularjs.org/latest/api/service/$mdDialog | MaterialService} $mdDialog
-     * @param {@link https://angular-translate.github.io/docs/#/api/pascalprecht.translate.$translate | TranslateService} $translate
-     * @memberOf Health
-     */
     function healthController (healthPrepData, $mdDialog, $translate) {
         var vm = this;
         

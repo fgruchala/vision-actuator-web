@@ -1,30 +1,37 @@
 <div data-layout="row" data-layout-margin>
-    <div data-layout="row" data-flex>
-        <!-- SEARCH -->
-        <div data-flex="20">
-            <div  data-v-scroll-fixed>
+    <!-- FILTER -->
+    <div data-flex="20">
+        <div data-v-scroll-fixed="136">
+            <md-content class="md-whiteframe-z1 bg">
+                <!-- BY STATUS -->
                 <md-subheader>
-                    <div data-layout="row">
-                        <span data-translate="THREADS.SEARCH.STATUS"></span>
-                        <span data-flex></span>
-                        <span>
-                            {{ threads.length }}
-                            /
-                            <strong data-translate="THREADS.LENGTH" data-translate-values="{VAL:vm.threadsPrepData.length}"></strong>
-                        </span>
-                    </div>
+                    <span data-translate="THREADS.FILTER.STATUS"></span>
                 </md-subheader>
-                <div data-ng-repeat="status in vm.statusPrepData">
-                    <md-checkbox data-ng-checked="vm.isSelectedStatus(status)" data-ng-click="vm.selectStatus(status)" aria-label="Choose {{ status }}">
+                <md-divider></md-divider>
+                <md-list class="md-dense">
+                    <md-list-item data-ng-repeat="status in vm.statusPrepData" data-ng-click="vm.selectStatus(status)">
                         <span data-translate="THREADS.STATUS.{{ status }}.SHORT"></span>
-                    </md-checkbox>
-                </div>
-            </div>
+                        <span data-flex></span>
+                        <md-icon data-md-svg-icon="md:visibility-on" class="grey" data-ng-if="vm.isSelectedStatus(status)"></md-icon>
+                        <md-icon data-md-svg-icon="md:visibility-off" class="grey" data-ng-if="!vm.isSelectedStatus(status)"></md-icon>
+                    </md-list-item>
+                </md-list>
+            </md-content>
         </div>
+    </div>
 
-        <!-- CONTENT -->
-        <div data-flex>
-            <table class="mdl-data-table mdl-data-table--selectable mdl-shadow--2dp full-width">
+    <!-- CONTENT -->
+    <div data-flex>
+        <!-- IN CASE OF NOTHING -->
+        <v-no-result data-ng-show="threads.length===0"></v-no-result>
+
+        <md-content class="md-whiteframe-z1" data-ng-show="threads.length>0">
+            <md-subheader style="text-align:right">
+                <span data-translate="THREADS.LIST_FILTERED" data-translate-values="{VAL:threads.length}"></span>
+                / 
+                <strong>{{ vm.threadsPrepData.length }}</strong>
+            </md-subheader>
+            <table class="mdl-data-table mdl-data-table--selectable mdl-shadow--2dp full-width no-border">
                 <thead>
                     <tr>
                         <th style="width:5%" data-ng-click="vm.sortBy('threadId')" data-ng-class="{'mdl-data-table__header--sorted-ascending':vm.isSortedBy('+threadId'), 'mdl-data-table__header--sorted-descending':vm.isSortedBy('-threadId')}" data-translate="THREADS.ID"></th>
@@ -58,6 +65,6 @@
                     </tr>
                 </tbody>
             </table>
-        </div>
+        </md-content>
     </div>
 </div>

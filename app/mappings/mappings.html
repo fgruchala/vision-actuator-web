@@ -1,37 +1,38 @@
 <div data-layout="row" data-layout-margin>
     <!-- FILTER -->
     <div data-flex="20" data-ng-if="vm.mappingsPrepData.length>0">
-        <md-content class="md-whiteframe-z1 bg">
-            <!-- BY REQUEST METHOD -->
-            <md-subheader>
-                <span data-translate="MAPPINGS.METHOD.HEADER"></span>
-            </md-subheader>
-            <md-divider></md-divider>
-            <md-list class="md-dense">
-                <md-list-item data-ng-repeat="method in vm.filtersPrepData.methods" data-ng-click="vm.selectFilterByKey('methods', method)">
-                    <span data-translate data-translate-values="{GENDER:'FEMALE'}">{{ method }}</span>
-                    <span data-flex></span>
-                    <md-icon data-md-svg-icon="md:visibility-on" class="grey" data-ng-if="vm.isFilteringByKey('methods', method)"></md-icon>
-                    <md-icon data-md-svg-icon="md:visibility-off" class="grey" data-ng-if="!vm.isFilteringByKey('methods', method)"></md-icon>
-                </md-list-item>
-            </md-list>
-            <md-divider></md-divider>
+        <div data-v-scroll-fixed="136">
+            <md-content class="md-whiteframe-z1 bg">
+                <!-- BY REQUEST METHOD -->
+                <md-subheader>
+                    <span data-translate="MAPPINGS.METHOD.HEADER"></span>
+                </md-subheader>
+                <md-divider></md-divider>
+                <md-list class="md-dense">
+                    <md-list-item data-ng-repeat="method in vm.filtersPrepData.methods" data-ng-click="vm.selectFilterByKey('methods', method)">
+                        <span data-translate data-translate-values="{GENDER:'FEMALE'}">{{ method }}</span>
+                        <span data-flex></span>
+                        <md-icon data-md-svg-icon="md:visibility-on" class="grey" data-ng-if="vm.isFilteringByKey('methods', method)"></md-icon>
+                        <md-icon data-md-svg-icon="md:visibility-off" class="grey" data-ng-if="!vm.isFilteringByKey('methods', method)"></md-icon>
+                    </md-list-item>
+                </md-list>
+                <md-divider></md-divider>
 
-            <!-- BY REQUEST PRODUCE -->
-            <md-subheader>
-                <span data-translate="MAPPINGS.PRODUCE.HEADER"></span>
-            </md-subheader>
-            <md-divider></md-divider>
-            <md-list class="md-dense">
-                <md-list-item data-ng-repeat="produce in vm.filtersPrepData.produces" data-ng-click="vm.selectFilterByKey('produces', produce)">
-                    <span data-translate>{{ produce }}</span>
-                    <span data-flex></span>
-                    <md-icon data-md-svg-icon="md:visibility-on" class="grey" data-ng-if="vm.isFilteringByKey('produces', produce)"></md-icon>
-                    <md-icon data-md-svg-icon="md:visibility-off" class="grey" data-ng-if="!vm.isFilteringByKey('produces', produce)"></md-icon>
-                </md-list-item>
-            </md-list>
-            
-        </md-content>
+                <!-- BY REQUEST PRODUCE -->
+                <md-subheader>
+                    <span data-translate="MAPPINGS.PRODUCE.HEADER"></span>
+                </md-subheader>
+                <md-divider></md-divider>
+                <md-list class="md-dense">
+                    <md-list-item data-ng-repeat="produce in vm.filtersPrepData.produces" data-ng-click="vm.selectFilterByKey('produces', produce)">
+                        <span data-translate>{{ produce }}</span>
+                        <span data-flex></span>
+                        <md-icon data-md-svg-icon="md:visibility-on" class="grey" data-ng-if="vm.isFilteringByKey('produces', produce)"></md-icon>
+                        <md-icon data-md-svg-icon="md:visibility-off" class="grey" data-ng-if="!vm.isFilteringByKey('produces', produce)"></md-icon>
+                    </md-list-item>
+                </md-list>           
+            </md-content>
+        </div>
     </div>
     <div data-flex>
         <!-- IN CASE OF NOTHING -->

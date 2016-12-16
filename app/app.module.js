@@ -10,7 +10,6 @@
         'app.components',
         'app.home',
         'app.dashboard',
-        'app.health',
         'app.beans',
         'app.trace',
         'app.env',

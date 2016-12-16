@@ -1,53 +1,53 @@
-<md-content>
-
-    <!-- HEADER -->
-    <section data-layout="row" data-layout-align="end center" data-flex>
-        <md-subheader>
-            {{ beanDefinitions.length }}
-            /
-            <strong data-translate="BEANS.SECTION.LIST" data-translate-values="{VAL:vm.beansPrepData.length}"></strong>
-        </md-subheader>
-    </section>
-
-    <div data-layout="row">
-        <!-- SEARCH -->
-        <section data-flex="20" data-layout="column" data-layout-margin>
-            <div data-layout="row" data-layout-align="start center">
-                <md-input-container class="md-block" style="margin-bottom:0" data-flex>
-                    <label data-translate="COMMON.SEARCH"></label>
-                    <input data-ng-model="vm.searchValue.bean" type="text" autofocus>
-                </md-input-container>
-                <md-button data-ng-show="!vm.isSearch()" data-ng-disabled="true" class="md-icon-button" aria-label="Search">
-                    <md-icon data-md-svg-icon="md:search-black"></md-icon>
-                </md-button>
-                <md-button data-ng-show="vm.isSearch()" data-ng-click="vm.resetSearch()" class="md-icon-button" aria-label="Reset search">
-                    <md-icon data-md-svg-icon="md:clear-black"></md-icon>
-                </md-button>
-            </div>
-
-            <div>
-                <div data-ng-repeat="scope in vm.scopesPrepData">
-                    <md-checkbox data-ng-checked="vm.isSelectedScope(scope)" data-ng-click="vm.selectScope(scope)">{{ scope | capitalize }}</md-checkbox>
+<div data-layout="row" data-layout-margin>
+    <!-- FILTER -->
+    <div data-flex="20" data-ng-if="vm.beansPrepData.length>0">
+        <div data-v-scroll-fixed="136">
+            <md-content class="md-whiteframe-z1 bg">
+                <!-- BY BEAN NAME -->
+                <div class="input-filter" data-layout="row" data-layout-padding data-layout-align="start center">
+                    <input type="text" placeholder="{{ 'BEANS.FILTER.BEAN.PLACEHOLDER' | translate }}" data-ng-model="vm.filtering.bean" data-flex autocomplete="off" autofocus>
+                    <div>
+                        <md-icon data-md-svg-src="md:search" class="grey"></md-icon>
+                    </div>
                 </div>
+                <md-divider></md-divider>
+                
+                <!-- BY SCOPE -->
+                <md-subheader>
+                    <span data-translate="BEANS.FILTER.SCOPE.HEADER"></span>
+                </md-subheader>
+                <md-divider></md-divider>
+                <md-list class="md-dense">
+                    <md-list-item data-ng-repeat="scope in vm.scopesPrepData" data-ng-click="vm.selectScope(scope)">
+                        <span>{{ scope | capitalize }}</span>
+                        <span data-flex></span>
+                        <md-icon data-md-svg-icon="md:visibility-on" class="grey" data-ng-if="vm.isSelectedScope(scope)"></md-icon>
+                        <md-icon data-md-svg-icon="md:visibility-off" class="grey" data-ng-if="!vm.isSelectedScope(scope)"></md-icon>
+                    </md-list-item>
+                </md-list>
             </div>
-        </section>
+        </div>
             
         <!-- CONTENT -->
-        <section data-flex data-layout="column" data-layout-margin>
-            
-            <md-content class="md-whiteframe-z1 bg">  
+        <div data-flex>
+            <!-- IN CASE OF NOTHING -->
+            <v-no-result data-ng-show="beanDefinitions.length===0"></v-no-result>
+
+            <md-content class="md-whiteframe-z1 bg" data-ng-show="beanDefinitions.length>0">
+                <md-subheader style="text-align:right">
+                    <span data-translate="BEANS.LIST_FILTERED" data-translate-values="{VAL:beanDefinitions.length}">{{ beanDefinitions.length }}</span>
+                    /
+                    <strong>{{ vm.beansPrepData.length }}</strong>
+                </md-subheader>
+                <md-divider></md-divider>
                 <md-list>
-                    <md-list-item class="md-3-line" data-ng-repeat="beanDefinition in beanDefinitions = (vm.beansPrepData | filter:vm.search() | limitTo:vm.limitValue)" data-ng-click="vm.showFullInformations(beanDefinition)">
+                    <md-list-item class="md-3-line" data-ng-repeat="beanDefinition in beanDefinitions = (vm.beansPrepData | filter:vm.filter() | limitTo:vm.limitValue)" data-ng-click="vm.showFullInformations(beanDefinition)">
                         <div class="md-list-item-text" data-layout="column">
                             <h3>{{ beanDefinition.bean | package }}</h3>
                             <h4>{{ beanDefinition.scope }}</h4>
                             <p>{{ beanDefinition.type | package }}</p>
                         </div>
-
                         <md-divider data-ng-hide="$last"></md-divider>
-                    </md-list-item>
-                    <md-list-item data-ng-hide="beanDefinitions.length>0">
-                        <p data-translate="COMMON.NOTHING_TO_SEE"></p>
                     </md-list-item>
                 </md-list>
             </md-content>
@@ -57,7 +57,6 @@
                 data-ng-hide="vm.limitValue>beanDefinitions.length" 
                 aria-label="More" 
                 data-translate="COMMON.MORE_LIGHT"></md-button>
-        </section>
-    </div>
-       
-</md-content>
+        </div>
+    </div>  
+</div>

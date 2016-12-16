@@ -61,9 +61,14 @@
     },
     "BEANS": {
         "MODULE_NAME": "Beans",
-        "SECTION": {
-            "LIST": "{VAL, plural, =0{Aucun bean déclaré} one{1 bean déclaré} other{# beans déclarés} }",
-            "LIST_FILTERED": "{VAL, plural, =0{0 affiché} one{1 affiché} other{# affichés} }"
+        "LIST_FILTERED": "{VAL, plural, =0{0 affiché} one{1 affiché} other{# affichés} }",
+        "FILTER": {
+            "BEAN": {
+                "PLACEHOLDER": "e.g. application"
+            },
+            "SCOPE": {
+                "HEADER": "Affiner par scope"
+            }
         },
         "SCOPE": "Scope",
         "TYPE": "Type",
@@ -72,6 +77,9 @@
     },
     "ENV": {
         "MODULE_NAME": "Environnement",
+        "ACCESS": {
+            "HEADER": "Accès rapide"
+        },
         "PROFILES": "{VAL, plural, =0{Profil chargé} one{Profil chargé} other{Profils chargés} }",
         "PROFILE_DEFAULT": "Defaut",
         "SERVER": {
@@ -93,7 +101,25 @@
     },
     "TRACE" : {
         "MODULE_NAME": "Traces d'accès",
-        "CHECKBOX_LIBELLE": "Cacher les traces actuator"
+        "LIST_FILTERED": "{VAL, plural, =0{0 affiché} one{1 affiché} other{# affichés} }",
+        "FILTER": {
+            "PATH": {
+                "PLACEHOLDER": "e.g. /hello-world"
+            },
+            "METHOD": {
+                "HEADER": "Affiner par méthode"
+            },
+            "STATUS": {
+                "HEADER": "Affiner par code de retour"
+            },
+            "OTHER": {
+                "HEADER": "Affiner par ...",
+                "ACTUATOR": "Traces Actuator"
+            }
+        },
+        "METHOD": "Méthode",
+        "PATH": "Chemin",
+        "STATUS": "Code de retour"
     },
     "METRICS" : {
         "MODULE_NAME" : "Métriques",
@@ -114,6 +140,7 @@
     },
     "THREADS": {
         "MODULE_NAME": "Threads",
+        "LIST_FILTERED": "{VAL, plural, =0{0 affiché} one{1 affiché} other{# affichés} }",
         "ID": "ID",
         "NAME": "Nom",
         "SUSPENDED": "Suspendu ?",
@@ -142,7 +169,7 @@
             "IDENTITY_HASHCODE": "Hashcode"
         },
         "LENGTH": "{VAL, plural, =0{Aucun thread} one{1 thread} other{# threads} }",
-        "SEARCH": {
+        "FILTER": {
             "STATUS": "Affiner par status"
         },
         "BLOCK": "Bloqué",
