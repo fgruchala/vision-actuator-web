@@ -1,26 +1,19 @@
-/**
- * Controller of the beans home template
- * @namespace Beans
- * @memberOf App
- */
+'use strict';
+
 (function () {
-    
-    'use strict';
-    
     angular
     .module('app.beans')
     .controller('BeansHomeController', BeansHomeController);
     
-    BeansHomeController.$inject = ['$rootScope', 'actuatorService'];
+    BeansHomeController.$inject = ['$rootScope', '$scope', '$interval', 'actuatorService', 'Configurations'];
     
-    /**
-     * @name beansController
-     * @param Object actuatorService
-     * @memberOf Beans
-     */
-    function BeansHomeController($rootScope, actuatorService) {
+    function BeansHomeController($rootScope, $scope, $interval, actuatorService, Configurations) {
         var vm = this;
-        vm.beans = {};
+        var interval;
+
+        vm.beans;
+        vm.error = false;
+        vm.loading = true;
 
         activate();
 
@@ -28,21 +21,46 @@
 
         function activate() {
             getDatas();
+            onConfigurationChange();
+            $rootScope.$on('configurationChange', onConfigurationChange);
+            $scope.$on('$destroy', stopInterval);
             $rootScope.$on('serviceUrlChange', getDatas);
         }
 
-        function getDatas() {
-            vm.beans.promise = actuatorService.beans();
+        function onConfigurationChange() {
+            var autoRefreshEnabled = Configurations.get('beans');
+            if (autoRefreshEnabled) {
+               startInterval();
+            } else {
+                stopInterval();
+            }                
+        }
 
-            vm.beans.promise
-            .then(function(response) {
-                vm.beans.data = response.data[0].beans;
-            },
-            function(responseInError) {
-                if(responseInError.status === -1 || responseInError.status === 404) {
-                    vm.beans.data = undefined;
-                }
+        function startInterval() {
+            if (!interval) {
+                interval = $interval(function () {
+                    getDatas();
+                }, 2000);
+            }
+        }
+
+        function stopInterval() {
+            $interval.cancel(interval);
+            interval = undefined;
+        }
+
+        function getDatas() {
+            var promise = actuatorService.beans();
+            promise.success(function(data) {
+                vm.beans = data[0].beans;
+                vm.error = false;
             });
-        }    
+            promise.error(function(data) {
+                vm.error = true;
+            });
+            promise.finally(function() {
+                vm.loading = false;
+            });
+        } 
     }
 })();

@@ -5,10 +5,11 @@
 		.module('app.metrics')
 		.controller('MetricsHomeController', MetricsHomeController);
 
-	MetricsHomeController.$inject = ['$rootScope', 'actuatorService'];
+	MetricsHomeController.$inject = ['$rootScope', '$scope', '$interval', 'actuatorService', 'Configurations'];
 
-	function MetricsHomeController($rootScope, actuatorService) {
+	function MetricsHomeController($rootScope, $scope, $interval, actuatorService, Configurations) {
 		var vm = this;
+        var interval;
 
 		vm.mem = '';
 		vm.memFree = '';
@@ -17,6 +18,8 @@
 		vm.httpSession = '';
 		vm.httpSessionMax = '';
 		vm.uptime = {};
+		vm.error = false;
+        vm.loading = true;
 
 		vm.memPercent = memPercent;
 		vm.heapPercent = heapPercent;
@@ -27,8 +30,33 @@
 
 		function activate() {
 			getDatas();
+			onConfigurationChange();
+            $rootScope.$on('configurationChange', onConfigurationChange);
+            $scope.$on('$destroy', stopInterval);
 			$rootScope.$on('serviceUrlChange', getDatas);
 		}
+
+		function onConfigurationChange() {
+            var autoRefreshEnabled = Configurations.get('metrics');
+            if (autoRefreshEnabled) {
+               startInterval();
+            } else {
+                stopInterval();
+            }                
+        }
+
+        function startInterval() {
+            if (!interval) {
+                interval = $interval(function () {
+                    getDatas();
+                }, 2000);
+            }
+        }
+
+        function stopInterval() {
+            $interval.cancel(interval);
+            interval = undefined;
+        }
 
 		function memPercent() {
 			return (vm.mem - vm.memFree) * 100 / vm.mem;
@@ -39,31 +67,38 @@
 		}
 
 		function getDatas() {
-			actuatorService.metrics()
-				.then(function (metrics) {
-					setMemData(metrics);
-					setHttpSessionData(metrics);
-					setUptimeData(metrics);
-				});
+			var promise = actuatorService.metrics();
+            promise.success(function(data) {
+                setMemData(data);
+				setHttpSessionData(data);
+				setUptimeData(data);
+                vm.error = false;
+            });
+            promise.error(function(data) {
+                vm.error = true;
+            });
+            promise.finally(function() {
+                vm.loading = false;
+            });
 		}
 
 		function setMemData(metrics) {
-			vm.mem = parseInt(metrics.data['mem']) / 1024 | 0;
-			vm.memFree = parseInt(metrics.data['mem.free']) / 1024 | 0;
-			vm.heapUsed = parseInt(metrics.data['heap.used']) / 1024 | 0;
-			vm.heap = parseInt(metrics.data['heap']) / 1024 | 0;
+			vm.mem = parseInt(metrics['mem']) / 1024 | 0;
+			vm.memFree = parseInt(metrics['mem.free']) / 1024 | 0;
+			vm.heapUsed = parseInt(metrics['heap.used']) / 1024 | 0;
+			vm.heap = parseInt(metrics['heap']) / 1024 | 0;
 		}
 
 		function setHttpSessionData(metrics) {
-			vm.httpSession = metrics.data['httpsessions.active'];
-			vm.httpSessionMax = metrics.data['httpsessions.max'];
+			vm.httpSession = metrics['httpsessions.active'];
+			vm.httpSessionMax = metrics['httpsessions.max'];
 			if (vm.httpSessionMax === -1) {
 				vm.httpSessionMax = '∞';
 			}
 		}
 
 		function setUptimeData(metrics) {
-			var uptimeMoment = moment.duration(metrics.data['uptime']);
+			var uptimeMoment = moment.duration(metrics['uptime']);
 			vm.uptime.days = uptimeMoment.asDays() | 0;
 			uptimeMoment.subtract(vm.uptime.days, 'd');
 			vm.uptime.hours = uptimeMoment.asHours() | 0;
