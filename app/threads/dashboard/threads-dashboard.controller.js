@@ -4,11 +4,11 @@
     
     angular
     .module('app.threads')
-    .controller('ThreadsHomeController', threadsHomeController);
+    .controller('ThreadsDashboardController', threadsDashboardController);
     
-    threadsHomeController.$inject = ['actuatorService'];
+    threadsDashboardController.$inject = ['actuatorService'];
     
-    function threadsHomeController(actuatorService) {
+    function threadsDashboardController(actuatorService) {
         var vm = this;
         vm.threads = {};
 

@@ -3,11 +3,11 @@
 (function () {
     angular
     .module('app.beans')
-    .controller('BeansHomeController', BeansHomeController);
+    .controller('BeansDashboardController', BeansDashboardController);
     
-    BeansHomeController.$inject = ['$rootScope', '$scope', '$interval', 'actuatorService', 'Configurations'];
+    BeansDashboardController.$inject = ['$rootScope', '$scope', '$interval', 'actuatorService', 'Configurations'];
     
-    function BeansHomeController($rootScope, $scope, $interval, actuatorService, Configurations) {
+    function BeansDashboardController($rootScope, $scope, $interval, actuatorService, Configurations) {
         var vm = this;
         var interval;
 

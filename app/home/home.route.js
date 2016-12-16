@@ -1,66 +1,20 @@
-/**
- * Routing of the home module
- * @namespace Home
- * @memberOf App
- */
-(function () {
-    
-    'use strict';
-    
-    angular
-    .module('app.home')
-    .config(homeRouting);
-    
-    homeRouting.$inject = ['$stateProvider'];
-    
-    /**
-     * @name homeRouting
-     * @param {@link https://docs.angularjs.org/api/ngRoute/provider/$routeProvider | AngularService} $routeProvider
-     * @memberOf Home
-     */
-    function homeRouting ($stateProvider) {
+(function() {
+	'use strict';
 
-        $stateProvider
-            .state('home', {
-                url: '/',
-                views : {
-                    '' : {
-                        templateUrl : 'app/home/home.html',
-                        controller : 'HomeController',
-                        controllerAs: 'vm'
-                    },
-                    'health@home' : {
-                        templateUrl: 'app/health/home/health-home.html',
-                        controller: 'HealthHomeController',
-                        controllerAs: 'vm'
-                    },
-                    'beans@home' : {
-                        templateUrl: 'app/beans/home/beans-home.html',
-                        controller: 'BeansHomeController',
-                        controllerAs: 'vm'
-                    },
-                    'env@home' : {
-                        templateUrl: 'app/env/home/env-home.html',
-                        controller: 'EnvHomeController',
-                        controllerAs: 'vm'
-                    },
-                    'metrics@home' : {
-                        templateUrl: 'app/metrics/home/metrics-home.html',
-                        controller: 'MetricsHomeController',
-                        controllerAs: 'vm'
-                    },
-                    'threads@home': {
-                        templateUrl: 'app/threads/home/threads-home.html',
-                        controller: 'ThreadsHomeController',
-                        controllerAs: 'vm'
-                    },
-                    'mappings@home': {
-                        templateUrl: 'app/mappings/home/mappings-home.html',
-                        controller: 'MappingsHomeController',
-                        controllerAs: 'vm'
-                    }
-                },
-                title: 'HOME.MODULE_NAME'
-            });
-    }
+	angular
+	.module('app.home')
+	config(homeConfig);
+
+	homeConfig.$inject = ['$stateProvider'];
+
+	function homeConfig($stateProvider) {
+
+		$stateProvider
+		.state('home', {
+			url: '/',
+			templateUrl : 'app/home/home.html',
+			controller : 'HomeController',
+			controllerAs : 'vm'
+		});
+	}
 })();

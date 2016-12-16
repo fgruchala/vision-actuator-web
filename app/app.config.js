@@ -72,22 +72,7 @@
         var endpoints = [
             'health',
             'beans',
-            // 'env',
-            // 'actuator',
-            // 'autoconfig',
-            // 'configprops',
-            // 'dump',
-            // 'flyway',
-            // 'info',
-            // 'liquibase',
             'metrics'
-            // 'mappings', 
-            // 'shutdown',
-            // 'trace',
-            // 'docs',
-            // 'heapdump',
-            // 'jolokia',
-            // 'logfile'
             ];
 
         ConfigurationsProvider.setActuatorEndpoint(endpoints);

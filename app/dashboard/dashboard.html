@@ -1,0 +1,55 @@
+<div data-layout="column" data-flex-offset="20" data-flex="60">
+
+	<div data-layout="row" data-layout-margin>
+		<div data-flex>
+			<div data-layout="column" data-layout-align="center center">
+    			<md-button data-ng-href="#/trace" aria-label="Traces" class="md-raised md-fab md-primary">
+					<md-icon data-md-svg-icon="md:trace" class="white"></md-icon>
+				</md-button>
+				<span data-translate="TRACE.MODULE_NAME"></span>
+			</div>
+		</div>
+		<div data-flex>
+			<div data-layout="column" data-layout-align="center center">
+				<md-button data-ng-click="vm.getLogfile()" aria-label="Logs" class="md-raised md-fab md-primary">
+					<md-icon data-md-svg-icon="md:log" class="white"></md-icon>
+				</md-button>
+				<span data-translate="LOG.MODULE_NAME"></span>
+			</div>
+		</div>
+		<div data-flex>
+			<div data-layout="column" data-layout-align="center center">
+				<md-button data-ng-click="vm.getHeapDump()" aria-label="HeapDump" class="md-raised md-fab md-primary">
+					<md-icon data-md-svg-icon="md:memory" class="white"></md-icon>
+				</md-button>
+				<span data-translate="HEAP.MODULE_NAME"></span>
+			</div>
+		</div>
+		<div data-flex>
+			<div data-layout="column" data-layout-align="center center">
+				<md-button data-ng-click="vm.confirmShutdown()" aria-label="Shutdown" class="md-raised md-fab md-warn">
+					<md-icon data-md-svg-icon="md:shutdown" class="white"></md-icon>
+				</md-button>
+				<span data-translate="SHUTDOWN.MODULE_NAME"></span>
+			</div>
+		</div>
+	</div>
+
+	<div data-layout="row">
+		<div data-layout="column" data-flex="50">
+			<div data-layout="row">
+				<div data-ui-view="health" data-flex="50"></div>
+				<div data-ui-view="mappings" data-flex="50"></div>
+			</div>
+			<div data-layout="row">
+				<div data-ui-view="threads" data-flex="50"></div>
+				<div data-ui-view="beans" data-flex="50"></div>
+			</div>
+			<div data-ui-view="metrics" data-flex></div>
+		</div>
+
+		<div data-layout="column" data-flex="50">
+			<div data-ui-view="env"></div>
+		</div>
+	</div>
+</div>

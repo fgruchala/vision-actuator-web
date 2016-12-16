@@ -3,11 +3,11 @@
 (function () {
 	angular
 		.module('app.metrics')
-		.controller('MetricsHomeController', MetricsHomeController);
+		.controller('MetricsDashboardController', MetricsDashboardController);
 
-	MetricsHomeController.$inject = ['$rootScope', '$scope', '$interval', 'actuatorService', 'Configurations'];
+	MetricsDashboardController.$inject = ['$rootScope', '$scope', '$interval', 'actuatorService', 'Configurations'];
 
-	function MetricsHomeController($rootScope, $scope, $interval, actuatorService, Configurations) {
+	function MetricsDashboardController($rootScope, $scope, $interval, actuatorService, Configurations) {
 		var vm = this;
         var interval;
 

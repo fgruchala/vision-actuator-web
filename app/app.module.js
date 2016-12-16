@@ -1,7 +1,3 @@
-/**
- * Definition of the App
- * @namespace App
- */
 (function () {
     
     'use strict';
@@ -13,6 +9,7 @@
         'app.filters',
         'app.components',
         'app.home',
+        'app.dashboard',
         'app.beans',
         'app.trace',
         'app.env',

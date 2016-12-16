@@ -1,24 +1,14 @@
-/**
- * Controller of the env home template
- * @namespace Env
- * @memberOf App
- */
 (function () {
     
     'use strict';
     
     angular
     .module('app.env')
-    .controller('EnvHomeController', EnvHomeController);
+    .controller('EnvDashboardController', EnvDashboardController);
     
-    EnvHomeController.$inject = ['$rootScope', 'actuatorService'];
+    EnvDashboardController.$inject = ['$rootScope', 'actuatorService'];
     
-    /**
-     * @name beansController
-     * @param Object actuatorService
-     * @memberOf Beans
-     */
-    function EnvHomeController($rootScope, actuatorService) {
+    function EnvDashboardController($rootScope, actuatorService) {
         var vm = this;
         vm.env = {};
 
