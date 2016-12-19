@@ -1,6 +1,6 @@
 <md-menu data-md-position-mode="target-right target">
     <md-button aria-label="Configuration" class="md-icon-button" data-ng-click="$mdOpenMenu($event)">
-        <md-icon data-md-menu-origin data-md-svg-icon="md:settings-white"></md-icon>
+        <md-icon data-md-menu-origin data-md-svg-icon="md:settings" class="white"></md-icon>
     </md-button>
     <md-menu-content width="5">    
         <md-menu-item>
@@ -13,8 +13,8 @@
 
         <md-menu-item data-ng-repeat="config in vm.configurations">
             <md-button data-ng-click="vm.switchValue(config.key)" md-prevent-menu-close="md-prevent-menu-close">
-                <md-icon data-md-svg-icon="md:radio-checked-black" data-ng-if="config.value" data-md-menu-align-target></md-icon>
-                <md-icon data-md-svg-icon="md:radio-black" data-ng-if="!config.value" data-md-menu-align-target></md-icon>
+                <md-icon data-md-svg-icon="md:radio-checked" data-ng-if="config.value" data-md-menu-align-target></md-icon>
+                <md-icon data-md-svg-icon="md:radio" data-ng-if="!config.value" data-md-menu-align-target></md-icon>
                 <span>{{config.key}}</span>
             </md-button>
         </md-menu-item>

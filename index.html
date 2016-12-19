@@ -134,11 +134,13 @@
         </md-toolbar>
         
         <!-- CONTENT -->
-        <ui-view>
-            <md-content data-layout data-layout-align="center center" data-flex>
-                <md-progress-linear class="md-accent" data-md-mode="indeterminate"></md-progress-linear>
-            </md-content>
-        </ui-view>
+        <section>
+            <ui-view>
+                <md-content data-layout data-layout-align="center center" data-flex>
+                    <md-progress-linear class="md-accent" data-md-mode="indeterminate"></md-progress-linear>
+                </md-content>
+            </ui-view>
+        </section>
 
         <footer data-layout="row" data-layout-align="center center" data-layout-margin>
             <v-translate-choice></v-translate-choice>
