@@ -10,9 +10,9 @@
 				<span data-translate="COMMON.UNAVAILABLE"></span>
 			</md-tooltip>
 		</div>
-		<md-progress-circular data-ng-show="vm.loading" data-md-mode="indeterminate" data-md-diameter="20"></md-progress-circular>
+		<md-progress-circular data-ng-hide="vm.mem||vm.error" data-md-mode="indeterminate" data-md-diameter="20"></md-progress-circular>
 	</md-card-title>
-	<md-card-content data-ng-show="!vm.error && !vm.loading">
+	<md-card-content data-ng-show="vm.mem">
 		<strong data-translate="METRICS.MEM"></strong> ({{vm.mem - vm.memFree}} Mo / {{vm.mem}} Mo)
 		<md-progress-linear data-md-mode="determinate" data-ng-value="vm.memPercent()"></md-progress-linear>
 		<br/>

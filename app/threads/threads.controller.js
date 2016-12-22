@@ -5,9 +5,9 @@
     .module('app.threads')
     .controller('ThreadsController', threadsController);
     
-    threadsController.$inject = ['$mdDialog', '$timeout', 'actuatorService'];
+    threadsController.$inject = ['$scope', '$mdDialog', '$timeout', 'actuatorService'];
     
-    function threadsController($mdDialog, $timeout, actuatorService) {
+    function threadsController($scope, $mdDialog, $timeout, actuatorService) {
         var vm = this;
         var timeout;
         var REFRESH_EVERY_MILLISECONDS = 30000;
@@ -26,7 +26,14 @@
         vm.displayDetailOfThread = displayDetailOfThread;
         vm.refreshAuto = refreshAuto;
         
-        initDatas();
+        init();
+
+        function init() {
+            initDatas();
+            $scope.$on('$destroy', function() {
+                $timeout.cancel(timeout);
+            });
+        }
 
         function initDatas() {
             actuatorService

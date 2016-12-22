@@ -5,38 +5,39 @@
     .module('app.beans')
     .controller('BeansDashboardController', BeansDashboardController);
     
-    BeansDashboardController.$inject = ['$rootScope', '$scope', '$interval', 'actuatorService'];
+    BeansDashboardController.$inject = ['$rootScope', '$scope', '$timeout', 'actuatorService'];
     
-    function BeansDashboardController($rootScope, $scope, $interval, actuatorService) {
+    function BeansDashboardController($rootScope, $scope, $timeout, actuatorService) {
         var vm = this;
-        var interval;
+        var timeout;
+        var REFRESH_EVERY_MILLISECONDS = 30000;
 
         vm.beans;
         vm.error = false;
-        vm.loading = true;
 
         activate();
 
-        
-
         function activate() {
             getDatas();
-            //$scope.$on('$destroy', stopInterval);
+            $scope.$on('$destroy', function() {
+                $timeout.cancel(timeout);
+            });
             $rootScope.$on('serviceUrlChange', getDatas);
         }
 
         function getDatas() {
-            var promise = actuatorService.beans();
-            promise.then(function(data) {
-                vm.beans = data[0].beans;
-                vm.error = false;
-            });
-            promise.catch(function(data) {
-                vm.error = true;
-            });
-            promise.finally(function() {
-                vm.loading = false;
-            });
+            vm.error = false;
+
+            actuatorService
+                .beans()
+                .then(function(response) {
+                    vm.beans = response.data[0].beans;
+                })
+                .catch(function(data) {
+                    vm.error = true;
+                });
+
+            timeout = $timeout(getDatas, REFRESH_EVERY_MILLISECONDS);
         } 
     }
 })();

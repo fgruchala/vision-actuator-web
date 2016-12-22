@@ -5,33 +5,39 @@
 		.module('app.mappings')
 		.controller('MappingsDashboardController', MappingsDashboardController);
 
-	MappingsDashboardController.$inject = ['$rootScope', 'actuatorService'];
+	MappingsDashboardController.$inject = ['$rootScope', '$scope', '$timeout', 'actuatorService'];
 
-	function MappingsDashboardController($rootScope, actuatorService) {
+	function MappingsDashboardController($rootScope, $scope, $timeout, actuatorService) {
 		var vm = this;
-		vm.mappings = {};
+		var timeout;
+        var REFRESH_EVERY_MILLISECONDS = 30000;
+
+		vm.mappings;
+		vm.error = false;
 
 		activate();
 
-
-
 		function activate() {
 			getDatas();
+			$scope.$on('$destroy', function() {
+				$timeout.cancel(timeout);
+			});
 			$rootScope.$on('serviceUrlChange', getDatas);
 		}
 
 		function getDatas() {
-			vm.mappings.promise = actuatorService.mappings();
+			vm.error = false;
 
-			vm.mappings.promise
-				.then(function (mappings) {
-					vm.mappings.data = mappings.data;
+			actuatorService
+				.mappings()
+				.then(function (response) {
+					vm.mappings = response.data;
 				})
-            	.catch(function(err) {
-					if(err.status === -1 || err.status === 404) {
-						vm.threads.data = undefined;
-					}
+            	.catch(function(response) {
+					vm.error = true;
 				});
+
+			timeout = $timeout(getDatas, REFRESH_EVERY_MILLISECONDS);
 		}
 	}
 })();

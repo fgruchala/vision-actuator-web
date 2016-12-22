@@ -6,28 +6,39 @@
     .module('app.threads')
     .controller('ThreadsDashboardController', threadsDashboardController);
     
-    threadsDashboardController.$inject = ['actuatorService'];
+    threadsDashboardController.$inject = ['$rootScope', '$scope', '$timeout', 'actuatorService'];
     
-    function threadsDashboardController(actuatorService) {
+    function threadsDashboardController($rootScope, $scope, $timeout, actuatorService) {
         var vm = this;
-        vm.threads = {};
+        var timeout;
+        var REFRESH_EVERY_MILLISECONDS = 10000; 
+
+        vm.threads;
+        vm.error = false;
 
         init();
 
-        
-
         function init() {
-            vm.threads.promise = actuatorService.dump();
+            getDatas();
+			$scope.$on('$destroy', function() {
+				$timeout.cancel(timeout);
+			});
+			$rootScope.$on('serviceUrlChange', getDatas);
+        }
 
-            vm.threads.promise
-            .then(function(response) {
-                vm.threads.data = response.data;
-            })
-            .catch(function(err) {
-                if(err.status === -1 || err.status === 404) {
-                    vm.threads.data = undefined;
-                }
-            });
+        function getDatas() {
+            vm.error = false;
+
+            actuatorService
+                .dump()
+                .then(function(response) {
+                    vm.threads = response.data;
+                })
+                .catch(function(err) {
+                    vm.error = true;
+                });
+
+            timeout = $timeout(getDatas, REFRESH_EVERY_MILLISECONDS);
         }
 
     }
