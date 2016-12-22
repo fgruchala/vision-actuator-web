@@ -5,9 +5,9 @@
 		.module('app.metrics')
 		.controller('MetricsDashboardController', MetricsDashboardController);
 
-	MetricsDashboardController.$inject = ['$rootScope', '$scope', '$interval', 'actuatorService', 'Configurations'];
+	MetricsDashboardController.$inject = ['$rootScope', '$scope', '$interval', 'actuatorService'];
 
-	function MetricsDashboardController($rootScope, $scope, $interval, actuatorService, Configurations) {
+	function MetricsDashboardController($rootScope, $scope, $interval, actuatorService) {
 		var vm = this;
         var interval;
 
@@ -30,22 +30,11 @@
 
 		function activate() {
 			getDatas();
-			onConfigurationChange();
-            $rootScope.$on('configurationChange', onConfigurationChange);
-            $scope.$on('$destroy', stopInterval);
+			$scope.$on('$destroy', stopInterval);
 			$rootScope.$on('serviceUrlChange', getDatas);
 		}
 
-		function onConfigurationChange() {
-            var autoRefreshEnabled = Configurations.get('metrics');
-            if (autoRefreshEnabled) {
-               startInterval();
-            } else {
-                stopInterval();
-            }                
-        }
-
-        function startInterval() {
+		function startInterval() {
             if (!interval) {
                 interval = $interval(function () {
                     getDatas();
@@ -68,13 +57,13 @@
 
 		function getDatas() {
 			var promise = actuatorService.metrics();
-            promise.success(function(data) {
+            promise.then(function(data) {
                 setMemData(data);
 				setHttpSessionData(data);
 				setUptimeData(data);
                 vm.error = false;
             });
-            promise.error(function(data) {
+            promise.catch(function(data) {
                 vm.error = true;
             });
             promise.finally(function() {
