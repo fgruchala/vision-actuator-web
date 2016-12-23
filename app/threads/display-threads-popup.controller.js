@@ -1,5 +1,4 @@
-(function () {
-    
+(function () { 
     'use strict';
     
     angular
@@ -14,9 +13,7 @@
         vm.threadPrepData = threadPrepData; 
         
         vm.close = close;
-        
-        
-        
+         
         function close () {
             $mdDialog.cancel();
         }

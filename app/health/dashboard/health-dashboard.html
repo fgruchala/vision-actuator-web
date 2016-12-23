@@ -1,23 +1,60 @@
-<md-card data-flex data-ng-class="vm.health.status" class="single-data">
-	<md-card-title data-layout="row" data-layout-align="start center">
-		<md-card-title-text>
-			<span class="md-headline">
-				<span data-translate="HEALTH.MODULE_NAME"></span>
-			</span>
-		</md-card-title-text>
-		<span data-flex></span>
-		<div data-ng-show="vm.error">
-			<md-icon data-md-svg-icon="md:warning"></md-icon>
-			<md-tooltip>
-				<span data-translate="COMMON.UNAVAILABLE"></span>
-			</md-tooltip>
-		</div>
-		<md-progress-circular data-ng-show="vm.loading" data-md-mode="indeterminate" data-md-diameter="20"></md-progress-circular>
-	</md-card-title>
-	<md-card-content data-ng-show="!vm.error && !vm.loading">
-		{{ vm.health.status }}
-	</md-card-content>
-	<md-card-actions data-ng-show="!vm.error && !vm.loading" data-layout="row" data-layout-align="end center">
-		<md-button data-ng-href="#/health" aria-label="More" data-translate="COMMON.MORE"></md-button>
-	</md-card-actions>
-</md-card>
+<div>
+	<!-- HEALTH -->
+	<md-card data-ng-class="vm.health.status" class="single-data">
+		<md-card-title data-layout="row" data-layout-align="start center">
+			<md-card-title-text>
+				<span class="md-headline" data-translate="HEALTH.MODULE_NAME"></span>
+			</md-card-title-text>
+			<span data-flex></span>
+			<div data-ng-show="vm.error">
+				<md-icon data-md-svg-icon="md:warning"></md-icon>
+				<md-tooltip>
+					<span data-translate="COMMON.UNAVAILABLE"></span>
+				</md-tooltip>
+			</div>
+			<md-progress-circular data-ng-hide="vm.health||vm.error" data-md-mode="indeterminate" data-md-diameter="20"></md-progress-circular>
+		</md-card-title>
+		<md-card-content data-layout data-layout-align="center center" data-ng-show="vm.health">
+			{{ vm.health.status }}
+		</md-card-content>
+		<md-card-actions data-ng-show="vm.health"></md-card-actions>
+	</md-card>
+	
+	<!-- DATABASE -->
+	<md-card data-ng-show="vm.health.db" data-ng-class="vm.health.db.status" class="single-data">
+		<md-card-title>
+			<md-card-title-text>
+				<span class="md-headline" data-translate="HEALTH.SECTION.DB"></span>
+				<span style="font-size:10px">{{ vm.health.db.database }}</span>
+			</md-card-title-text>
+		</md-card-title>
+		<md-card-content data-layout data-layout-align="center center">
+			{{ vm.health.db.status }}
+		</md-card-content>
+		<md-card-actions data-layout="row" data-layout-align="end center">
+			<md-button data-ng-hide="vm.health.db.status=='UP'" data-ng-click="vm.showError(vm.health.db.error)" aria-label="More" data-translate="COMMON.MORE"></md-button>
+		</md-card-actions>
+	</md-card>
+	
+	<!-- DISKSPACE -->
+	<md-card data-ng-show="vm.health.diskSpace">
+		<md-card-title>
+			<md-card-title-text>
+				<span class="md-headline" data-translate="HEALTH.SECTION.DISKSPACE"></span>
+				<span class="md-subhead">
+					<strong>
+						{{ vm.health.diskSpace.free | volumeData }} <span data-translate="HEALTH.DISKSPACE.FREE"></span> 
+					</strong>
+					/
+					{{ vm.health.diskSpace.total | volumeData }} <span data-translate="HEALTH.DISKSPACE.TOTAL"></span>
+						<br />
+					<span data-translate="HEALTH.DISKSPACE.THRESHOLD"></span> {{ vm.health.diskSpace.threshold | volumeData }}
+				</span>
+				<span data-flex></span>
+			</md-card-title-text>
+		</md-card-title>
+		<md-card-content>
+			<md-progress-linear value="{{ vm.percentOfUsedDiskSpace() }}"></md-progress-linear>
+		</md-card-content>
+	</md-card>
+</div>
