@@ -11,7 +11,7 @@
     function EnvDashboardController($rootScope, $scope, $timeout, actuatorService) {
         var vm = this;
         var timeout;
-        var REFRESH_EVERY_MILLISECONDS = 60000;
+        var REFRESH_EVERY_MILLISECONDS = 15000;
 
         vm.env;
         vm.error = false;
