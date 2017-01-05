@@ -1,26 +1,13 @@
-/**
- * Configuration of the App
- * @namespace App
- */
 (function () {
-    
     'use strict';
     
     angular
     .module('app')
     .config(globalConfiguration);
     
-    globalConfiguration.$inject = ['$mdThemingProvider', '$mdIconProvider', '$translateProvider', '$anchorScrollProvider', 'ConfigurationsProvider'];
+    globalConfiguration.$inject = ['$mdThemingProvider', '$mdIconProvider', '$translateProvider', '$anchorScrollProvider'];
     
-    /**
-     * @name globalConfiguration
-     * @param {@link https://material.angularjs.org/latest/api/service/$mdThemingProvider | MaterialService} [$mdThemingProvider]
-     * @param {@link https://material.angularjs.org/latest/api/service/$mdIconProvider | MaterialService} [$mdIconProvider]
-     * @param {@link https://angular-translate.github.io/docs/#/api/pascalprecht.translate.$translateProvider | TranslateService} [$translateProvider]
-     * @param {@link https://docs.angularjs.org/api/ng/provider/$anchorScrollProvider | AngularService} [$anchorScrollProvider]
-     * @memberOf App
-     */
-    function globalConfiguration ($mdThemingProvider, $mdIconProvider, $translateProvider, $anchorScrollProvider, ConfigurationsProvider) {
+    function globalConfiguration ($mdThemingProvider, $mdIconProvider, $translateProvider, $anchorScrollProvider) {
         $mdThemingProvider
         .theme('default')
         .primaryPalette('teal')
@@ -62,14 +49,5 @@
         $translateProvider.preferredLanguage('fr');
         
         $anchorScrollProvider.disableAutoScrolling();
-
-        // Configuration des endpoints utilisés dans l'application
-        var endpoints = [
-            'health',
-            'beans',
-            'metrics'
-            ];
-
-        ConfigurationsProvider.setActuatorEndpoint(endpoints);
     }
 })();

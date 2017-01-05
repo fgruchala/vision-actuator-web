@@ -22,14 +22,6 @@
      * @memberOf Services
      */
     function actuatorService ($http, storageService) {
-        var service = {
-            'setDefaultProject' : setDefaultProject,
-            'getAllProjects' : getAllProjects,
-            'setAllProjects' : setAllProjects,
-            'addProject' : addProject,
-            'setCurrentProject' : setCurrentProject,
-            'getCurrentProject' : getCurrentProject
-        };
         var projects = [];
         var currentProject;
         var endpointsGet = ['health', 'beans', 'env', 'actuator', 'autoconfig', 'configprops', 'dump',
@@ -37,6 +29,15 @@
                         'docs', 'heapdump', 'jolokia', 'logfile'];
         var endpointsPost = ['shutdown'];    
         var endpoints = endpointsGet.concat(endpointsPost); 
+        var service = {
+            'setDefaultProject' : setDefaultProject,
+            'getAllProjects' : getAllProjects,
+            'setAllProjects' : setAllProjects,
+            'addProject' : addProject,
+            'setCurrentProject' : setCurrentProject,
+            'getCurrentProject' : getCurrentProject,
+            'getEndpoints': getEndpoints
+        };
 
         activate();
 
@@ -68,7 +69,7 @@
         function setDefaultProject() {
             currentProject = {
                 name: 'Localhost',
-                url: 'http://localhost:9090/'
+                url: 'http://localhost:9090'
             }
         }
 
@@ -107,6 +108,10 @@
             }
 
             return $http(params);
+        }
+
+        function getEndpoints() {
+            return endpoints;
         }
         
         return service;

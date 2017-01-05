@@ -56,8 +56,6 @@
         <script src="/app/components/multi-projects/save-project-popup.controller.js"></script>
         <script src="/app/components/no-result/no-result.directive.js"></script>
         <script src="/app/components/notification/notification.directive.js"></script>
-        <script src="/app/components/configuration/configuration.directive.js"></script>
-        <script src="/app/components/configuration/configuration.service.js"></script>
         
         <!-- SERVICES -->
         <script src="/app/services/services.module.js"></script>
@@ -78,6 +76,10 @@
         <script src="/app/home/home.module.js"></script>
         <script src="/app/home/home.route.js"></script>
         <script src="/app/home/home.controller.js"></script>
+
+        <!-- MODULE HEALTH -->
+        <script src="/app/health/health.module.js"></script>
+        <script src="/app/health/dashboard/health-dashboard.controller.js"></script>
 
         <!-- MODULE DASHBOARD -->
         <script src="/app/dashboard/dashboard.module.js"></script>
@@ -128,7 +130,6 @@
                 <v-navigation-breadcrumb data-flex="20"></v-navigation-breadcrumb>
                 <v-multi-projects data-flex="60"></v-multi-projects>
                 <span data-flex></span>
-                <v-configuration></v-configuration>
                 <v-notification></v-notification>
             </div>
         </md-toolbar>

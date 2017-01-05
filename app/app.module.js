@@ -9,6 +9,7 @@
         'app.filters',
         'app.components',
         'app.home',
+        'app.health',
         'app.dashboard',
         'app.beans',
         'app.trace',

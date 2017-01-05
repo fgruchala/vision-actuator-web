@@ -5,58 +5,34 @@
 		.module('app.metrics')
 		.controller('MetricsDashboardController', MetricsDashboardController);
 
-	MetricsDashboardController.$inject = ['$rootScope', '$scope', '$interval', 'actuatorService', 'Configurations'];
+	MetricsDashboardController.$inject = ['$rootScope', '$scope', '$timeout', 'actuatorService'];
 
-	function MetricsDashboardController($rootScope, $scope, $interval, actuatorService, Configurations) {
+	function MetricsDashboardController($rootScope, $scope, $timeout, actuatorService) {
 		var vm = this;
-        var interval;
+		var timeout;
+        var REFRESH_EVERY_MILLISECONDS = 10000;
 
-		vm.mem = '';
-		vm.memFree = '';
-		vm.heap = '';
-		vm.heapUsed = '';
-		vm.httpSession = '';
-		vm.httpSessionMax = '';
-		vm.uptime = {};
+		vm.mem;
+		vm.memFree;
+		vm.heap;
+		vm.heapUsed;
+		vm.httpSession;
+		vm.httpSessionMax;
+		vm.uptime;
 		vm.error = false;
-        vm.loading = true;
 
 		vm.memPercent = memPercent;
 		vm.heapPercent = heapPercent;
 
 		activate();
 
-
-
 		function activate() {
 			getDatas();
-			onConfigurationChange();
-            $rootScope.$on('configurationChange', onConfigurationChange);
-            $scope.$on('$destroy', stopInterval);
+			$scope.$on('$destroy', function() {
+				$timeout.cancel(timeout);
+			});
 			$rootScope.$on('serviceUrlChange', getDatas);
 		}
-
-		function onConfigurationChange() {
-            var autoRefreshEnabled = Configurations.get('metrics');
-            if (autoRefreshEnabled) {
-               startInterval();
-            } else {
-                stopInterval();
-            }                
-        }
-
-        function startInterval() {
-            if (!interval) {
-                interval = $interval(function () {
-                    getDatas();
-                }, 2000);
-            }
-        }
-
-        function stopInterval() {
-            $interval.cancel(interval);
-            interval = undefined;
-        }
 
 		function memPercent() {
 			return (vm.mem - vm.memFree) * 100 / vm.mem;
@@ -67,19 +43,20 @@
 		}
 
 		function getDatas() {
-			var promise = actuatorService.metrics();
-            promise.success(function(data) {
-                setMemData(data);
-				setHttpSessionData(data);
-				setUptimeData(data);
-                vm.error = false;
-            });
-            promise.error(function(data) {
-                vm.error = true;
-            });
-            promise.finally(function() {
-                vm.loading = false;
-            });
+			vm.error = false;
+			
+			actuatorService
+				.metrics()
+            	.then(function(response) {
+					setMemData(response.data);
+					setHttpSessionData(response.data);
+					setUptimeData(response.data);
+            	})
+				.catch(function(response) {
+					vm.error = true;
+				});
+
+			timeout = $timeout(getDatas, REFRESH_EVERY_MILLISECONDS);
 		}
 
 		function setMemData(metrics) {
@@ -98,6 +75,8 @@
 		}
 
 		function setUptimeData(metrics) {
+			vm.uptime = {};
+
 			var uptimeMoment = moment.duration(metrics['uptime']);
 			vm.uptime.days = uptimeMoment.asDays() | 0;
 			uptimeMoment.subtract(vm.uptime.days, 'd');
