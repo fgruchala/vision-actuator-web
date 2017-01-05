@@ -1,5 +1,5 @@
 # Vision
-[Material Design](https://material.io/guidelines/) UI for [Spring Boot Actuator](http://docs.spring.io/spring-boot/docs/current-SNAPSHOT/reference/htmlsingle/#production-ready)
+[Material Design](https://material.io/guidelines/) UI for [Spring Boot Actuator](http://docs.spring.io/spring-boot/docs/current-SNAPSHOT/reference/htmlsingle/#production-ready).
 
 ## Made with ...
 * [NPM](https://www.npmjs.com/) 
@@ -13,17 +13,17 @@
 1. Build Actuator Spring Boot app `<WORKING_DIR>$ cd test && mvn package`
 2. Launch Actuator Spring Boot App `<WORKING_DIR>$ java -jar test/target/actuator-0.0.1.jar &`
 
-If you have your own Spring Boot app, you can also use it ;) Don't forget to follow this [guide](https://spring.io/guides/gs/actuator-service/) and the [associated documentation](http://docs.spring.io/spring-boot/docs/1.4.3.RELEASE/reference/htmlsingle/#production-ready)  
+If you have your own Spring Boot app, you can also use it ;) Don't forget to follow this [guide](https://spring.io/guides/gs/actuator-service/) and the [associated documentation](http://docs.spring.io/spring-boot/docs/1.4.3.RELEASE/reference/htmlsingle/#production-ready).  
 ### Build Vision
 1. Build Vision `<WORKING_DIR>$ npm install`
 2. Launch Vision `<WORKING_DIR>$ npm run dev`
 
 ## Test
-Follow the link [http://localhost:3000/](http://localhost:3000/)
+Follow the link [http://localhost:3000/](http://localhost:3000/).
 
 ## Contact
 ### Via GitHub > [Issues](https://github.com/fgruchala/Vision/issues)
-Helpful for **question**, **bug** and **contribution request** 
+Helpful for **question**, **bug** and **contribution request**.
 
 ### Via Twitter
 * François GRUCHALA [@FGruchala](https://twitter.com/FGruchala)
