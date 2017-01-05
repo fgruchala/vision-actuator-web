@@ -3,7 +3,7 @@
     "LANG": {
         "CHANGE_START_MESSAGE": "Traduction en cours ...",
         "CHOOSE_MESSAGE": "{VAL, plural, one{Langue disponible} other{Langues disponibles}}",
-        "en": "Anglais",
+        "en": "English",
         "fr": "Français"
     },
     "NONE": "{GENDER, select, FEMALE{Non renseignée} other{Non renseigné}}",
@@ -37,7 +37,7 @@
     },
     "MULTI_PROJECTS": {
         "NEW": "Nouveau projet",
-        "NAME": "Nom (e.g. Project top secret)",
+        "NAME": "Nom (e.g. Projet top secret)",
         "URL": "Url (e.g. http://top.secret.com)"
     },
     "VOLUME-DATA": "{UNIT, select, 1{Ko} 2{Mo} 3{Go} other{octet} }",
