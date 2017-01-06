@@ -52,7 +52,6 @@
         <script src="/app/components/scroll-fixed/scroll-fixed.directive.js"></script>
         <script src="/app/components/single-line/single-line.directive.js"></script>
         <script src="/app/components/multi-lines/multi-lines.directive.js"></script>
-        <script src="/app/components/multi-projects/multi-projects.directive.js"></script>
         <script src="/app/components/multi-projects/save-project-popup.controller.js"></script>
         <script src="/app/components/no-result/no-result.directive.js"></script>
         <script src="/app/components/notification/notification.directive.js"></script>
@@ -127,8 +126,7 @@
         <!-- HEADER -->
         <md-toolbar class="md-tall md-whiteframe-z1">
             <div class="md-toolbar-tools">
-                <v-navigation-breadcrumb data-flex="20"></v-navigation-breadcrumb>
-                <v-multi-projects data-flex="60"></v-multi-projects>
+                <v-navigation-breadcrumb></v-navigation-breadcrumb>
                 <span data-flex></span>
                 <v-notification></v-notification>
             </div>
@@ -145,7 +143,7 @@
 
         <footer data-layout="row" data-layout-align="center center" data-layout-margin>
             <v-translate-choice></v-translate-choice>
-            <md-button href="https://github.com/fgruchala/Vision/issues" target="_blank" class="md-icon-button" aria-label="Feedback">
+            <md-button href="https://github.com/fgruchala/vision-actuator-web/issues" target="_blank" class="md-icon-button" aria-label="Feedback">
                 <md-icon data-md-svg-icon="md:feedback"></md-icon>
                 <md-tooltip data-md-direction="top">
                     <span data-translate="COMMON.FEEDBACK"></span>
