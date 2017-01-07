@@ -38,7 +38,9 @@
     "MULTI_PROJECTS": {
         "NEW": "Nouveau projet",
         "NAME": "Nom (e.g. Projet top secret)",
-        "URL": "Url (e.g. http://top.secret.com)"
+        "URL": "Url (e.g. http://top.secret.com)",
+        "MY_PROJECTS": "Mes projets",
+        "CURRENT": "Actuel"
     },
     "VOLUME-DATA": "{UNIT, select, 1{Ko} 2{Mo} 3{Go} other{octet} }",
     "DASHBOARD": {

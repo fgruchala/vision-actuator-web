@@ -35,7 +35,9 @@
         .icon('md:feedback', 'content/img/icons/md/feedback.svg')
         .icon('md:notifications-active', 'content/img/icons/md/notifications-active.svg')
         .icon('md:notifications-none', 'content/img/icons/md/notifications-none.svg')
-        .icon('md:notifications-off', 'content/img/icons/md/notifications-off.svg');
+        .icon('md:notifications-off', 'content/img/icons/md/notifications-off.svg')
+        .icon('md:back', 'content/img/icons/md/back.svg')
+        .icon('md:menu', 'content/img/icons/md/menu.svg');
 
         $translateProvider.useStaticFilesLoader({
             prefix: '/content/lang/locale-',

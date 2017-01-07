@@ -55,6 +55,8 @@
         <script src="/app/components/multi-projects/save-project-popup.controller.js"></script>
         <script src="/app/components/no-result/no-result.directive.js"></script>
         <script src="/app/components/notification/notification.directive.js"></script>
+        <script src="/app/components/switching-projects/switching-projects-button.directive.js"></script>
+        <script src="/app/components/switching-projects/switching-projects.directive.js"></script>
         
         <!-- SERVICES -->
         <script src="/app/services/services.module.js"></script>
@@ -126,11 +128,20 @@
         <!-- HEADER -->
         <md-toolbar class="md-tall md-whiteframe-z1">
             <div class="md-toolbar-tools">
+                <v-switching-projects-button></v-switching-projects-button>
                 <v-navigation-breadcrumb></v-navigation-breadcrumb>
                 <span data-flex></span>
                 <v-notification></v-notification>
+                <md-button href="https://github.com/fgruchala/vision-actuator-web/issues" target="_blank" class="md-icon-button" aria-label="Feedback">
+                    <md-icon data-md-svg-icon="md:feedback" class="white"></md-icon>
+                    <md-tooltip>
+                        <span data-translate="COMMON.FEEDBACK"></span>
+                    </md-tooltip>
+                </md-button>
             </div>
         </md-toolbar>
+
+        <v-switching-projects></v-switching-projects>
         
         <!-- CONTENT -->
         <section>
@@ -141,14 +152,9 @@
             </ui-view>
         </section>
 
-        <footer data-layout="row" data-layout-align="center center" data-layout-margin>
+        <!-- FOOTER -->
+        <footer data-layout="row" data-layout-align="center center">
             <v-translate-choice></v-translate-choice>
-            <md-button href="https://github.com/fgruchala/vision-actuator-web/issues" target="_blank" class="md-icon-button" aria-label="Feedback">
-                <md-icon data-md-svg-icon="md:feedback"></md-icon>
-                <md-tooltip data-md-direction="top">
-                    <span data-translate="COMMON.FEEDBACK"></span>
-                </md-tooltip>
-            </md-button>
         </footer>
         
     </body>
