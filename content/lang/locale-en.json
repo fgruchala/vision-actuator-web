@@ -40,7 +40,9 @@
         "NAME": "Name (e.g. Project top secret)",
         "URL": "Url (e.g. http://top.secret.com)",
         "MY_PROJECTS": "My projects",
-        "CURRENT": "Current"
+        "CURRENT": "Current",
+        "ADD_NEW": "Monitor an other project ? Go to",
+        "GO_HOME": "home"
     },
     "VOLUME-DATA": "{UNIT, select, 1{Kb} 2{Mb} 3{Gb} other{bytes} }",
     "DASHBOARD": {
