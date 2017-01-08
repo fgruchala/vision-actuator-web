@@ -20,8 +20,7 @@
      * @memberOf App
      */
     function globalConfigRouting ($urlRouterProvider) {
-        // $urlRouterProvider.otherwise('/');
-        $urlRouterProvider.otherwise('/dashboard');
+        $urlRouterProvider.otherwise('/');
     }
 
     /**
