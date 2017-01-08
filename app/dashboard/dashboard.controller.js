@@ -14,7 +14,7 @@
         vm.getLogfile = getLogfile;
         vm.getHeapDump = getHeapDump;
         vm.confirmShutdown = confirmShutdown;
-
+        
         function getLogfile() {
             $translate('COMMON.LOADING')
                 .then(function (loadingTranslation) {

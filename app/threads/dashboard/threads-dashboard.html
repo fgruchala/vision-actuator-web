@@ -4,18 +4,18 @@
 			<span class="md-headline" data-translate="THREADS.MODULE_NAME"></span>
 		</md-card-title-text>
 		<span data-flex></span>
-		<div data-ng-show="vm.threads.promise.$$state.status>0 && !vm.threads.data">
-			<md-icon data-md-svg-icon="md:warning-black"></md-icon>
+		<div data-ng-show="vm.error">
+			<md-icon data-md-svg-icon="md:warning"></md-icon>
 			<md-tooltip>
 				<span data-translate="COMMON.UNAVAILABLE"></span>
 			</md-tooltip>
 		</div>
-		<md-progress-circular data-ng-hide="vm.threads.promise.$$state.status>0" data-md-mode="indeterminate" data-md-diameter="20"></md-progress-circular>
+		<md-progress-circular data-ng-hide="vm.threads||vm.error" data-md-mode="indeterminate" data-md-diameter="20"></md-progress-circular>
 	</md-card-title>
-	<md-card-content data-ng-show="vm.threads.promise.$$state.status>0 && vm.threads.data">
-		{{ vm.threads.data.length }}
+	<md-card-content data-ng-show="vm.threads">
+		{{ vm.threads.length }}
 	</md-card-content>
-	<md-card-actions data-ng-show="vm.threads.promise.$$state.status>0 && vm.threads.data" data-layout="row" data-layout-align="end center">
+	<md-card-actions data-ng-show="vm.threads" data-layout="row" data-layout-align="end center">
 		<md-button data-ng-href="#/threads" aria-label="More" data-translate="COMMON.MORE"></md-button>
 	</md-card-actions>
 </md-card>

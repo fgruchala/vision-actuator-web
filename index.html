@@ -52,12 +52,11 @@
         <script src="/app/components/scroll-fixed/scroll-fixed.directive.js"></script>
         <script src="/app/components/single-line/single-line.directive.js"></script>
         <script src="/app/components/multi-lines/multi-lines.directive.js"></script>
-        <script src="/app/components/multi-projects/multi-projects.directive.js"></script>
         <script src="/app/components/multi-projects/save-project-popup.controller.js"></script>
         <script src="/app/components/no-result/no-result.directive.js"></script>
         <script src="/app/components/notification/notification.directive.js"></script>
-        <script src="/app/components/configuration/configuration.directive.js"></script>
-        <script src="/app/components/configuration/configuration.service.js"></script>
+        <script src="/app/components/switching-projects/switching-projects-button.directive.js"></script>
+        <script src="/app/components/switching-projects/switching-projects.directive.js"></script>
         
         <!-- SERVICES -->
         <script src="/app/services/services.module.js"></script>
@@ -79,17 +78,15 @@
         <script src="/app/home/home.route.js"></script>
         <script src="/app/home/home.controller.js"></script>
 
+        <!-- MODULE HEALTH -->
+        <script src="/app/health/health.module.js"></script>
+        <script src="/app/health/dashboard/health-dashboard.controller.js"></script>
+
         <!-- MODULE DASHBOARD -->
         <script src="/app/dashboard/dashboard.module.js"></script>
         <script src="/app/dashboard/dashboard.route.js"></script>
         <script src="/app/dashboard/dashboard.controller.js"></script>
         <script src="/app/dashboard/shutdown-popup.controller.js"></script>
-        
-        <!-- MODULE HEALTH -->
-        <script src="/app/health/health.module.js"></script>
-        <script src="/app/health/dashboard/health-dashboard.controller.js"></script>
-        <script src="/app/health/health.route.js"></script>
-        <script src="/app/health/health.controller.js"></script>
         
         <!-- MODULE BEANS -->
         <script src="/app/beans/beans.module.js"></script>
@@ -131,13 +128,11 @@
         <!-- HEADER -->
         <md-toolbar class="md-tall md-whiteframe-z1">
             <div class="md-toolbar-tools">
-                <v-navigation-breadcrumb data-flex="20"></v-navigation-breadcrumb>
-                <v-multi-projects data-flex="60"></v-multi-projects>
+                <v-switching-projects-button></v-switching-projects-button>
+                <v-navigation-breadcrumb></v-navigation-breadcrumb>
                 <span data-flex></span>
-                <v-configuration></v-configuration>
                 <v-notification></v-notification>
-                <v-translate-choice></v-translate-choice>
-                <md-button href="https://github.com/fgruchala/Vision/issues" target="_blank" class="md-icon-button" aria-label="Feedback">
+                <md-button href="https://github.com/fgruchala/vision-actuator-web/issues" target="_blank" class="md-icon-button" aria-label="Feedback">
                     <md-icon data-md-svg-icon="md:feedback" class="white"></md-icon>
                     <md-tooltip>
                         <span data-translate="COMMON.FEEDBACK"></span>
@@ -145,13 +140,22 @@
                 </md-button>
             </div>
         </md-toolbar>
+
+        <v-switching-projects></v-switching-projects>
         
         <!-- CONTENT -->
-        <ui-view>
-            <md-content data-layout data-layout-align="center center" data-flex>
-                <md-progress-linear class="md-accent" data-md-mode="indeterminate"></md-progress-linear>
-            </md-content>
-        </ui-view>
+        <section>
+            <ui-view>
+                <md-content data-layout data-layout-align="center center" data-flex>
+                    <md-progress-linear class="md-accent" data-md-mode="indeterminate"></md-progress-linear>
+                </md-content>
+            </ui-view>
+        </section>
+
+        <!-- FOOTER -->
+        <footer data-layout="row" data-layout-align="center center">
+            <v-translate-choice></v-translate-choice>
+        </footer>
         
     </body>
 </html>

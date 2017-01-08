@@ -1,7 +1,7 @@
 <md-menu>
     <md-button aria-label="Choose language" class="md-icon-button" data-ng-click="$mdOpenMenu($event)">
-        <md-icon data-md-menu-origin data-md-svg-icon="md:translate-white"></md-icon>
-        <md-tooltip>
+        <md-icon data-md-menu-origin data-md-svg-icon="md:translate"></md-icon>
+        <md-tooltip data-md-direction="top">
             <span data-translate="{{ 'LANG.' + vm.actualLanguage }}"></span>
         </md-tooltip>
     </md-button>
@@ -11,7 +11,7 @@
         </md-menu-item>
         <md-menu-item>
             <md-button data-ng-disabled="true" aria-label="{{ 'LANG.' + vm.actualLanguage | translate }}">
-                <md-icon data-md-svg-icon="md:radio-checked-black" data-md-menu-align-target></md-icon>
+                <md-icon data-md-svg-icon="md:radio-checked" data-md-menu-align-target></md-icon>
                 <span data-translate="{{ 'LANG.' + vm.actualLanguage }}"></span>
             </md-button>
         </md-menu-item>
@@ -20,7 +20,7 @@
         
         <md-menu-item data-ng-repeat="language in vm.availableLanguages | filter:'!' + vm.actualLanguage">
             <md-button data-ng-click="vm.choice(language)" data-md-prevent-menu-close aria-label="{{ 'LANG.' + language }}">
-                <md-icon data-md-svg-icon="md:radio-black" data-md-menu-align-target></md-icon>
+                <md-icon data-md-svg-icon="md:radio" data-md-menu-align-target></md-icon>
                 <span data-translate="{{ 'LANG.' + language }}"></span>
             </md-button>
         </md-menu-item>

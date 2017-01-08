@@ -5,17 +5,17 @@
 		</md-card-title-text>
 		<span data-flex></span>
 		<div data-ng-show="vm.error">
-			<md-icon data-md-svg-icon="md:warning-black"></md-icon>
+			<md-icon data-md-svg-icon="md:warning"></md-icon>
 			<md-tooltip>
 				<span data-translate="COMMON.UNAVAILABLE"></span>
 			</md-tooltip>
 		</div>
-		<md-progress-circular data-ng-show="vm.loading" data-md-mode="indeterminate" data-md-diameter="20"></md-progress-circular>
+		<md-progress-circular data-ng-hide="vm.beans||vm.error" data-md-mode="indeterminate" data-md-diameter="20"></md-progress-circular>
 	</md-card-title>
-	<md-card-content data-ng-show="!vm.error && !vm.loading">
+	<md-card-content data-ng-show="vm.beans">
 		{{ vm.beans.length }}
 	</md-card-content>
-	<md-card-actions data-ng-show="!vm.error && !vm.loading" data-layout="row" data-layout-align="end center">
+	<md-card-actions data-ng-show="vm.beans" data-layout="row" data-layout-align="end center">
 		<md-button data-ng-href="#/beans" aria-label="More" data-translate="COMMON.MORE"></md-button>
 	</md-card-actions>
 </md-card>
