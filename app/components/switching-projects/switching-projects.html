@@ -15,7 +15,7 @@
                     <span data-translate="MULTI_PROJECTS.CURRENT"></span>
                 </md-list-item>
                 <md-divider></md-divider>
-                <md-list-item data-ng-repeat="project in vm.projects" data-ng-click="vm.selectProject(project)">
+                <md-list-item data-ng-repeat="project in vm.projects" data-ui-sref="dashboard({ projectId: project.id })">
                     {{ project.name }}
                     <md-divider data-ng-show="$last"></md-divider>
                 </md-list-item>
@@ -23,7 +23,7 @@
             <p data-layout="row" data-layout-padding>
                 <md-icon data-md-svg-icon="md:info"></md-icon>
                 <span>
-                    <span data-translate="MULTI_PROJECTS.ADD_NEW"></span><a href="#/" data-translate="MULTI_PROJECTS.GO_HOME"></a>
+                    <span data-translate="MULTI_PROJECTS.ADD_NEW"></span><a data-ui-sref="home" data-translate="MULTI_PROJECTS.GO_HOME"></a>
                 </span>
             </p>
         </md-content>

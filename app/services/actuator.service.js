@@ -1,11 +1,4 @@
-/**
- * Service to manage the Actuator WebServices
- * @see {@link http://docs.spring.io/spring-boot/docs/current-SNAPSHOT/reference/htmlsingle/#production-ready}
- * @namespace Services
- * @memberOf App
- */
 (function () {
-    
     'use strict';
     
     angular
@@ -14,13 +7,6 @@
     
     actuatorService.$inject = ['$http', 'storageService'];
     
-    /**
-     * @name actuatorService
-     * @param {@link https://docs.angularjs.org/api/ng/service/$http | AngularService} [$http]
-     * @param {Service} [storageService]
-     * @return Array
-     * @memberOf Services
-     */
     function actuatorService ($http, storageService) {
         var projects = [];
         var currentProject;
@@ -30,12 +16,12 @@
         var endpointsPost = ['shutdown'];    
         var endpoints = endpointsGet.concat(endpointsPost); 
         var service = {
-            'setDefaultProject' : setDefaultProject,
-            'getAllProjects' : getAllProjects,
-            'setAllProjects' : setAllProjects,
-            'addProject' : addProject,
-            'setCurrentProject' : setCurrentProject,
-            'getCurrentProject' : getCurrentProject,
+            'getAllProjects': getAllProjects,
+            'setAllProjects': setAllProjects,
+            'addProject': addProject,
+            'getProject': getProject,
+            'setCurrentProject': setCurrentProject,
+            'getCurrentProject': getCurrentProject,
             'getEndpoints': getEndpoints
         };
 
@@ -45,32 +31,25 @@
 
         function activate() {
             // Configuration des urls de service
-            if(angular.isDefined(storageService.getItem('projects'))) {
-                projects = storageService.getItem('projects');
-                currentProject = projects[0];
-            }
-            else{
-                setDefaultProject();
-            }
-
+            //projects = storageService.getItem('projects');
+            projects = [];
+            projects.push({
+                id: 'localhost',
+                name: 'Localhost',
+                url: 'http://localhost:9090'
+            });
+                
             endpointsGet.forEach(function(endpoint) {
-                service[endpoint] = function() {
-                    return path('/' + endpoint, 'GET');
+                service[endpoint] = function(url) {
+                    return path(url, '/' + endpoint, 'GET');
                 }
             });
 
             endpointsPost.forEach(function(endpoint) {
-                service[endpoint] = function() {
-                    return path('/' + endpoint, 'POST');
+                service[endpoint] = function(url) {
+                    return path(url, '/' + endpoint, 'POST');
                 }
             })
-        }
-
-        function setDefaultProject() {
-            currentProject = {
-                name: 'Localhost',
-                url: 'http://localhost:9090'
-            }
         }
 
         function getAllProjects() {
@@ -88,6 +67,21 @@
             setCurrentProject(project);
         }
 
+        function getProject(projectId) {
+            var projectFound;
+
+            if(angular.isDefined(projects)) {
+                angular.forEach(projects, function(project) {
+                    if(project.id === projectId) {
+                        projectFound = project;
+                        return;
+                    }
+                });
+            }
+
+            return projectFound;
+        }
+
         function setCurrentProject(project) {
             currentProject = project;
         }
@@ -96,14 +90,13 @@
             return currentProject;
         }
 
-        function path(url, requestMethod) {
+        function path(url, endpoint, requestMethod) {
             var params = {
                method: requestMethod,
-               url: currentProject.url + url 
+               url: (angular.isUndefined(url) ? currentProject.url : url) + endpoint 
             };
 
-
-            if(url === '/heapdump') {
+            if(endpoint === '/heapdump') {
                 params.responseType = 'arraybuffer';
             }
 

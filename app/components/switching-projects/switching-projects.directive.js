@@ -31,8 +31,7 @@
         vm.projects;
 
         vm.closeSwitcher = closeSwitcher;
-        vm.selectProject = selectProject;
-
+        
         init();
 
         function init() {
@@ -50,14 +49,6 @@
         function closeSwitcher() {
             $mdSidenav('switcher')
             .close();
-        }
-
-        function selectProject(project) {
-            actuatorService.setCurrentProject(project);
-
-            init();
-            closeSwitcher();
-            $state.go('dashboard', null, { reload: true });
         }
     }
     

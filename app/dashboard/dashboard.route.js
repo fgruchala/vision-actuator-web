@@ -10,9 +10,19 @@
     function dashboardRouting($stateProvider) {
 
         $stateProvider
+            .state('project', {
+                abstract: true,
+                url: '/:projectId',
+                resolve: {
+                    currentProjectPrepData: currentProjectPrepData
+                },
+                template: '<ui-view/>'
+            })
             .state('dashboard', {
+                parent: 'project',
                 url: '/dashboard',
-                views : {
+                title: 'DASHBOARD.MODULE_NAME',
+                views: {
                     '' : {
                         templateUrl : 'app/dashboard/dashboard.html',
                         controller : 'DashboardController',
@@ -48,8 +58,23 @@
                         controller: 'MappingsDashboardController',
                         controllerAs: 'vm'
                     }
-                },
-                title: 'DASHBOARD.MODULE_NAME'
+                }
             });
+
+        currentProjectPrepData.$inject = ['$stateParams', '$state', 'actuatorService'];
+
+        function currentProjectPrepData($stateParams, $state, actuatorService) {
+            var project = actuatorService.getProject($stateParams.projectId);
+            debugger;
+            if(angular.isUndefined(project)) {
+                $state.go('home');
+            }
+            else {
+                actuatorService.setCurrentProject(project);
+            }
+
+            return project;
+        }
+
     }
 })();

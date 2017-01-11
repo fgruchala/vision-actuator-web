@@ -10,6 +10,7 @@
     function beansRouting($stateProvider) {
         $stateProvider
             .state('beans', {
+                parent: 'project',
                 url: '/beans',
                 templateUrl: 'app/beans/beans.html',
                 controller: 'BeansController',

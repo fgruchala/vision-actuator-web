@@ -46,13 +46,14 @@
     },
     "VOLUME-DATA": "{UNIT, select, 1{Ko} 2{Mo} 3{Go} other{octet} }",
     "DASHBOARD": {
-        "MODULE_NAME": "Dashboard"
+        "MODULE_NAME": "Tableau de bord"
     },
     "HEALTH": {
         "MODULE_NAME": "Santé",
         "UP": "UP",
         "DOWN": "DOWN",
         "NONE": "Pas de connexion avec Actuator",
+        "LIST": "{VAL, plural, =0{Tout est normal} one{1 erreur} other{# erreurs} }",
         "SECTION": {
             "GENERAL": "Général",
             "DISKSPACE": "Espace disque",

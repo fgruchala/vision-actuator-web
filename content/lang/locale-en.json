@@ -53,6 +53,7 @@
         "UP": "UP",
         "DOWN": "DOWN",
         "NONE": "No connexion with Actuator",
+        "LIST": "{VAL, plural, =0{Everything is OK} one{1 error} other{# errors} }",
         "SECTION": {
             "GENERAL": "General",
             "DISKSPACE": "Disk space",

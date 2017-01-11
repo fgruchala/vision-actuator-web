@@ -10,6 +10,7 @@
     function mappingsRouting($stateProvider) {
         $stateProvider
         .state('mappings', {
+                parent: 'project',
                 url: '/mappings',
                 templateUrl: 'app/mappings/mappings.html',
                 controller: 'MappingsController',

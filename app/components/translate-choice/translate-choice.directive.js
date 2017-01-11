@@ -1,22 +1,13 @@
 /**
- * Web component to give the choice of the language
- * @namespace Components
- * @memberOf App
  * @example <v-translate-choice></v-translate-choice>
  */
 (function () {
-    
     'use strict';
     
     angular
     .module('app.components')
     .directive('vTranslateChoice', translateChoiceDirectiveDefinition);
     
-    /**
-     * @name translateChoiceDirectiveDefinition
-     * @desc Definition of the web component vTranslateChoice
-     * @memberOf Components
-     */
     function translateChoiceDirectiveDefinition () {
         var definition = {
             restrict: 'E',
@@ -31,14 +22,6 @@
     
     translateChoiceDirectiveController.$inject = ['$translate', '$mdMenu', '$mdToast'];
     
-    /**
-     * @name translateChoiceDirectiveController
-     * @desc Controller of the web component vTranslateChoice
-     * @param {@link https://angular-translate.github.io/docs/#/api/pascalprecht.translate.$translate | TranslateService} $translate
-     * @param {@link https://material.angularjs.org/latest/api/directive/mdMenu | MaterialService} $mdMenu
-     * @param {@link https://material.angularjs.org/latest/api/service/$mdToast | MaterialService} $mdToast
-     * @memberOf translateChoiceDirectiveDefinition
-     */
     function translateChoiceDirectiveController ($translate, $mdMenu, $mdToast) {
         var vm = this;
         
