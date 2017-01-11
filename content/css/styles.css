@@ -127,7 +127,7 @@ md-icon.small > svg {
     background-color: #f44336;    
 }
 
-th[data-ng-click]:hover, tr[data-ng-click]:hover, td[data-ng-click]:hover {
+th[data-ng-click]:hover, tr[data-ng-click]:hover, td[data-ng-click]:hover, a[data-ng-click]:hover {
     cursor: pointer;
 }
 

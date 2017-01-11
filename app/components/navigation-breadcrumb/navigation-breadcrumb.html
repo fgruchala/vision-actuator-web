@@ -1,7 +1,9 @@
 <h2 style="white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">
     <a data-ui-sref="home" data-translate="APP_NAME"></a>
     <md-icon data-md-svg-icon="md:chevron-right" class="white"></md-icon>
-    <a data-ui-sref="dashboard({ projectId: vm.project.id })">{{ vm.project.name }}</a>
-    <md-icon data-md-svg-icon="md:chevron-right" class="white"></md-icon>
+    <span data-ng-if="vm.project">
+        <a data-ui-sref="dashboard({ projectId: vm.project.id })">{{ vm.project.name }}</a>
+        <md-icon data-md-svg-icon="md:chevron-right" class="white"></md-icon>
+    </span>
     <span data-translate="{{ vm.module }}"></span>
 </h2>

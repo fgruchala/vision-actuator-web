@@ -14,7 +14,8 @@
 			url: '/',
 			templateUrl : 'app/home/home.html',
 			controller : 'HomeController',
-			controllerAs : 'vm'
+			controllerAs : 'vm',
+			title: 'HOME.MODULE_NAME',
 		});
 	}
 })();

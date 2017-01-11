@@ -48,6 +48,9 @@
     "DASHBOARD": {
         "MODULE_NAME": "Dashboard"
     },
+    "HOME": {
+        "MODULE_NAME": "Home"
+    },
     "HEALTH": {
         "MODULE_NAME": "Health",
         "UP": "UP",

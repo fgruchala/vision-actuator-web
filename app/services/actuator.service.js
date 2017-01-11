@@ -31,7 +31,7 @@
 
         function activate() {
             // Configuration des urls de service
-            //projects = storageService.getItem('projects');
+            projects = storageService.getItem('projects');
             projects = [];
             projects.push({
                 id: 'localhost',

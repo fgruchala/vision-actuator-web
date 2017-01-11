@@ -22,15 +22,19 @@
         return definition;
     }
 
-    switchingProjectsDirectiveController.$inject = ['$mdSidenav', '$state', 'actuatorService'];
+    switchingProjectsDirectiveController.$inject = ['$scope', '$mdSidenav', '$state', 'actuatorService'];
     
-    function switchingProjectsDirectiveController($mdSidenav, $state, actuatorService) {
+    function switchingProjectsDirectiveController($scope, $mdSidenav, $state, actuatorService) {
         var vm = this;
     
         vm.currentProject;
         vm.projects;
 
+        vm.selectProject = selectProject;
+        vm.goHome = goHome;
         vm.closeSwitcher = closeSwitcher;
+
+        $scope.$on('$stateChangeSuccess', init);
         
         init();
 
@@ -44,6 +48,16 @@
             }
 
             vm.projects = projects;
+        }
+
+        function selectProject(project) {
+            $state.go('dashboard', { projectId: project.id }, { reload: true });
+            closeSwitcher();
+        }
+
+        function goHome() {
+            $state.go('home', null, { reload: true });
+            closeSwitcher();
         }
         
         function closeSwitcher() {

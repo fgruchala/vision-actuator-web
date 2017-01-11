@@ -11,7 +11,7 @@
     function navigationTitleDirectiveDefinition () {
         var definition = {
             restrict: 'A',
-            template: '[{{ vm.project.name }}] {{ vm.module | translate }} - {{ \'APP_NAME\' | translate }}',
+            template: '{{ vm.title }} - {{ \'APP_NAME\' | translate }}',
             scope: {},
             controller: navigationTitleDirectiveController,
             controllerAs: 'vm'
@@ -20,19 +20,22 @@
         return definition;
     }
     
-    navigationTitleDirectiveController.$inject = ['$scope', 'actuatorService'];
+    navigationTitleDirectiveController.$inject = ['$scope', '$translate', 'actuatorService'];
     
-    function navigationTitleDirectiveController ($scope, actuatorService) {
+    function navigationTitleDirectiveController ($scope, $translate, actuatorService) {
         var vm = this;
         
-        vm.project;
-        vm.module;
+        vm.title;
         
         $scope.$on('$stateChangeSuccess', init);
         
         function init (event, current, previous) {
-            vm.project = actuatorService.getCurrentProject();
-            vm.module = current.title;
+            vm.title = $translate.instant(current.title);
+            var project = actuatorService.getCurrentProject();
+            
+            if(angular.isDefined(project)) {
+                vm.title = "[" + project.name + "] " + vm.title;
+            }
         }
 
     }

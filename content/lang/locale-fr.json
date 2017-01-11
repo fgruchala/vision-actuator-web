@@ -48,6 +48,9 @@
     "DASHBOARD": {
         "MODULE_NAME": "Tableau de bord"
     },
+    "HOME": {
+        "MODULE_NAME": "Accueil"
+    },
     "HEALTH": {
         "MODULE_NAME": "Santé",
         "UP": "UP",

@@ -65,14 +65,12 @@
 
         function currentProjectPrepData($stateParams, $state, actuatorService) {
             var project = actuatorService.getProject($stateParams.projectId);
-            debugger;
+            
             if(angular.isUndefined(project)) {
-                $state.go('home');
-            }
-            else {
-                actuatorService.setCurrentProject(project);
+                return $state.go('home', null, { reload: true });
             }
 
+            actuatorService.setCurrentProject(project)
             return project;
         }
 
