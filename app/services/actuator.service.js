@@ -17,9 +17,9 @@
         var endpoints = endpointsGet.concat(endpointsPost); 
         var service = {
             'getAllProjects': getAllProjects,
-            'setAllProjects': setAllProjects,
             'addProject': addProject,
             'getProject': getProject,
+            'removeProject' : removeProject,
             'setCurrentProject': setCurrentProject,
             'getCurrentProject': getCurrentProject,
             'getEndpoints': getEndpoints
@@ -56,15 +56,18 @@
             return projects;
         }
 
-        function setAllProjects(projects) {
-            storageService.setItem('projects', projects);
-        }
-
         function addProject(project) {
             projects.unshift(project);
-            setAllProjects(projects);
+            storageService.setItem('projects', projects);
 
             setCurrentProject(project);
+        }
+
+        function removeProject(project) {
+            let index = projects.indexOf(project);
+            if (index !== -1) {
+                projects.splice(index, 1);
+            }
         }
 
         function getProject(projectId) {

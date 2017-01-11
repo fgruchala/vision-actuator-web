@@ -1,20 +1,20 @@
 <md-content data-flex-offset="20" data-flex="60">
 	<md-list flex>
-		<md-list-item class="md-3-line" ng-repeat="project in vm.projects" ng-click="vm.goToProject(project)">
+		<md-list-item class="md-3-line" data-ng-repeat="project in vm.projects" data-ng-click="vm.goToProject(project)">
 			<div class="md-avatar UP"></div>
 			<div class="md-list-item-text" layout="column">
-				<h3>{{project.name}}</h3>
+				<h3><strong>{{project.name}}</strong></h3>
 				<h4>{{project.url}}</h4>
 				<p class="italic">(TODO) Dernier accès le 01/01/2017 à 17h34</p>
 			</div>
-			 <md-checkbox class="md-secondary" ng-model="person.selected"></md-checkbox>
-    <md-icon md-svg-icon="communication:email"  ng-click="doSecondaryAction($event)" aria-label="Send Email" class="md-secondary md-hue-3" ></md-icon>
-    <md-icon class="md-secondary" ng-click="doSecondaryAction($event)" aria-label="Chat" md-svg-icon="communication:message"></md-icon>
+
+			<!-- boutons d'actions -->
+			<md-icon class="md-secondary" data-ng-click="vm.deleteProject($event, project)" aria-label="Supprimer un projet de la liste" data-md-svg-icon="md:close"></md-icon>
 		</md-list-item>
 	</md-list>
 </md-content>
 
-<!-- md-raised md-fab--> 
-<md-button aria-label="Ajouter un service" ng-click="vm.addServicePopup()" class="md-fab v-fab">
-	<md-icon data-md-svg-icon="md:add-white" class="white"></md-icon>
+<!-- Bouton flottant d'ajout de service -->
+<md-button aria-label="Ajouter un service" ng-click="vm.addProjectPopup()" class="md-fab v-fab">
+	<md-icon data-md-svg-icon="md:add" class="white"></md-icon>
 </md-button>
