@@ -19,7 +19,7 @@ md-card.UP, md-card.DOWN, md-card.UP a:hover, md-card.DOWN a:hover {
     color: #ffffff;
 }
 
-md-card.UP {
+.UP {
     background-color: #4caf50;
 }
 
@@ -135,6 +135,16 @@ td.text-center {
     text-align: center;
 }
 
+.italic {
+    font-style: italic;
+}
+
+.v-fab {
+    position : absolute;
+    bottom : 10px;
+    right : 10px;
+}
+
 div.input-filter > input {
     border: 0;
 }
@@ -142,4 +152,3 @@ div.input-filter > input {
 div.input-filter > input:focus {
     outline: none;
 }
-
