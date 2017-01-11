@@ -10,7 +10,8 @@
 	function HomeController($mdDialog, $state, actuatorService) {
 		var vm = this;
 
-		vm.addServicePopup = addServicePopup;
+		vm.addProjectPopup = addProjectPopup;
+		vm.deleteProject = deleteProject;
 		vm.goToProject = goToProject;
 		vm.projects = [];
 
@@ -23,7 +24,7 @@
 			// TODO faire les appels vers chacuns des services pour afficher statut et dernier acces
 		}
 
-		function addServicePopup() {
+		function addProjectPopup() {
             $mdDialog.show({
                 controller: 'SaveProjectPopupController',
                 controllerAs: 'vm',
@@ -34,6 +35,20 @@
                 actuatorService.addProject(project);
 				vm.projects.put(project);
             });
+		}
+
+		function deleteProject(event, project) {
+			debugger;
+			$mdDialog.show(
+      			$mdDialog.alert()
+        		.title('Supprimer un projet de la liste')
+        		.textContent('Êtes vous certain de vouloir supprimer ce projet de la liste ?')
+        		.ok('Oui !')
+				.targetEvent(event)
+			)
+			.then(function() {
+				actuatorService.removeProject(project);
+			});
 		}
 
 		function goToProject(project) {
