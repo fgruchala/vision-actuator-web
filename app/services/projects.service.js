@@ -25,10 +25,16 @@
 
 
 		function activate() {
-			projects = storageService.getItem('projects');
+			getAllProjects();
 		}
 
 		function getAllProjects() {
+            projects = storageService.getItem('projects');
+
+            if(angular.isUndefined(projects)) {
+                projects = [];
+            }
+            
             return projects;
         }
 

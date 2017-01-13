@@ -35,14 +35,6 @@
             })
         }
 
-            projects = storageService.getItem('projects');
-            projects = [];
-            projects.push({
-                id: 'localhost',
-                name: 'Localhost',
-                url: 'http://localhost:9090'
-            });
-
         function path(url, endpoint, requestMethod) {
             let currentProject = projectsService.getCurrentProject();
             let params = {

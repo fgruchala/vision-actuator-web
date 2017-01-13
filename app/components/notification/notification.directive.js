@@ -20,9 +20,9 @@
         return definition;
     }
 
-    notificationDirectiveController.$inject = ['$interval', '$state', '$translate', 'actuatorService', 'notificationService'];
+    notificationDirectiveController.$inject = ['$interval', '$state', '$translate', 'projectsService', 'actuatorService', 'notificationService'];
         
-    function notificationDirectiveController($interval, $state, $translate, actuatorService, notificationService) {
+    function notificationDirectiveController($interval, $state, $translate, projectsService, actuatorService, notificationService) {
         var vm = this;
         
         vm.downProjects;
