@@ -28,7 +28,7 @@
             $mdDialog.show({
                 controller: 'SaveProjectPopupController',
                 controllerAs: 'vm',
-                templateUrl: 'app/components/multi-projects/save-project-popup.html',
+                templateUrl: '/app/home/add-project-popup.html',
                 clickOutsideToClose: true
             })
             .then(function(project) {
