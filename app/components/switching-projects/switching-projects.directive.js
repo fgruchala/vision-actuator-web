@@ -22,9 +22,9 @@
         return definition;
     }
 
-    switchingProjectsDirectiveController.$inject = ['$scope', '$mdSidenav', '$state', 'actuatorService'];
+    switchingProjectsDirectiveController.$inject = ['$scope', '$mdSidenav', '$state', 'projectsService'];
     
-    function switchingProjectsDirectiveController($scope, $mdSidenav, $state, actuatorService) {
+    function switchingProjectsDirectiveController($scope, $mdSidenav, $state, projectsService) {
         var vm = this;
     
         vm.currentProject;
@@ -39,8 +39,8 @@
         init();
 
         function init() {
-            vm.currentProject = actuatorService.getCurrentProject();
-            var projects = actuatorService.getAllProjects();
+            vm.currentProject = projectsService.getCurrentProject();
+            var projects = projectsService.getAllProjects();
             var idx = projects.indexOf(vm.currentProject);
 
             if(idx !== -1) {

@@ -24,7 +24,6 @@
     }
 
     mappingsPrepData.$inject = ['actuatorService'];
-    filtersPrepData.$inject = ['mappingsPrepData'];
 
     function mappingsPrepData(actuatorService) {
         return actuatorService
@@ -40,6 +39,8 @@
                     return err.data;
                 });
     }
+
+    filtersPrepData.$inject = ['mappingsPrepData'];
 
     function filtersPrepData(mappingsPrepData) {
         var filters = {};

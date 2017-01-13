@@ -31,7 +31,7 @@
         $interval(init, 30000);
 
         function init() {
-            var projects = actuatorService.getAllProjects();
+            var projects = projectsService.getAllProjects();
             vm.downProjects = [];
 
             angular.forEach(projects, function(project) {

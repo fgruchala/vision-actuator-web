@@ -61,16 +61,16 @@
                 }
             });
 
-        currentProjectPrepData.$inject = ['$stateParams', '$state', 'actuatorService'];
+        currentProjectPrepData.$inject = ['$stateParams', '$state', 'projectsService'];
 
-        function currentProjectPrepData($stateParams, $state, actuatorService) {
-            var project = actuatorService.getProject($stateParams.projectId);
+        function currentProjectPrepData($stateParams, $state, projectsService) {
+            var project = projectsService.getProject($stateParams.projectId);
             
             if(angular.isUndefined(project)) {
                 return $state.go('home', null, { reload: true });
             }
 
-            actuatorService.setCurrentProject(project)
+            projectsService.setCurrentProject(project)
             return project;
         }
 

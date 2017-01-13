@@ -5,23 +5,15 @@
     .module('app.services')
     .service('actuatorService', actuatorService);
     
-    actuatorService.$inject = ['$http', 'storageService'];
+    actuatorService.$inject = ['$http', 'storageService', 'projectsService'];
     
-    function actuatorService ($http, storageService) {
-        var projects = [];
-        var currentProject;
+    function actuatorService ($http, storageService, projectsService) {
         var endpointsGet = ['health', 'beans', 'env', 'actuator', 'autoconfig', 'configprops', 'dump',
                         'flyway', 'info', 'liquibase', 'metrics', 'mappings', 'trace',
                         'docs', 'heapdump', 'jolokia', 'logfile'];
         var endpointsPost = ['shutdown'];    
         var endpoints = endpointsGet.concat(endpointsPost); 
         var service = {
-            'getAllProjects': getAllProjects,
-            'addProject': addProject,
-            'getProject': getProject,
-            'removeProject' : removeProject,
-            'setCurrentProject': setCurrentProject,
-            'getCurrentProject': getCurrentProject,
             'getEndpoints': getEndpoints
         };
 
@@ -30,8 +22,6 @@
 
 
         function activate() {
-            getAllProjects();
-
             endpointsGet.forEach(function(endpoint) {
                 service[endpoint] = function(url) {
                     return path(url, '/' + endpoint, 'GET');
@@ -45,7 +35,6 @@
             })
         }
 
-        function getAllProjects() {
             projects = storageService.getItem('projects');
             projects = [];
             projects.push({
@@ -54,48 +43,9 @@
                 url: 'http://localhost:9090'
             });
 
-            return projects;
-        }
-
-        function addProject(project) {
-            projects.unshift(project);
-            storageService.setItem('projects', projects);
-            setCurrentProject(project);
-        }
-
-        function removeProject(project) {
-            let index = projects.indexOf(project);
-            if (index !== -1) {
-                projects.splice(index, 1);
-                storageService.setItem('projects', projects);
-            }
-        }
-
-        function getProject(projectId) {
-            var projectFound;
-
-            if(angular.isDefined(projects)) {
-                angular.forEach(projects, function(project) {
-                    if(project.id === projectId) {
-                        projectFound = project;
-                        return;
-                    }
-                });
-            }
-
-            return projectFound;
-        }
-
-        function setCurrentProject(project) {
-            currentProject = project;
-        }
-
-        function getCurrentProject() {
-            return currentProject;
-        }
-
         function path(url, endpoint, requestMethod) {
-            var params = {
+            let currentProject = projectsService.getCurrentProject();
+            let params = {
                method: requestMethod,
                url: (angular.isUndefined(url) ? currentProject.url : url) + endpoint 
             };
