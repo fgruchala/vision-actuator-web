@@ -11,7 +11,7 @@
 		var vm = this;
 
 		vm.addProjectPopup = addProjectPopup;
-		vm.deleteProject = deleteProject;
+		vm.removeProject = removeProject;
 		vm.goToProject = goToProject;
 		vm.projects = [];
 
@@ -28,23 +28,20 @@
             $mdDialog.show({
                 controller: 'SaveProjectPopupController',
                 controllerAs: 'vm',
-                templateUrl: 'app/components/multi-projects/save-project-popup.html',
+                templateUrl: '/app/home/add-project-popup.html',
                 clickOutsideToClose: true
             })
             .then(function(project) {
                 actuatorService.addProject(project);
-				vm.projects.put(project);
             });
 		}
 
-		function deleteProject(event, project) {
-			debugger;
+		function removeProject(project) {
 			$mdDialog.show(
-      			$mdDialog.alert()
-        		.title('Supprimer un projet de la liste')
-        		.textContent('Êtes vous certain de vouloir supprimer ce projet de la liste ?')
-        		.ok('Oui !')
-				.targetEvent(event)
+      			$mdDialog.confirm()
+        		.title('Supprimer le projet de la liste ?')
+				.cancel('Non')
+				.ok('Oui')
 			)
 			.then(function() {
 				actuatorService.removeProject(project);
@@ -52,8 +49,7 @@
 		}
 
 		function goToProject(project) {
-			actuatorService.setCurrentProject(project);
-			$state.go('dashboard');
+			$state.go('dashboard', {'projectId' : project.id});
 		}
 	}
 })();

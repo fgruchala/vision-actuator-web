@@ -152,3 +152,7 @@ div.input-filter > input {
 div.input-filter > input:focus {
     outline: none;
 }
+
+.danger {
+    color : red;
+}

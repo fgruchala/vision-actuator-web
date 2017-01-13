@@ -60,7 +60,6 @@
         function addProject(project) {
             projects.unshift(project);
             storageService.setItem('projects', projects);
-
             setCurrentProject(project);
         }
 
@@ -68,6 +67,7 @@
             let index = projects.indexOf(project);
             if (index !== -1) {
                 projects.splice(index, 1);
+                storageService.setItem('projects', projects);
             }
         }
 

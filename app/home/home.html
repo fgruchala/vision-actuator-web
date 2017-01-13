@@ -9,7 +9,7 @@
 			</div>
 
 			<!-- boutons d'actions -->
-			<md-icon class="md-secondary" data-ng-click="vm.deleteProject($event, project)" aria-label="Supprimer un projet de la liste" data-md-svg-icon="md:close"></md-icon>
+			<md-icon data-md-svg-icon="md:delete" ng-click="vm.removeProject(project)" class="md-secondary danger" aria-label="Supprimer un projet de la liste"></md-icon>
 		</md-list-item>
 	</md-list>
 </md-content>
