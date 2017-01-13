@@ -20,9 +20,9 @@
         return definition;
     }
 
-    notificationDirectiveController.$inject = ['$interval', '$location', '$translate', 'actuatorService', 'notificationService'];
+    notificationDirectiveController.$inject = ['$interval', '$state', '$translate', 'actuatorService', 'notificationService'];
         
-    function notificationDirectiveController($interval, $location, $translate, actuatorService, notificationService) {
+    function notificationDirectiveController($interval, $state, $translate, actuatorService, notificationService) {
         var vm = this;
         
         vm.downProjects;
@@ -33,12 +33,10 @@
         function init() {
             var projects = actuatorService.getAllProjects();
             vm.downProjects = [];
-            
+
             angular.forEach(projects, function(project) {
                 getHealthInformations(project);
             });
-
-            notify();
         }
 
         function getHealthInformations(project) {
@@ -55,30 +53,16 @@
                     }
 
                     vm.downProjects.push(healthInformations);
+                    notify(healthInformations);
                 });
         }
 
-        function notify() {
-            if(vm.downProjects.length>0) {
-                var downCounter = 0;
-                var noneCounter = 0;
-                var body = "";
-
-                angular.forEach(vm.downProjects, function(downProject) {
-                    if(downProject.status === 'NONE') {
-                        noneCounter++;
-                    }
-                    else {
-                        downCounter++;
-                    }
-                });
-
-                body = downCounter + " " + $translate.instant('HEALTH.DOWN');
-                body += '<br />';
-                body += noneCounter + " " + $translate.instant('HEALTH.NONE');
-
-                notificationService.notify($translate.instant('APP_NAME'), body, $location.absUrl());
-            }
+        function notify(healthInformations) {
+            var title = $translate.instant('APP_NAME') + ' - ' + healthInformations.project.name;
+            var body = $translate.instant('HEALTH.' + healthInformations.status);
+            var url = $state.href("dashboard", { projectId: healthInformations.project.id }, { absolute: true });
+            
+            notificationService.notify(title, body, url);
         }    
     }
     

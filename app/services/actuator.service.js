@@ -30,15 +30,8 @@
 
 
         function activate() {
-            // Configuration des urls de service
-            projects = storageService.getItem('projects');
-            projects = [];
-            projects.push({
-                id: 'localhost',
-                name: 'Localhost',
-                url: 'http://localhost:9090'
-            });
-                
+            getAllProjects();
+
             endpointsGet.forEach(function(endpoint) {
                 service[endpoint] = function(url) {
                     return path(url, '/' + endpoint, 'GET');
@@ -53,6 +46,14 @@
         }
 
         function getAllProjects() {
+            projects = storageService.getItem('projects');
+            projects = [];
+            projects.push({
+                id: 'localhost',
+                name: 'Localhost',
+                url: 'http://localhost:9090'
+            });
+
             return projects;
         }
 
