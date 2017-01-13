@@ -20,9 +20,9 @@
         return definition;
     }
     
-    navigationBreadcrumbDirectiveController.$inject = ['$scope', 'actuatorService'];
+    navigationBreadcrumbDirectiveController.$inject = ['$scope', 'projectsService'];
     
-    function navigationBreadcrumbDirectiveController ($scope, actuatorService) {
+    function navigationBreadcrumbDirectiveController ($scope, projectsService) {
         var vm = this;
         
         vm.project;
@@ -31,7 +31,7 @@
         $scope.$on('$stateChangeSuccess', init);
 
         function init (event, current, previous) {
-            vm.project = actuatorService.getCurrentProject();
+            vm.project = projectsService.getCurrentProject();
             vm.module = current.title;
         } 
 

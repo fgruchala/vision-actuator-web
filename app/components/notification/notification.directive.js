@@ -20,9 +20,9 @@
         return definition;
     }
 
-    notificationDirectiveController.$inject = ['$interval', '$location', '$translate', 'actuatorService', 'notificationService'];
+    notificationDirectiveController.$inject = ['$interval', '$location', '$translate', 'actuatorService', 'projectsService', 'notificationService'];
         
-    function notificationDirectiveController($interval, $location, $translate, actuatorService, notificationService) {
+    function notificationDirectiveController($interval, $location, $translate, actuatorService, projectsService, notificationService) {
         var vm = this;
         
         vm.downProjects;
@@ -31,7 +31,7 @@
         $interval(init, 30000);
 
         function init() {
-            var projects = actuatorService.getAllProjects();
+            var projects = projectsService.getAllProjects();
             vm.downProjects = [];
             
             angular.forEach(projects, function(project) {

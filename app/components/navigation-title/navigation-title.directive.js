@@ -20,9 +20,9 @@
         return definition;
     }
     
-    navigationTitleDirectiveController.$inject = ['$scope', '$translate', 'actuatorService'];
+    navigationTitleDirectiveController.$inject = ['$scope', '$translate', 'projectsService'];
     
-    function navigationTitleDirectiveController ($scope, $translate, actuatorService) {
+    function navigationTitleDirectiveController ($scope, $translate, projectsService) {
         var vm = this;
         
         vm.title;
@@ -31,7 +31,7 @@
         
         function init (event, current, previous) {
             vm.title = $translate.instant(current.title);
-            var project = actuatorService.getCurrentProject();
+            var project = projectsService.getCurrentProject();
             
             if(angular.isDefined(project)) {
                 vm.title = "[" + project.name + "] " + vm.title;

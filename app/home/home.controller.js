@@ -5,9 +5,9 @@
 	.module('app.home')
 	.controller('HomeController', HomeController);
 
-	HomeController.$inject = ['$mdDialog', '$state', 'actuatorService'];
+	HomeController.$inject = ['$mdDialog', '$state', 'projectsService'];
 
-	function HomeController($mdDialog, $state, actuatorService) {
+	function HomeController($mdDialog, $state, projectsService) {
 		var vm = this;
 
 		vm.addProjectPopup = addProjectPopup;
@@ -20,7 +20,7 @@
 
 
 		function activate() {
-			vm.projects = actuatorService.getAllProjects();
+			vm.projects = projectsService.getAllProjects();
 			// TODO faire les appels vers chacuns des services pour afficher statut et dernier acces
 		}
 
@@ -32,7 +32,7 @@
                 clickOutsideToClose: true
             })
             .then(function(project) {
-                actuatorService.addProject(project);
+                projectsService.addProject(project);
             });
 		}
 
@@ -44,7 +44,7 @@
 				.ok('Oui')
 			)
 			.then(function() {
-				actuatorService.removeProject(project);
+				projectsService.removeProject(project);
 			});
 		}
 
