@@ -23,7 +23,7 @@ md-card.UP, md-card.DOWN, md-card.UP a:hover, md-card.DOWN a:hover {
     background-color: #4caf50;
 }
 
-md-card.DOWN {
+.DOWN {
     background-color: #f44336;
 }
 

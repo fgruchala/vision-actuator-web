@@ -5,13 +5,15 @@
 	.module('app.home')
 	.controller('HomeController', HomeController);
 
-	HomeController.$inject = ['$mdDialog', '$state', 'projectsService'];
+	HomeController.$inject = ['$scope', '$mdDialog', '$interval', '$state', 'actuatorService', 'projectsService'];
 
-	function HomeController($mdDialog, $state, projectsService) {
+	function HomeController($scope, $mdDialog, $interval, $state, actuatorService, projectsService) {
 		var vm = this;
+		var syncCallback = [];
+		var SYNC_MILLISECONDS = 5000;
 
 		vm.addProjectPopup = addProjectPopup;
-		vm.removeProject = removeProject;
+		vm.removeProjectPopup = removeProjectPopup;
 		vm.goToProject = goToProject;
 		vm.projects = [];
 
@@ -20,8 +22,38 @@
 
 
 		function activate() {
+			$scope.$on('$destroy', destroy);
+
 			vm.projects = projectsService.getAllProjects();
-			// TODO faire les appels vers chacuns des services pour afficher statut et dernier acces
+			angular.forEach(vm.projects, function(project) {
+				statusSync(project);
+				lastAccessSync(project);
+			});
+		}
+
+		function statusSync(project) {
+			var callback = $interval(function() {
+				actuatorService
+                .health(project.url)
+                .then(function(response) {
+                    project.health = response.data.status;
+                })
+                .catch(function(response) {
+                    project.health = 'DOWN';
+                });
+			}, SYNC_MILLISECONDS);
+
+			syncCallback.push(callback);
+		}
+
+		function lastAccessSync(project) {
+			// TODO
+		}
+
+		function destroy() {
+			angular.forEach(syncCallback, function(callback) {
+				$interval.cancel(callback);
+			});
 		}
 
 		function addProjectPopup() {
@@ -36,7 +68,7 @@
             });
 		}
 
-		function removeProject(project) {
+		function removeProjectPopup(project) {
 			$mdDialog.show(
       			$mdDialog.confirm()
         		.title('Supprimer le projet de la liste ?')
