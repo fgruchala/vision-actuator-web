@@ -47,7 +47,30 @@
 		}
 
 		function lastAccessSync(project) {
-			// TODO
+			var callback = $interval(function() {
+				actuatorService
+                .trace(project.url)
+                .then(function(response) {
+					var lastTrace = getLastTrace(response.data);
+					if (lastTrace) {
+						project.lastTrace = new Date(lastTrace.timestamp);
+					}
+                });
+			}, SYNC_MILLISECONDS);
+
+			syncCallback.push(callback);
+		}
+
+		function getLastTrace(traces) {
+			var lastTrace = undefined;
+			angular.forEach(traces, function(trace) {
+				var endpoint = trace.info.path.substring(1, trace.info.path.length);
+				if ((actuatorService.getEndpoints().indexOf(endpoint) === -1) && (!lastTrace || trace.timestamp > lastTrace.timestamp)) {
+					lastTrace = trace;
+				}
+			});
+
+			return lastTrace;
 		}
 
 		function destroy() {

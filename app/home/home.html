@@ -5,7 +5,7 @@
 			<div class="md-list-item-text" layout="column">
 				<h3><strong>{{project.name}}</strong></h3>
 				<h4>{{project.url}}</h4>
-				<p class="italic">(TODO) Dernier accès le 01/01/2017 à 17h34</p>
+				<p class="italic" data-ng-if="project.lastTrace">Dernier accès le {{project.lastTrace | date:"dd/MM/yyyy 'à' H'h'mm"  || '-'}}</p>
 			</div>
 
 			<!-- boutons d'actions -->
