@@ -10,6 +10,7 @@
     function traceConfig($stateProvider) {
         $stateProvider
             .state('trace', {
+                parent: 'project',
                 url: '/trace',
                 templateUrl: 'app/trace/trace.html',
                 controller: 'TraceController',

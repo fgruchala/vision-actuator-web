@@ -10,6 +10,7 @@
     function threadsRouting ($stateProvider) {
         $stateProvider
             .state('threads', {
+                parent: 'project',
                 url: '/threads',
                 templateUrl: 'app/threads/threads.html',
                 controller: 'ThreadsController',

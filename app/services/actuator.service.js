@@ -1,41 +1,19 @@
-/**
- * Service to manage the Actuator WebServices
- * @see {@link http://docs.spring.io/spring-boot/docs/current-SNAPSHOT/reference/htmlsingle/#production-ready}
- * @namespace Services
- * @memberOf App
- */
 (function () {
-    
     'use strict';
     
     angular
     .module('app.services')
     .service('actuatorService', actuatorService);
     
-    actuatorService.$inject = ['$http', 'storageService'];
+    actuatorService.$inject = ['$http', 'storageService', 'projectsService'];
     
-    /**
-     * @name actuatorService
-     * @param {@link https://docs.angularjs.org/api/ng/service/$http | AngularService} [$http]
-     * @param {Service} [storageService]
-     * @return Array
-     * @memberOf Services
-     */
-    function actuatorService ($http, storageService) {
-        var projects = [];
-        var currentProject;
+    function actuatorService ($http, storageService, projectsService) {
         var endpointsGet = ['health', 'beans', 'env', 'actuator', 'autoconfig', 'configprops', 'dump',
                         'flyway', 'info', 'liquibase', 'metrics', 'mappings', 'trace',
                         'docs', 'heapdump', 'jolokia', 'logfile'];
         var endpointsPost = ['shutdown'];    
         var endpoints = endpointsGet.concat(endpointsPost); 
         var service = {
-            'setDefaultProject' : setDefaultProject,
-            'getAllProjects' : getAllProjects,
-            'setAllProjects' : setAllProjects,
-            'addProject' : addProject,
-            'setCurrentProject' : setCurrentProject,
-            'getCurrentProject' : getCurrentProject,
             'getEndpoints': getEndpoints
         };
 
@@ -44,66 +22,27 @@
 
 
         function activate() {
-            // Configuration des urls de service
-            if(angular.isDefined(storageService.getItem('projects'))) {
-                projects = storageService.getItem('projects');
-                currentProject = projects[0];
-            }
-            else{
-                setDefaultProject();
-            }
-
             endpointsGet.forEach(function(endpoint) {
-                service[endpoint] = function() {
-                    return path('/' + endpoint, 'GET');
+                service[endpoint] = function(url) {
+                    return path(url, '/' + endpoint, 'GET');
                 }
             });
 
             endpointsPost.forEach(function(endpoint) {
-                service[endpoint] = function() {
-                    return path('/' + endpoint, 'POST');
+                service[endpoint] = function(url) {
+                    return path(url, '/' + endpoint, 'POST');
                 }
             })
         }
 
-        function setDefaultProject() {
-            currentProject = {
-                name: 'Localhost',
-                url: 'http://localhost:9090'
-            }
-        }
-
-        function getAllProjects() {
-            return projects;
-        }
-
-        function setAllProjects(projects) {
-            storageService.setItem('projects', projects);
-        }
-
-        function addProject(project) {
-            projects.unshift(project);
-            setAllProjects(projects);
-
-            setCurrentProject(project);
-        }
-
-        function setCurrentProject(project) {
-            currentProject = project;
-        }
-
-        function getCurrentProject() {
-            return currentProject;
-        }
-
-        function path(url, requestMethod) {
-            var params = {
+        function path(url, endpoint, requestMethod) {
+            let currentProject = projectsService.getCurrentProject();
+            let params = {
                method: requestMethod,
-               url: currentProject.url + url 
+               url: (angular.isUndefined(url) ? currentProject.url : url) + endpoint 
             };
 
-
-            if(url === '/heapdump') {
+            if(endpoint === '/heapdump') {
                 params.responseType = 'arraybuffer';
             }
 

@@ -1,9 +1,228 @@
 {
     "APP_NAME": "Vision",
     "LANG": {
-        "CHANGE_START_MESSAGE": "Translations in progress ...",
+        "CHANGE_START_MESSAGE": "Translation in progress ...",
         "CHOOSE_MESSAGE": "{VAL, plural, one{Available language} other{Available languages}}",
         "en": "English",
-        "fr": "French"
+        "fr": "Français"
+    },
+    "NONE": "{GENDER, select, FEMALE{Not specified} other{Not specified}}",
+    "COMMON": {
+        "OK": "OK",
+        "CLOSE": "Close",
+        "SAVE": "Validate",
+        "CANCEL": "Cancel",
+        "MORE": "More",
+        "MORE_LIGHT": "More",
+        "TITLE-ERROR": "Error",
+        "LOADING": "Loading ...",
+        "SEARCH": "Search",
+        "NOTHING_TO_SEE": "No result :/",
+        "NC": "NC",
+        "UNAVAILABLE": "Unavailable",
+        "TECHNICAL_ERROR": "Technical error",
+        "DONE": "Done !",
+        "NO_RESULT": "No result",
+        "SAVE_QUESTION": "Save ?",
+        "REQUIRED": "Required",
+        "URL_MAL_FORMED": "Url malformed",
+        "DAY" : "{VAL, plural, =1{Day} other{Days}}",
+        "HOUR" : "{VAL, plural, =1{Hour} other{Hours}}",
+        "MINUTE" : "{VAL, plural, =1{Minute} other{Minutes}}",
+        "SECOND" : "{VAL, plural, =1{Second} other{Seconds}}",
+        "YES": "Yes",
+        "NO": "No",
+        "FEEDBACK": "A problem or a nice word ?",
+        "AUTO_REFRESH": "Auto-refresh"
+    },
+    "MULTI_PROJECTS": {
+        "NEW": "New project",
+        "NAME": "Name (e.g. Project top secret)",
+        "URL": "Url (e.g. http://top.secret.com)",
+        "MY_PROJECTS": "My projects",
+        "CURRENT": "Current",
+        "ADD_NEW": "Monitor an other project ? Go to",
+        "GO_HOME": "home"
+    },
+    "VOLUME-DATA": "{UNIT, select, 1{Kb} 2{Mb} 3{Gb} other{bytes} }",
+    "DASHBOARD": {
+        "MODULE_NAME": "Dashboard"
+    },
+    "HOME": {
+        "MODULE_NAME": "Home"
+    },
+    "HEALTH": {
+        "MODULE_NAME": "Health",
+        "UP": "UP",
+        "DOWN": "DOWN",
+        "NONE": "No connexion with Actuator",
+        "LIST": "{VAL, plural, =0{Everything is OK} one{1 error} other{# errors} }",
+        "SECTION": {
+            "GENERAL": "General",
+            "DISKSPACE": "Disk space",
+            "DB": "Database"
+        },
+        "DISKSPACE": {
+            "FREE": "free",
+            "TOTAL": "in total",
+            "THRESHOLD": "Threshold set at"
+        }
+    },
+    "BEANS": {
+        "MODULE_NAME": "Beans",
+        "LIST_FILTERED": "{VAL, plural, =0{0 displayed} one{1 displayed} other{# displayed} }",
+        "FILTER": {
+            "BEAN": {
+                "PLACEHOLDER": "e.g. application"
+            },
+            "SCOPE": {
+                "HEADER": "Refine by scope"
+            }
+        },
+        "SCOPE": "Scope",
+        "TYPE": "Type",
+        "RESOURCE": "Resource",
+        "DEPENDENCIES": "{VAL, plural, one{1 associated dependancy} other{# associated dependancies} }"
+    },
+    "ENV": {
+        "MODULE_NAME": "Environment",
+        "ACCESS": {
+            "HEADER": "Quick access"
+        },
+        "PROFILES": "{VAL, plural, =0{Loaded profile} one{Loaded profile} other{Loaded profiles} }",
+        "PROFILE_DEFAULT": "Default",
+        "SERVER": {
+            "PORTS": "{VAL, plural, =0{} one{Occupied port} other{Occupied ports} }"
+        },
+        "COMMAND_LINE_ARGS": "{VAL, plural, =0{Argument at runtime} one{Argument at runtime} other{Arguments at runtime} }",
+        "SERVLET_CONTEXT_INIT_PARAMS": "{VAL, plural, =0{Contexte parameter} one{Context parameter} other{Context parameters} }",
+        "SYSTEM": {
+            "PROPERTIES": {
+                "GLOBAL": "{VAL, plural, =0{System variable} one{System variable} other{System variables} }",
+                "RESUME": "{VAL, plural, =0{No system variable} one{1 system variable} other{# system variables} }"
+            },
+            "ENVIRONMENT": {
+                "GLOBAL": "{VAL, plural, =0{Env variable} one{Env variable} other{Env variables} }",
+                "RESUME": "{VAL, plural, =0{No env variable} one{1 env variable} other{# env variables} }"   
+            }
+        },
+        "REFRESH": "{VAL, plural, =0{Cache} one{Cache} other{Cache} }"
+    },
+    "TRACE" : {
+        "MODULE_NAME": "Access logs",
+        "LIST_FILTERED": "{VAL, plural, =0{0 displayed} one{1 displayed} other{# displayed} }",
+        "FILTER": {
+            "PATH": {
+                "PLACEHOLDER": "e.g. /hello-world"
+            },
+            "METHOD": {
+                "HEADER": "Refine by method"
+            },
+            "STATUS": {
+                "HEADER": "Refine by return code"
+            },
+            "OTHER": {
+                "HEADER": "Refine by ...",
+                "ACTUATOR": "Actuator traces"
+            }
+        },
+        "METHOD": "Method",
+        "PATH": "Path",
+        "STATUS": "Return code"
+    },
+    "METRICS" : {
+        "MODULE_NAME" : "Metrics",
+        "MEM" : "Memory",
+        "HEAP" : "JVM memory (heap)",
+        "UPTIME" : "Service started since"
+    },
+    "LOG" : {
+        "MODULE_NAME": "Soft logs"
+    },
+    "SHUTDOWN" : {
+        "MODULE_NAME": "Shutdown",
+        "POPUP": {
+            "TITLE": "Stop the app ?",
+            "CONTENT": "This will cause your server to shutdown remotely. Therefore, your application will be unavailable.",
+            "IMPORTANT_CONTENT": "Warning, this action is IRREVERSIBLE."
+        }
+    },
+    "THREADS": {
+        "MODULE_NAME": "Threads",
+        "LIST_FILTERED": "{VAL, plural, =0{0 displayed} one{1 displayed} other{# displayed} }",
+        "ID": "ID",
+        "NAME": "Name",
+        "SUSPENDED": "Suspended ?",
+        "GENERAL": "General",
+        "STACK": {
+            "HEADER": "Stacktrace",
+            "METHOD_NAME": "Method",
+            "FILENAME": "File",
+            "LINE_NUMBER": "Line",
+            "CLASSNAME": "Classe",
+            "NATIVE_METHOD": "Native ?"
+        },
+        "LOCKED_MONITOR": {
+            "HEADER": "Monit.",
+            "IDENTITY_HASHCODE": "Hashcode",
+            "LOCKED_STACK_DEPTH": "Deep",
+            "LOCKED_STACK_FRAME": "Detail",
+            "CLASSNAME": "Classe",
+            "METHOD_NAME": "Method",
+            "FILENAME": "File",
+            "NATIVE_METHOD": "Native ?"
+        },
+        "LOCKED_SYNC": {
+            "HEADER": "Sync.",
+            "CLASSNAME": "Classe",
+            "IDENTITY_HASHCODE": "Hashcode"
+        },
+        "LENGTH": "{VAL, plural, =0{No thread} one{1 thread} other{# threads} }",
+        "FILTER": {
+            "STATUS": "Refine by status"
+        },
+        "BLOCK": "Blocked",
+        "WAIT": "Waiting",
+        "LOCK": "Locked by",
+        "STATUS": {
+            "HEADER": "Status",
+            "NEW": {
+                "SHORT": "New",
+                "LONG": "This thread has never been executed"
+            },
+            "RUNNABLE": {
+                "SHORT": "Running",
+                "LONG": "This thread is running"
+            },
+            "BLOCKED": {
+                "SHORT": "Blocked",
+                "LONG": "This thread is blocked by attempting to access a synchronized block"
+            },
+            "TIMED_WAITING": {
+                "SHORT": "Waiting",
+                "LONG": "This thread is waiting for some time"
+            },
+            "WAITING": {
+                "SHORT": "Waiting [Thread]",
+                "LONG": "This thread is waiting for another thread"
+            },
+            "TERMINATED": {
+                "SHORT": "Terminated",
+                "LONG": "This thread has been executed"
+            }
+        }
+    },
+    "HEAP": {
+        "MODULE_NAME": "Memory"
+    },
+    "MAPPINGS": {
+        "MODULE_NAME": "Mappings",
+        "LIST_FILTERED": "{VAL, plural, =0{0 displayed} one{1 displayed} other{# displayed} }",
+        "METHOD": {
+            "HEADER": "Refine by method"
+        },
+        "PRODUCE": {
+            "HEADER": "Refine by content"
+        }
     }
 }

@@ -1,0 +1,29 @@
+<div>
+    <md-sidenav data-flex data-md-component-id="switcher" data-md-whiteframe="4">
+        <md-toolbar class="md-tall">
+            <div class="md-toolbar-tools">
+                <md-button data-ng-click="vm.closeSwitcher()" class="md-icon-button" aria-label="Feedback">
+                    <md-icon data-md-svg-icon="md:back" class="white"></md-icon>
+                </md-button>
+                <h1 data-translate="MULTI_PROJECTS.MY_PROJECTS"></h1>
+            </div>
+        </md-toolbar>
+        <md-content>
+            <md-list>
+                <md-list-item data-ng-if="vm.currentProject">
+                    <strong data-flex>{{ vm.currentProject.name }}</strong>
+                    <span data-translate="MULTI_PROJECTS.CURRENT"></span> 
+                </md-list-item>
+                <md-divider data-ng-if="vm.currentProject"></md-divider>
+                <md-list-item data-ng-repeat="project in vm.projects" data-ng-click="vm.selectProject(project)">{{ project.name }}</md-list-item>
+                <md-divider data-ng-show="vm.projects.length>0"></md-divider>
+            </md-list>
+            <p data-layout="row" data-layout-padding>
+                <md-icon data-md-svg-icon="md:info"></md-icon>
+                <span>
+                    <span data-translate="MULTI_PROJECTS.ADD_NEW"></span><a  data-ng-click="vm.goHome()" data-translate="MULTI_PROJECTS.GO_HOME"></a>
+                </span>
+            </p>
+        </md-content>
+    </md-sidenav>
+</div>

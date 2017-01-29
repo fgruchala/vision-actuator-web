@@ -2,7 +2,6 @@
  * @example <v-notification></v-notification>
  */
 (function () {
-    
     'use strict';
     
     angular
@@ -21,37 +20,49 @@
         return definition;
     }
 
-    notificationDirectiveController.$inject = ['$interval', '$location', '$translate', 'actuatorService', 'notificationService'];
+    notificationDirectiveController.$inject = ['$interval', '$state', '$translate', 'projectsService', 'actuatorService', 'notificationService'];
         
-    function notificationDirectiveController($interval, $location, $translate, actuatorService, notificationService) {
+    function notificationDirectiveController($interval, $state, $translate, projectsService, actuatorService, notificationService) {
         var vm = this;
-        var prevHealth;
         
-        vm.currentHealth;   
+        vm.downProjects;
 
-        activate();
-        $interval(activate, 5000);
+        init();
+        $interval(init, 30000);
 
-        function activate() {
+        function init() {
+            var projects = projectsService.getAllProjects();
+            vm.downProjects = [];
+
+            angular.forEach(projects, function(project) {
+                getHealthInformations(project);
+            });
+        }
+
+        function getHealthInformations(project) {
+            var healthInformations = {};
+
             actuatorService
-                .health()
-                .then(function(health) {
-                    prevHealth = angular.copy(vm.currentHealth);
-                    vm.currentHealth = health.data.status;
-                })
+                .health(project.url)
                 .catch(function(err) {
-                    prevHealth = angular.copy(vm.currentHealth);
-                    vm.currentHealth = 'DOWN';
-
+                    healthInformations.project = project;
+                    healthInformations.status = 'DOWN';
+                    
                     if(err.status === -1 || err.status === 404) {
-                        vm.currentHealth = 'NONE';
+                        healthInformations.status = 'NONE';
                     }
-                })
-                .finally(function(){
-                    if(angular.isDefined(prevHealth) && vm.currentHealth !== prevHealth) {
-                        notificationService.notify(actuatorService.getCurrentProject().name, $translate.instant('HEALTH.' + vm.currentHealth), $location.absUrl());
-                    }
+
+                    vm.downProjects.push(healthInformations);
+                    notify(healthInformations);
                 });
+        }
+
+        function notify(healthInformations) {
+            var title = $translate.instant('APP_NAME') + ' - ' + healthInformations.project.name;
+            var body = $translate.instant('HEALTH.' + healthInformations.status);
+            var url = $state.href("dashboard", { projectId: healthInformations.project.id }, { absolute: true });
+            
+            notificationService.notify(title, body, url);
         }    
     }
     

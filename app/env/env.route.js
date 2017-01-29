@@ -11,6 +11,7 @@
 
         $stateProvider
             .state('env', {
+                parent: 'project',
                 url: '/env',
                 templateUrl: 'app/env/env.html',
                 controller: 'EnvController',

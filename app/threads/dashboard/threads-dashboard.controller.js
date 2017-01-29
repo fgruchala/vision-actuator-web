@@ -11,7 +11,7 @@
     function threadsDashboardController($rootScope, $scope, $timeout, actuatorService) {
         var vm = this;
         var timeout;
-        var REFRESH_EVERY_MILLISECONDS = 10000; 
+        var REFRESH_EVERY_MILLISECONDS = 15000; 
 
         vm.threads;
         vm.error = false;

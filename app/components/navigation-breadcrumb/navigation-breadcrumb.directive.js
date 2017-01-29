@@ -1,22 +1,13 @@
-/**
- * Web component to show the navigation in the toolbar
- * @namespace Components
- * @memberOf App
+/*
  * @example <v-navigation-breadcrumb></v-navigation-breadcrumb>
  */
 (function () {
-    
     'use strict';
     
     angular
     .module('app.components')
     .directive('vNavigationBreadcrumb', navigationBreadcrumbDirectiveDefinition);
     
-    /**
-     * @name navigationBreadcrumbDirectiveDefinition
-     * @desc Definition of the web component vNavigationBreadcrumb
-     * @memberOf Components
-     */
     function navigationBreadcrumbDirectiveDefinition () {
         var definition = {
             restrict: 'E',
@@ -29,26 +20,21 @@
         return definition;
     }
     
-    navigationBreadcrumbDirectiveController.$inject = ['$scope'];
+    navigationBreadcrumbDirectiveController.$inject = ['$scope', 'projectsService'];
     
-    /**
-     * @name navigationBreadcrumbDirectiveController
-     * @desc Controller of the web component vNavigationBreadcrumb
-     * @param {@link https://docs.angularjs.org/guide/scope | AngularService} $scope
-     * @memberOf navigationBreadcrumbDirectiveDefinition
-     */
-    function navigationBreadcrumbDirectiveController ($scope) {
+    function navigationBreadcrumbDirectiveController ($scope, projectsService) {
         var vm = this;
         
-        vm.current;
+        vm.project;
+        vm.module;
         
         $scope.$on('$stateChangeSuccess', init);
-        
-        
-        
+
         function init (event, current, previous) {
-            vm.current = current.title;
+            vm.project = projectsService.getCurrentProject();
+            vm.module = current.title;
         } 
+
     }
     
 })();

@@ -1,6 +1,7 @@
 node_modules/
 doc/
 *.log
+*.log.*
 log/
 
 .classpath

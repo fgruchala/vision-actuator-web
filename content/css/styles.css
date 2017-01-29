@@ -19,11 +19,11 @@ md-card.UP, md-card.DOWN, md-card.UP a:hover, md-card.DOWN a:hover {
     color: #ffffff;
 }
 
-md-card.UP {
+.UP {
     background-color: #4caf50;
 }
 
-md-card.DOWN {
+.DOWN {
     background-color: #f44336;
 }
 
@@ -127,12 +127,22 @@ md-icon.small > svg {
     background-color: #f44336;    
 }
 
-th[data-ng-click]:hover, tr[data-ng-click]:hover, td[data-ng-click]:hover {
+th[data-ng-click]:hover, tr[data-ng-click]:hover, td[data-ng-click]:hover, a[data-ng-click]:hover {
     cursor: pointer;
 }
 
 td.text-center {
     text-align: center;
+}
+
+.italic {
+    font-style: italic;
+}
+
+.v-fab {
+    position : absolute;
+    bottom : 10px;
+    right : 10px;
 }
 
 div.input-filter > input {
@@ -143,3 +153,6 @@ div.input-filter > input:focus {
     outline: none;
 }
 
+.danger {
+    color : red;
+}

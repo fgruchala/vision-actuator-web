@@ -10,7 +10,7 @@
     function HealthDashboardController($rootScope, $scope, $timeout, $translate, $mdDialog, actuatorService) {
         var vm = this;
         var timeout;
-        var REFRESH_EVERY_MILLISECONDS = 5000;
+        var REFRESH_EVERY_MILLISECONDS = 15000;
 
         vm.health;
         vm.error = false;

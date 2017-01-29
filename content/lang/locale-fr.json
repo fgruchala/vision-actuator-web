@@ -3,7 +3,7 @@
     "LANG": {
         "CHANGE_START_MESSAGE": "Traduction en cours ...",
         "CHOOSE_MESSAGE": "{VAL, plural, one{Langue disponible} other{Langues disponibles}}",
-        "en": "Anglais",
+        "en": "English",
         "fr": "Français"
     },
     "NONE": "{GENDER, select, FEMALE{Non renseignée} other{Non renseigné}}",
@@ -37,18 +37,26 @@
     },
     "MULTI_PROJECTS": {
         "NEW": "Nouveau projet",
-        "NAME": "Nom (e.g. Project top secret)",
-        "URL": "Url (e.g. http://top.secret.com)"
+        "NAME": "Nom (e.g. Projet top secret)",
+        "URL": "Url (e.g. http://top.secret.com)",
+        "MY_PROJECTS": "Mes projets",
+        "CURRENT": "Actuel",
+        "ADD_NEW": "Monitorer un autre projet ? Rendez-vous à l'",
+        "GO_HOME": "accueil"
     },
     "VOLUME-DATA": "{UNIT, select, 1{Ko} 2{Mo} 3{Go} other{octet} }",
     "DASHBOARD": {
-        "MODULE_NAME": "Dashboard"
+        "MODULE_NAME": "Tableau de bord"
+    },
+    "HOME": {
+        "MODULE_NAME": "Accueil"
     },
     "HEALTH": {
         "MODULE_NAME": "Santé",
         "UP": "UP",
         "DOWN": "DOWN",
         "NONE": "Pas de connexion avec Actuator",
+        "LIST": "{VAL, plural, =0{Tout est normal} one{1 erreur} other{# erreurs} }",
         "SECTION": {
             "GENERAL": "Général",
             "DISKSPACE": "Espace disque",

@@ -10,6 +10,7 @@
     function mappingsRouting($stateProvider) {
         $stateProvider
         .state('mappings', {
+                parent: 'project',
                 url: '/mappings',
                 templateUrl: 'app/mappings/mappings.html',
                 controller: 'MappingsController',
@@ -23,7 +24,6 @@
     }
 
     mappingsPrepData.$inject = ['actuatorService'];
-    filtersPrepData.$inject = ['mappingsPrepData'];
 
     function mappingsPrepData(actuatorService) {
         return actuatorService
@@ -39,6 +39,8 @@
                     return err.data;
                 });
     }
+
+    filtersPrepData.$inject = ['mappingsPrepData'];
 
     function filtersPrepData(mappingsPrepData) {
         var filters = {};

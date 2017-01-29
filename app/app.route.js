@@ -1,9 +1,4 @@
-/**
- * Global Routing of the App
- * @namespace App
- */
 (function () {
-    
     'use strict';
     
     angular
@@ -14,23 +9,10 @@
     globalConfigRouting.$inject = ['$urlRouterProvider'];
     globalRunRouting.$inject = ['$rootScope', '$translate', '$mdToast'];
     
-    /**
-     * @name globalConfigRouting
-     * @param {@link https://github.com/angular-ui/ui-router/wiki/URL-Routing#urlrouterprovider | UiRouterService} [$urlRouterProvider]
-     * @memberOf App
-     */
     function globalConfigRouting ($urlRouterProvider) {
-        // $urlRouterProvider.otherwise('/');
-        $urlRouterProvider.otherwise('/dashboard');
+        $urlRouterProvider.otherwise('/');
     }
 
-    /**
-     * @name globalRunRouting
-     * @param {@link https://docs.angularjs.org/api/ng/service/$rootScope | AngularService} [$rootScope]
-     * @param {@link https://angular-translate.github.io/docs/#/api/pascalprecht.translate.$translate | TranslateService} [$translate]
-     * @param {@link https://material.angularjs.org/latest/api/service/$mdToast | MaterialService} [$mdToast]
-     * @memberOf App
-     */
     function globalRunRouting ($rootScope, $translate, $mdToast) {
         var loadingPromise;
 

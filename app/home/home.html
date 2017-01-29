@@ -1,1 +1,22 @@
-<div>TODO</div>
+<md-content data-flex-offset="20" data-flex="60">
+	<md-list flex>
+		<md-list-item class="md-3-line" data-ng-repeat="project in vm.projects" data-ng-click="vm.goToProject(project)">
+			<div ng-if="project.health" class="md-avatar {{project.health}}"></div>
+			<md-progress-circular ng-if="!project.health" class="md-avatar" md-diameter="40"></md-progress-circular>
+			
+			<div class="md-list-item-text" layout="column">
+				<h3><strong>{{project.name}}</strong></h3>
+				<h4>{{project.url}}</h4>
+				<p class="italic" data-ng-if="project.lastTrace">Dernier accès le {{project.lastTrace | date:"dd/MM/yyyy 'à' H'h'mm"  || '-'}}</p>
+			</div>
+
+			<!-- boutons d'actions -->
+			<md-icon data-md-svg-icon="md:delete" ng-click="vm.removeProjectPopup(project)" class="md-secondary danger" aria-label="Supprimer un projet de la liste"></md-icon>
+		</md-list-item>
+	</md-list>
+</md-content>
+
+<!-- Bouton flottant d'ajout de service -->
+<md-button aria-label="Ajouter un service" ng-click="vm.addProjectPopup()" class="md-fab v-fab">
+	<md-icon data-md-svg-icon="md:add" class="white"></md-icon>
+</md-button>

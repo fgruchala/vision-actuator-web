@@ -1,8 +1,7 @@
-<md-button class="md-icon-button" aria-label="Notification">
-    <md-icon data-md-svg-icon="md:notifications-active" class="white" data-ng-show="vm.currentHealth==='DOWN'"></md-icon>
-    <md-icon data-md-svg-icon="md:notifications-none" class="white" data-ng-show="vm.currentHealth==='UP'"></md-icon>
-    <md-icon data-md-svg-icon="md:notifications-off" class="white" data-ng-show="vm.currentHealth==='NONE'"></md-icon>
+<md-button data-ui-sref="home" class="md-icon-button" aria-label="Notification" data-ng-disabled="vm.downProjects.length===0">
+    <md-icon data-md-svg-icon="md:notifications-active" class="white" data-ng-show="vm.downProjects.length>0"></md-icon>
+    <md-icon data-md-svg-icon="md:notifications-none" class="white" data-ng-show="vm.downProjects.length===0"></md-icon>
     <md-tooltip>
-        <span data-translate="{{ 'HEALTH.' + vm.currentHealth }}"></span>
+        <span data-translate="{{ 'HEALTH.LIST' }}" data-translate-values="{'VAL':vm.downProjects.length}"></span>
     </md-tooltip>
 </md-button>

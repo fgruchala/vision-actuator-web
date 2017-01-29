@@ -10,7 +10,7 @@
     function BeansDashboardController($rootScope, $scope, $timeout, actuatorService) {
         var vm = this;
         var timeout;
-        var REFRESH_EVERY_MILLISECONDS = 30000;
+        var REFRESH_EVERY_MILLISECONDS = 15000;
 
         vm.beans;
         vm.error = false;
