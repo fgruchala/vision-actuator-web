@@ -43,15 +43,20 @@
                 project.id = project.name;
                 projects.unshift(project);
                 storageService.setItem('projects', projects);
+                return project
             }
         }
 
         function removeProject(project) {
-            let index = projects.indexOf(project);
+            let index = projects.findIndex(function(elem) {
+                return elem.id === project.id;
+            });
             if (index !== -1) {
                 projects.splice(index, 1);
                 storageService.setItem('projects', projects);
+                return true;
             }
+            return false;
         }
 
         function getProject(projectId) {
