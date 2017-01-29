@@ -27,7 +27,7 @@
 			vm.projects = projectsService.getAllProjects();
 			angular.forEach(vm.projects, function (project) {
 				statusSync(project);
-				lastAccessSync(project);
+				lastTraceSync(project);
 			});
 		}
 
@@ -52,7 +52,7 @@
 			}
 		}
 
-		function lastAccessSync(project) {
+		function lastTraceSync(project) {
 			getTrace(project);
 			var callback = $interval(function () {
 				getTrace(project);
@@ -96,14 +96,17 @@
 				templateUrl: '/app/home/add-project-popup.html',
 				clickOutsideToClose: true
 			})
-				.then(function (project) {
-					project = projectsService.addProject(project);
-					vm.projects.push(project);
-				});
+			.then(function (project) {
+				project = projectsService.addProject(project);
+				vm.projects.push(project);
+				statusSync(project);
+				lastTraceSync(project);
+			});
 		}
 
 		function removeProjectPopup(project) {
-			$mdDialog.show(
+			$mdDialog
+			.show(
 				$mdDialog.confirm()
 					.title('Supprimer le projet de la liste ?')
 					.cancel('Non')
