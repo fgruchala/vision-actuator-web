@@ -124,9 +124,7 @@
 		}
 
 		function goToProject(project) {
-			if (project.health === 'UP') {
-				$state.go('dashboard', { 'projectId': project.id });
-			}
+			$state.go('dashboard', { 'projectId': project.id }, { reload: true });
 		}
 	}
 })();

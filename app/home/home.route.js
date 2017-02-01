@@ -16,6 +16,15 @@
 			controller : 'HomeController',
 			controllerAs : 'vm',
 			title: 'HOME.MODULE_NAME',
+			resolve: {
+				currentProjectPrepData: currentProjectPrepData
+			}
 		});
+
+		currentProjectPrepData.$inject = ['projectsService'];
+
+        function currentProjectPrepData(projectsService) {
+            projectsService.setCurrentProject(undefined);
+        }
 	}
 })();
