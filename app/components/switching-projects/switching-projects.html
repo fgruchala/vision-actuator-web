@@ -10,12 +10,10 @@
         </md-toolbar>
         <md-content>
             <md-list>
-                <md-list-item data-ng-if="vm.currentProject">
-                    <strong data-flex>{{ vm.currentProject.name }}</strong>
-                    <span data-translate="MULTI_PROJECTS.CURRENT"></span> 
+                <md-list-item data-ng-repeat="project in vm.projects" data-ng-click="vm.selectProject(project)">
+                    <span data-ng-style="project.id == vm.currentProject.id ? {'font-weight': 'bold'} : {}" data-flex>{{ project.name }}</span>
+                    <span data-translate="MULTI_PROJECTS.CURRENT" data-ng-show="project.id == vm.currentProject.id"></span>
                 </md-list-item>
-                <md-divider data-ng-if="vm.currentProject"></md-divider>
-                <md-list-item data-ng-repeat="project in vm.projects" data-ng-click="vm.selectProject(project)">{{ project.name }}</md-list-item>
                 <md-divider data-ng-show="vm.projects.length>0"></md-divider>
             </md-list>
             <p data-layout="row" data-layout-padding>

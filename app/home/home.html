@@ -3,8 +3,8 @@
 		<md-content class="md-whiteframe-z1 bg">
 			<md-list>
 				<md-list-item class="md-3-line" data-ng-repeat="project in vm.projects" data-ng-click="vm.goToProject(project)">
-					<div ng-if="project.health" class="md-avatar {{project.health}}"></div>
-					<md-progress-circular ng-if="!project.health" class="md-avatar" md-diameter="40"></md-progress-circular>
+					<div data-ng-if="project.health" class="md-avatar {{project.health}}"></div>
+					<md-progress-circular data-ng-if="!project.health" class="md-avatar" data-md-diameter="40"></md-progress-circular>
 					
 					<div class="md-list-item-text" layout="column">
 						<h3><strong>{{project.name}}</strong></h3>
@@ -21,7 +21,7 @@
 	</div>
 
 	<!-- Bouton flottant d'ajout de service -->
-	<md-button aria-label="Ajouter un service" ng-click="vm.addProjectPopup()" class="md-fab v-fab">
+	<md-button aria-label="Ajouter un service" data-ng-click="vm.addProjectPopup()" class="md-fab v-fab">
 		<md-icon data-md-svg-icon="md:add" class="white"></md-icon>
 	</md-button>
 </div>
