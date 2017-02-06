@@ -49,7 +49,8 @@
         "MODULE_NAME": "Dashboard"
     },
     "HOME": {
-        "MODULE_NAME": "Home"
+        "MODULE_NAME": "Home",
+        "POPUP_DELETE_PROJECT_TITLE" : "Delete project ?"
     },
     "HEALTH": {
         "MODULE_NAME": "Health",

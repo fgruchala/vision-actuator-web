@@ -5,9 +5,9 @@
 		.module('app.home')
 		.controller('HomeController', HomeController);
 
-	HomeController.$inject = ['$scope', '$mdDialog', '$interval', '$state', 'actuatorService', 'projectsService'];
+	HomeController.$inject = ['$scope', '$mdDialog', '$interval', '$state', '$translate', 'actuatorService', 'projectsService'];
 
-	function HomeController($scope, $mdDialog, $interval, $state, actuatorService, projectsService) {
+	function HomeController($scope, $mdDialog, $interval, $state, $translate, actuatorService, projectsService) {
 		var vm = this;
 		var syncCallback = [];
 		var SYNC_MILLISECONDS = 3000;
@@ -108,9 +108,9 @@
 			$mdDialog
 			.show(
 				$mdDialog.confirm()
-					.title('Supprimer le projet de la liste ?')
-					.cancel('Non')
-					.ok('Oui')
+					.title($translate.instant('HOME.POPUP_DELETE_PROJECT_TITLE'))
+					.cancel($translate.instant('COMMON.NO'))
+					.ok($translate.instant('COMMON.YES'))
 			).then(function () {
 				if (projectsService.removeProject(project)) {
 					let index = vm.projects.findIndex(function(elem) {

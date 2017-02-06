@@ -49,7 +49,8 @@
         "MODULE_NAME": "Tableau de bord"
     },
     "HOME": {
-        "MODULE_NAME": "Accueil"
+        "MODULE_NAME": "Accueil",
+        "POPUP_DELETE_PROJECT_TITLE" : "Supprimer le projet de la liste ?"
     },
     "HEALTH": {
         "MODULE_NAME": "Santé",
