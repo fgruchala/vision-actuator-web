@@ -9,7 +9,6 @@
 
 	function HomeController($scope, $mdDialog, $interval, $state, $translate, actuatorService, projectsService) {
 		var vm = this;
-		var syncCallback = [];
 		var SYNC_MILLISECONDS = 3000;
 
 		vm.addProjectPopup = addProjectPopup;
@@ -22,21 +21,20 @@
 
 
 		function activate() {
-			$scope.$on('$destroy', destroy);
+			$scope.$on('$destroy', $destroy);
 
 			vm.projects = projectsService.getAllProjects();
-			angular.forEach(vm.projects, function (project) {
-				statusSync(project);
-				lastTraceSync(project);
+			angular.forEach(vm.projects, function(project) {
+				project.statusCallback = statusSync(project);
+				project.lastTraceCallback = lastTraceSync(project);
 			});
 		}
 
 		function statusSync(project) {
 			getStatus(project);
-			var callback = $interval(function () {
+			return $interval(function () {
 				getStatus(project);
 			}, SYNC_MILLISECONDS);
-			syncCallback.push(callback);
 		}
 
 		function getStatus(project) {
@@ -54,10 +52,9 @@
 
 		function lastTraceSync(project) {
 			getTrace(project);
-			var callback = $interval(function () {
+			return $interval(function () {
 				getTrace(project);
 			}, SYNC_MILLISECONDS);
-			syncCallback.push(callback);
 		}
 
 		function getTrace(project) {
@@ -83,10 +80,17 @@
 			return lastTrace;
 		}
 
-		function destroy() {
-			angular.forEach(syncCallback, function (callback) {
-				$interval.cancel(callback);
+		function $destroy() {
+			angular.forEach(vm.projects, function (project) {
+				cancelCallback(project);
 			});
+		}
+
+		function cancelCallback(project) {
+			if (project) {
+				$interval.cancel(project.statusCallback);
+				$interval.cancel(project.lastTraceCallback);
+			}
 		}
 
 		function addProjectPopup() {
@@ -98,9 +102,9 @@
 			})
 			.then(function (project) {
 				project = projectsService.addProject(project);
+				project.statusCallback = statusSync(project);
+				project.lastTraceCallback = lastTraceSync(project);
 				vm.projects.push(project);
-				statusSync(project);
-				lastTraceSync(project);
 			});
 		}
 
@@ -117,6 +121,7 @@
                 		return elem.id === project.id;
             		});
             		if (index !== -1) {
+						cancelCallback(vm.projects[index]);
                 		vm.projects.splice(index, 1);
             		}
 				}
