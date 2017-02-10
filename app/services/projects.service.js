@@ -40,11 +40,21 @@
 
         function addProject(project) {
             if (project) {
-                project.id = project.name;
+                project.id = calculNextProjectId();
                 projects.unshift(project);
                 storageService.setItem('projects', projects);
                 return project
             }
+        }
+
+        function calculNextProjectId() {
+            var projects = getAllProjects();
+            var maxId = 0;
+
+            angular.forEach(projects, function(project) {
+                (project.id > maxId) ? maxId = project.id : null;
+            });
+            return maxId+1;
         }
 
         function removeProject(project) {
@@ -60,18 +70,11 @@
         }
 
         function getProject(projectId) {
-            var projectFound;
-
-            if(angular.isDefined(projects)) {
-                angular.forEach(projects, function(project) {
-                    if(project.id === projectId) {
-                        projectFound = project;
-                        return;
-                    }
+             if (angular.isDefined(projects)) {
+                return projects.find(function(project) {
+                    return project.id == projectId;
                 });
             }
-
-            return projectFound;
         }
 
         function setCurrentProject(project) {

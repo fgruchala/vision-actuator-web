@@ -1,6 +1,6 @@
 <div data-layout="column" data-flex-offset="20" data-flex="60">
 	<div data-layout-margin>
-		<md-content class="md-whiteframe-z1 bg">
+		<md-content ng-show="vm.projects.length > 0" class="md-whiteframe-z1 bg">
 			<md-list>
 				<md-list-item class="md-3-line" data-ng-repeat="project in vm.projects" data-ng-click="vm.goToProject(project)">
 					<div data-ng-if="project.health" class="md-avatar {{project.health}}"></div>
@@ -18,6 +18,11 @@
 				</md-list-item>
 			</md-list>
 		</md-content>
+
+		<!-- Pas de projets configurés-->
+		<div ng-hide="vm.projects.length > 0">
+			Vous n'avez ajouté aucun projets. <a data-ng-click="vm.addProjectPopup()">Ajoutez un projet</a>
+		</div>
 	</div>
 
 	<!-- Bouton flottant d'ajout de service -->
