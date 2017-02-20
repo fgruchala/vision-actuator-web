@@ -1,5 +1,5 @@
 {
-  "name": "vision-web",
+  "name": "vision-actuator-web",
   "version": "1.0.0",
   "description": "Material Design UI for Actuator",
   "main": "index.html",
@@ -9,13 +9,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/fgruchala/Vision.git"
+    "url": "git+https://github.com/fgruchala/vision-actuator-web.git"
   },
   "keywords": [
-    "UI",
-    "Material",
-    "Design",
-    "Actuator"
+    "JavaScript",
+    "Angular",
+    "Material Design",
+    "Spring Boot",
+    "Spring Boot Actuator"
   ],
   "author": {
     "name": "François GRUCHALA",
@@ -29,23 +30,23 @@
   ],
   "license": "SEE LICENCE IN LICENCE",
   "bugs": {
-    "url": "https://github.com/fgruchala/Vision/issues"
+    "url": "https://github.com/fgruchala/vision-actuator-web/issues"
   },
-  "homepage": "https://github.com/fgruchala/Vision#readme",
+  "homepage": "https://github.com/fgruchala/vision-actuator-web#readme",
   "dependencies": {
-    "angular": "1.5.10",
-    "angular-animate": "1.5.10",
-    "angular-aria": "1.5.10",
-    "angular-cookies": "1.5.10",
-    "angular-material": "1.1.1",
-    "angular-messages": "1.5.10",
-    "angular-resource": "1.5.10",
-    "angular-sanitize": "1.5.10",
-    "angular-translate": "2.11.1",
-    "angular-ui-router": "0.3.1",
+    "angular": "1.5.11",
+    "angular-animate": "1.5.11",
+    "angular-aria": "1.5.11",
+    "angular-cookies": "1.5.11",
+    "angular-material": "1.1.3",
+    "angular-messages": "1.5.11",
+    "angular-resource": "1.5.11",
+    "angular-sanitize": "1.5.11",
+    "angular-translate": "2.14.0",
+    "angular-ui-router": "0.4.2",
     "material-design-lite": "1.2.1",
     "messageformat": "1.0.2",
-    "moment": "2.15.2"
+    "moment": "2.17.1"
   },
   "devDependencies": {
     "lite-server": "2.2.2"
