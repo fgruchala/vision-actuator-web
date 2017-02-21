@@ -24,10 +24,16 @@
 			$scope.$on('$destroy', $destroy);
 
 			vm.projects = projectsService.getAllProjects();
-			angular.forEach(vm.projects, function(project) {
-				project.statusCallback = statusSync(project);
-				project.lastTraceCallback = lastTraceSync(project);
-			});
+
+			if(vm.projects.length === 0) {
+				addProjectPopup();
+			}
+			else {
+				angular.forEach(vm.projects, function(project) {
+					project.statusCallback = statusSync(project);
+					project.lastTraceCallback = lastTraceSync(project);
+				});
+			}
 		}
 
 		function statusSync(project) {
@@ -124,6 +130,9 @@
 						cancelCallback(vm.projects[index]);
                 		vm.projects.splice(index, 1);
             		}
+					if(vm.projects.length === 0) {
+						addProjectPopup();
+					}
 				}
 			});
 		}

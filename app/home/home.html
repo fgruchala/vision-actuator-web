@@ -1,6 +1,6 @@
 <div data-layout="column" data-flex-offset="20" data-flex="60">
 	<div data-layout-margin>
-		<md-content class="md-whiteframe-z1 bg">
+		<md-content class="md-whiteframe-z1 bg" data-ng-show="vm.projects.length>0">
 			<md-list>
 				<md-list-item class="md-3-line" data-ng-repeat="project in vm.projects" data-ng-click="vm.goToProject(project)">
 					<div data-ng-if="project.health" class="md-avatar {{project.health}}"></div>
